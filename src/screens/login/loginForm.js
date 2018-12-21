@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Item, Input, Label, Icon, Button, Text } from 'native-base';
+import { Form, Item, Input, Label, Icon, Button, Text, Thumbnail } from 'native-base';
 import { DoubleBounce, Pulse } from 'react-native-loader';
 
 import { connect } from 'react-redux';
@@ -32,37 +32,37 @@ class LoginForm extends React.Component {
     }
 
     render() {
-        const { app } = this.props;
+        const { app, user } = this.props;
         return (
             <Form>
                 <Item floatingLabel style={{marginRight: 15}}>
-                    <Label>Username</Label>
+                    <Label style={{color: '#737373'}}>Username</Label>
                     <Input
                         onChangeText={this._handleUsernameChange}
                         editable={!app.fetchingApi}
                         autoCorrect={false}
                         keyboardType='email-address'
                         keyboardAppearance='dark'
-                        style={{color: '#fff'}} />
-                    <Icon active name='person' style={{color: '#fff'}}  />
+                        style={{color: '#b3b3b3b3'}} />
+                    <Icon active name='person' style={{color: '#b3b3b3b3'}}  />
                 </Item>
                 <Item floatingLabel style={{marginRight: 15}}>
-                    <Label>Password</Label>
+                    <Label style={{color: '#737373'}}>Password</Label>
                     <Input
                         onChangeText={this._handlePasswordChange}
                         editable={!app.fetchingApi}
-                        secureTextEntry={true} style={{color: '#fff'}} />
+                        secureTextEntry={true} style={{color: '#b3b3b3b3'}} />
                     <Icon
-                        active name='key' style={{color: '#fff'}}  />
+                        active name='key' style={{color: '#b3b3b3b3'}}  />
                 </Item>
-                <Button
+                {user.info && <Thumbnail style={pageStyle.loginButton} large source={{uri: user.info.avatar}}></Thumbnail>}
+                {!user.info && <Button
                     onPress={this._handleSubmit}
                     disabled={app.fetchingApi}
                     rounded danger style={pageStyle.loginButton}>
                     {app.fetchingApi && <DoubleBounce size={30} color="#ff6666" />}
                     {!app.fetchingApi && <Text style={pageStyle.loginButtonLabel}>SIGN IN</Text>}
-                    
-                </Button>
+                </Button>}
             </Form>
         );
     }
@@ -70,7 +70,8 @@ class LoginForm extends React.Component {
 
 const mapDispatchToProps = dispatch => ({});
 const mapStateToProps = state => ({
-    app: state.app
+    app: state.app,
+    user: state.user
 });
 
 export default connect(mapStateToProps)(LoginForm)
