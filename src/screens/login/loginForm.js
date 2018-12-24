@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Item, Input, Label, Icon, Button, Text, Thumbnail } from 'native-base';
-import { DoubleBounce, Pulse } from 'react-native-loader';
+import { DoubleBounce } from 'react-native-loader';
 
 import { connect } from 'react-redux';
 
@@ -36,7 +36,7 @@ class LoginForm extends React.Component {
         return (
             <Form>
                 <Item floatingLabel style={{marginRight: 15}}>
-                    <Label style={{color: '#737373'}}>Username</Label>
+                    <Label style={{color: '#737373', top: 0}}>Username</Label>
                     <Input
                         onChangeText={this._handleUsernameChange}
                         editable={!app.fetchingApi}
@@ -47,7 +47,7 @@ class LoginForm extends React.Component {
                     <Icon active name='person' style={{color: '#b3b3b3b3'}}  />
                 </Item>
                 <Item floatingLabel style={{marginRight: 15}}>
-                    <Label style={{color: '#737373'}}>Password</Label>
+                    <Label style={{color: '#737373', top: 0}}>Password</Label>
                     <Input
                         onChangeText={this._handlePasswordChange}
                         editable={!app.fetchingApi}
@@ -55,6 +55,7 @@ class LoginForm extends React.Component {
                     <Icon
                         active name='key' style={{color: '#b3b3b3b3'}}  />
                 </Item>
+                
                 {user.info && <Thumbnail style={pageStyle.loginButton} large source={{uri: user.info.avatar}}></Thumbnail>}
                 {!user.info && <Button
                     onPress={this._handleSubmit}

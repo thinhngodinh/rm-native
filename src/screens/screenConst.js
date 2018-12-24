@@ -1,15 +1,20 @@
 import LoginScreen from './login/login';
 import DashboardScreen from './dashboard/dashboard';
 import AccountScreen from './account/account';
+import VerifyingTokenScreen from './VerifyingToken/verifyingToken'
 
-const screen = {
-    dashboard:{
-        name: '_DASHBOARD',
-        config: {screen: DashboardScreen}
+const screens = {
+    verifyToken: {
+        name: '_VERIFY_USER_',
+        config: {screen: VerifyingTokenScreen}
     } ,
     login:{
         name: '_LOGIN',
         config: {screen: LoginScreen}
+    } ,
+    dashboard:{
+        name: '_DASHBOARD',
+        config: {screen: DashboardScreen}
     } ,
     account:{
         name: '_ACCOUNT',
@@ -17,4 +22,10 @@ const screen = {
     }
 };
 
-export default screen;
+export const stacks = {
+    app: 'APPLICATION_STACK',
+    auth: 'AUTHENTICATION_STACK',
+    verifyToken: '_VERIFY_USER_'
+}
+
+export default screens;

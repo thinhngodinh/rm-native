@@ -5,6 +5,7 @@ import { authSaga } from './src/services/middlewares/authorizationSaga';
 import configStore from './src/services/createStore';
 import { Root } from "native-base";
 
+import NavigationService from './src/services/navigationService'
 import HttpService from './src/services/httpServices';
 import ApiService from './src/services/apiService';
 const saga = createSagaMiddleware();
@@ -24,7 +25,7 @@ export default class App extends Component {
     return (
       <Root>
         <Provider store= {store}>
-          <AppContainer />
+          <AppContainer ref={navigatorRef => {NavigationService.setTopLevelNavigator(navigatorRef)}} />
         </Provider>
       </Root>
     );

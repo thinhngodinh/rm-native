@@ -1,13 +1,27 @@
-import { createStackNavigator, createAppContainer } from "react-navigation";
-import screen from './screenConst';
+import { createStackNavigator, createAppContainer, createSwitchNavigator } from "react-navigation";
+import screens, {stacks} from './screenConst';
 
-const AppNavigator = createStackNavigator(
+const AppStack = createStackNavigator(
     {
-        [screen.dashboard.name]: {...screen.dashboard.config},
-        [screen.account.name]: {...screen.dashboard.config},
-        [screen.login.name]: {...screen.login.config}
+        [screens.dashboard.name]: {...screens.dashboard.config},
+        [screens.account.name]: {...screens.dashboard.config}
     },{
-        initialRouteName: screen.login.name
+        initialRouteName: screens.dashboard.name
+    }
+);
+
+const AuthStack = createStackNavigator({
+    [screens.login.name]: {...screens.login.config}
+})
+
+const AppNavigator = createSwitchNavigator(
+    {
+        [stacks.app]: AppStack,
+        [stacks.auth]: AuthStack,
+        [screens.verifyToken.name]: {...screens.verifyToken.config}
+    },
+    {
+        initialRouteName: screens.verifyToken.name
     }
 );
 

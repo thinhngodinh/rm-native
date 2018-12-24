@@ -1,5 +1,7 @@
 import { call, select, put, takeLatest } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
+import { NavigationActions } from 'react-navigation';
+import {stacks} from '../../screens/screenConst'
 import { userActions, appActions } from '../../static/actionsIndex'
 import { showToast } from '../../util/toast';
 
@@ -26,6 +28,15 @@ function* verifyUser(apiService) {
     yield put(userActions.requestApi.invoke(false));
 }
 
+function * verifyCurrentToken(apiService) {
+    console.log('verify token saga', apiService);
+    if (apiService._token === '') {
+        console.log('navigate to login', stacks.auth)
+        yield put(NavigationActions.navigate(stacks.auth, null));
+    }
+}
+
 export function* authSaga(apiService) {
     yield takeLatest(userActions.login.action, verifyUser, apiService);
+    yield takeLatest(appActions.verifyCurrentToken.action, verifyCurrentToken, apiService);
 }

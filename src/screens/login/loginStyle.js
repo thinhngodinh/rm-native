@@ -15,7 +15,7 @@ const loginStyle = StyleSheet.create(
             width: '100%',
             height: 80,
             alignItems: 'center',
-            marginTop: Platform.OS === 'ios' ? 70 : 50,
+            marginTop: Platform.OS === 'ios' ? 50 : 20,
         },
         appFooter: {
             padding: 10,
@@ -48,7 +48,7 @@ const loginStyle = StyleSheet.create(
             justifyContent: 'center',
             alignSelf: 'center',
             position: 'absolute',
-            bottom: -110
+            bottom: -115
 
         },
         loginButtonLabel: {
