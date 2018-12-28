@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Image, ImageBackground } from "react-native";
 import { connect } from 'react-redux';
 
+import { stacks } from '../screenConst';
 import LoginForm from './loginForm';
 import pageStyle from './loginStyle';
 
@@ -9,6 +10,13 @@ class LoginScreen extends React.Component {
     static navigationOptions = {
         header: null,
     }
+    
+    componentDidUpdate() {
+        if (this.props.user.info){
+            setTimeout(() => this.props.navigation.navigate(stacks.app), 1500);
+        }
+    }
+
     render() {
         const {app} = this.props;
         return (
@@ -33,6 +41,7 @@ class LoginScreen extends React.Component {
     }
 }
 const mapStateToProps = state => ({
-    app: state.app
+    app: state.app,
+    user: state.user
 });
 export default connect(mapStateToProps)(LoginScreen)

@@ -10,8 +10,8 @@ export default class HttpService {
         this._handleResponse = this._handleResponse.bind(this);
     }
 
-    get(url) {
-        return this.call('get', url, null, null);
+    get(url, headers = null) {
+        return this.call('get', url, null, headers);
     }
 
     post(url, body, headers = null) {
@@ -31,27 +31,47 @@ export default class HttpService {
     }
 
     call(method, url, body, headers) {
-        console.warn('Fetch Call', method, url, body, headers)
-        return fetch(method, url, body, headers)
+        const fetchConfig = {
+            method: method,
+            body: JSON.stringify(body),
+            headers: {
+                Accept: 'application/json',
+                ...headers
+            }
+        }
+        if (!body) {
+            delete fetchConfig.body;
+        }
+        return fetch(url, fetchConfig)
             .then(this._handleResponse)
             .then(response => {
-                return {...response, body: parseJson(response.body)};
+                return response;
             })
             .catch(this._handleError);
     }
 
     _handleResponse(response) {
         if (response.status >= 200 && response.status < 300) {
-            return Promise.resolve(response);
+            return Promise.resolve(response.json());
         } else {
-            const parsedBody = parseJson(response.body);
-            const ErrCode = parsedBody && parsedBody.ErrCode;
-            return Promise.reject(new CustomError(response.status, ErrCode, response.error));
+            if(response.hasOwnProperty('error')) {
+                return Promise.reject(response.error());
+            } else if(response.headers.get('Content-Type').indexOf('json') >= 0) {
+                return Promise.reject(response.json());
+            } else {
+                return Promise.reject({
+                    message: 'Unexpected error happened. Please try again',
+                    status: false
+                });
+            }
         }
     }
     
     _handleError(error) {
-        alert('Service Request Error');
-        return Promise.reject(error);
+        if (error instanceof Promise) {
+            return error.then(response => Promise.reject(response));
+        } else {
+            return Promise.reject(error);
+        }
     }
 }
