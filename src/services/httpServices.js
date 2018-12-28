@@ -56,12 +56,22 @@ export default class HttpService {
         } else {
             if(response.hasOwnProperty('error')) {
                 return Promise.reject(response.error());
+            } else if(response.headers.get('Content-Type').indexOf('json') >= 0) {
+                return Promise.reject(response.json());
+            } else {
+                return Promise.reject({
+                    message: 'Unexpected error happened. Please try again',
+                    status: false
+                });
             }
-            return Promise.reject(response.json());
         }
     }
     
     _handleError(error) {
-        return error.then(response => Promise.reject(response));
+        if (error instanceof Promise) {
+            return error.then(response => Promise.reject(response));
+        } else {
+            return Promise.reject(error);
+        }
     }
 }

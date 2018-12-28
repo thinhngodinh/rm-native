@@ -27,7 +27,7 @@ class LoginForm extends React.Component {
     }
 
     _handleSubmit() {
-        const {dispatch} = this.props;
+        const { dispatch } = this.props;
         dispatch(userActions.login.invoke(this.state));
     }
 
@@ -69,7 +69,6 @@ class LoginForm extends React.Component {
     }
 }
 
-const mapDispatchToProps = dispatch => ({});
 const mapStateToProps = state => ({
     app: state.app,
     user: state.user

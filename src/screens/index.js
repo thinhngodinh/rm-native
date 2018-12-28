@@ -21,7 +21,7 @@ const AppNavigator = createSwitchNavigator(
         [screens.verifyToken.name]: {...screens.verifyToken.config}
     },
     {
-        initialRouteName: screens.verifyToken.name
+        initialRouteName: stacks.auth
     }
 );
 

@@ -1,4 +1,8 @@
 export const userActions = {
+    navigateToLogin: {
+        action: '_NAVIGATE_TO_LOGIN_SCREEN_',
+        invoke: () => ({type: userActions.navigateToLogin.action})
+    },
     login: {
         action: '_LOGIN_',
         invoke: authInfo => ({type: userActions.login.action, authInfo}) 
