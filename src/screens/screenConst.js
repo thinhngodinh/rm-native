@@ -9,15 +9,15 @@ const screens = {
         config: {screen: VerifyingTokenScreen}
     } ,
     login:{
-        name: '_LOGIN',
+        name: '_LOGIN_',
         config: {screen: LoginScreen}
     } ,
     dashboard:{
-        name: '_DASHBOARD',
+        name: '_DASHBOARD_',
         config: {screen: DashboardScreen}
     } ,
     account:{
-        name: '_ACCOUNT',
+        name: '_ACCOUNT_',
         config: {screen: AccountScreen}
     }
 };
