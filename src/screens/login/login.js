@@ -4,21 +4,19 @@ import { connect } from 'react-redux';
 
 import { stacks } from '../screenConst';
 import LoginForm from './loginForm';
+import VerifyToken from './loginVerifyToken';
 import pageStyle from './loginStyle';
 
 class LoginScreen extends React.Component {
     static navigationOptions = {
         header: null,
     }
-    
-    componentDidUpdate() {
-        if (this.props.user.info){
-            setTimeout(() => this.props.navigation.navigate(stacks.app), 1500);
-        }
-    }
 
     render() {
-        const {app} = this.props;
+        const {app, user, navigation} = this.props;
+        if (user.info){
+            setTimeout(() => navigation.navigate(stacks.app), 1500);
+        }
         return (
             <ImageBackground
                 source={require('./assets/login_bg.jpg')}
@@ -31,7 +29,8 @@ class LoginScreen extends React.Component {
                         source={require('./assets/logo-rm.png')} />
                 </View>
                 <View style={pageStyle.formContainer}>
-                    <LoginForm />
+                    {!app.renderLoginForm && <VerifyToken />}
+                    {app.renderLoginForm &&<LoginForm />}
                 </View>
                 <View style={pageStyle.appFooter}>
                     <Text style={pageStyle.defaultTextColor}>Copyright 2015 © Elinext Group ™</Text>

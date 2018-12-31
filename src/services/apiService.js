@@ -1,5 +1,7 @@
 import API_URL from '../static/apiConst';
 
+import { AsyncStorage } from "react-native"
+
 export default class ApiService {
     constructor(httpService) {
         this.httpService = httpService,
@@ -10,9 +12,26 @@ export default class ApiService {
         this._defaultRequestHeader = null;
     }
 
+    async _storeToken(authToken) {
+        try {
+            await AsyncStorage.setItem('token', authToken);
+        } catch (e) {
+            alert('Application couldn\'t save your authentication session. Next time you\'re requried to login to use app.');
+        }
+    }
+
     createDefaultHeaders(token, tokenType) {
+        this._storeToken(`${tokenType} ${token}`);
+        this.createHeaders(`${tokenType} ${token}`);
+    }
+
+    removeHeaders() {
+        this._defaultRequestHeader = null;
+    }
+    
+    createHeaders(authToken) {
         this._defaultRequestHeader = {
-            Authorization: `${tokenType} ${token}`,
+            Authorization: authToken,
             Accept: 'application/x.rest.v1+json'
         }
     }
@@ -38,5 +57,9 @@ export default class ApiService {
             return false;
         }
         return this.httpService.get(API_URL.USER, this._defaultRequestHeader);
+    }
+
+    logout() {
+        return this.httpService.get(API_URL.LOGOUT, this._defaultRequestHeader);
     }
 }

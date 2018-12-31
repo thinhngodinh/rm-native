@@ -7,7 +7,8 @@ const getInitialState = () => ({
     database: 'php_team',
     grant_type: 'rm_validate',
     fetchingApi: false,
-    session: null
+    session: null,
+    renderLoginForm: false
 });
 
 const ACTION_HANDLERS =  {
@@ -22,6 +23,14 @@ const ACTION_HANDLERS =  {
     [userActions.requestApi.action]: (state, action) => ({
         ...state,
         fetchingApi: action.isFetching
+    }),
+    [appActions.renderLoginForm.action]: (state, action) => ({
+        ...state,
+        renderLoginForm: action.shouldRenderLoginForm
+    }),
+    [appActions.removeSessionToken.action]: state => ({
+        ...state,
+        session: null
     })
 }
 

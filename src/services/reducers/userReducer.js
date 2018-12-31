@@ -1,8 +1,8 @@
-import { userActions } from '../../static/actionsIndex';
+import { userActions, appActions } from '../../static/actionsIndex';
 
 const getInitialState = () => ({
     authInfo: null,
-    userInfo: null
+    info: null
 });
 
 const ACTION_HANDLERS =  {
@@ -13,6 +13,10 @@ const ACTION_HANDLERS =  {
     [userActions.setUserInfo.action]: (state, action) => ({
         ...state,
         info: action.userData
+    }),
+    [appActions.removeSessionToken.action]: state => ({
+        ...state,
+        info: null
     })
 }
 

@@ -1,5 +1,20 @@
-import { createStackNavigator, createAppContainer, createSwitchNavigator } from "react-navigation";
+import { createStackNavigator, createAppContainer, createSwitchNavigator, createDrawerNavigator } from "react-navigation";
 import screens, {stacks} from './screenConst';
+
+// const leftDrawer = createDrawerNavigator(
+//     {},
+//     {
+//         drawerPosition: 'left',
+//         drawerType: 'slide' 
+//     }
+// );
+// const rightDrawer = createDrawerNavigator(
+//     {},
+//     {
+//         drawerPosition: 'right',
+//         drawerType: 'slide' 
+//     }
+// );
 
 const AppStack = createStackNavigator(
     {
@@ -17,8 +32,7 @@ const AuthStack = createStackNavigator({
 const AppNavigator = createSwitchNavigator(
     {
         [stacks.app]: AppStack,
-        [stacks.auth]: AuthStack,
-        [screens.verifyToken.name]: {...screens.verifyToken.config}
+        [stacks.auth]: AuthStack
     },
     {
         initialRouteName: stacks.auth

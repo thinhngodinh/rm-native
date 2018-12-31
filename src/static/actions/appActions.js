@@ -9,7 +9,15 @@ export const appActions = {
     },
     setSessionToken: {
         action: '_SET_SESSION_TOKEN_',
-        invoke: session => ({type: appActions.setSessionToken.action, session})
+        invoke: session => ({ type: appActions.setSessionToken.action, session })
+    },
+    removeSessionToken: {
+        action: '_REMOVE_SESSION_TOKEN_',
+        invoke: () => ({ type: appActions.removeSessionToken.action })
+    },
+    renderLoginForm: {
+        action: '_RENDER_LOGIN_FORM_',
+        invoke: shouldRenderLoginForm => ({ type: appActions.renderLoginForm.action, shouldRenderLoginForm })
     },
     exitApp: {
         action: '_EXIT_APP_',
