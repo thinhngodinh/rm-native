@@ -11,6 +11,7 @@ class SettingsScreen extends React.Component {
     
     static navigationOptions = {
         drawerLabel: 'Settings',
+        drawerIcon: () => <Icon name='md-settings' style={{color: '#fff'}} />
     }
 
     render() {

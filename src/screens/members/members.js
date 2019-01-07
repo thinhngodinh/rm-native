@@ -10,6 +10,7 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 class MembersScreen extends React.Component {
     static navigationOptions = {
         drawerLabel: 'Members',
+        drawerIcon: () => <Icon name='md-people' style={{color: '#fff'}} />
     }
     render() {
         return (

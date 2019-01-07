@@ -15,15 +15,14 @@ import SideBar from  './_layout/leftSideBar';
 
 const LeftDrawer = createDrawerNavigator(
     {
-        [screens.dashboard.name]: {...screens.dashboard.config},
-        [screens.members.name]: {...screens.members.config},
         [screens.projects.name]: {...screens.projects.config},
+        [screens.members.name]: {...screens.members.config},
         [screens.settings.name]: {...screens.settings.config}
     },
     {
-        drawerType: 'front',
+        drawerType: 'slide',
         drawerBackgroundColor: '#232323',
-        drawerLockMode: 'unlocked'
+        contentComponent: SideBar
     }
 );
 

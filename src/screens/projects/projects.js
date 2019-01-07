@@ -10,6 +10,7 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 class ProjectsScreen extends React.Component {
     static navigationOptions = {
         drawerLabel: 'Projects',
+        drawerIcon: () => <Icon name='md-folder' style={{color: '#fff'}} />
     }
 
     render() {
