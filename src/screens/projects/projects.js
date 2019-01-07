@@ -3,6 +3,7 @@ import React from "react";
 
 import { Container, Header, Left, Right, Body, Title, Button, Icon, Content, Text } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
+import ProjectItem from './projectItem/projectItem';
 
 // Header Config
 // Footer Config
@@ -36,7 +37,10 @@ class ProjectsScreen extends React.Component {
                 <Content>
                     <Grid>
                         <Row>
-                            <Text>Projects Screen</Text>
+                            <Text style={{marginTop: 10, paddingLeft: 10}}>Current 1 Projects To Show</Text>
+                        </Row>
+                        <Row style={{ marginTop: 20, paddingLeft: 10, paddingRight: 10}}>
+                            <ProjectItem />
                         </Row>
                     </Grid>
                 </Content>
