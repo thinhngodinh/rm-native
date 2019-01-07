@@ -31,6 +31,7 @@ export default class HttpService {
     }
 
     call(method, url, body, headers) {
+        console.log('HTTP', `[${method.toUpperCase()}]`, url)
         const fetchConfig = {
             method: method,
             body: JSON.stringify(body),

@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import createSagaMiddleware from 'redux-saga';
 import { Provider } from 'react-redux';
 import { authSaga } from './src/services/middlewares/authorizationSaga';
 import configStore from './src/services/createStore';
-import { Root } from "native-base";
+import { Root, StyleProvider } from "native-base";
 
 import NavigationService from './src/services/navigationService'
 import HttpService from './src/services/httpServices';
@@ -14,6 +14,9 @@ const store = configStore(saga)
 const httpServices = new HttpService();
 const apiService = new ApiService(httpServices);
 
+import getTheme from './native-base-theme/components';
+import material from './native-base-theme/variables/material';
+
 
 // implement run saga here
 saga.run(authSaga, apiService)
@@ -23,11 +26,11 @@ import AppContainer from './src/screens'
 export default class App extends Component {
   render() {
     return (
-      <Root>
-        <Provider store= {store}>
-          <AppContainer ref={navigatorRef => {NavigationService.setTopLevelNavigator(navigatorRef)}} />
-        </Provider>
-      </Root>
+      <Provider store={store}>
+          <Root>
+            <AppContainer ref={navigatorRef => { NavigationService.setTopLevelNavigator(navigatorRef) }} />
+          </Root>
+      </Provider>
     );
   }
 }

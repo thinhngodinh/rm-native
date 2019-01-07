@@ -1,6 +1,9 @@
 import LoginScreen from './login/login';
 import DashboardScreen from './dashboard/dashboard';
 import AccountScreen from './account/account';
+import MembersScreen from './members/members';
+import ProjectsScreen from './projects/projects';
+import SettingsScreen from './setting/settings'
 
 const screens = {
     login:{
@@ -14,6 +17,18 @@ const screens = {
     account:{
         name: '_ACCOUNT_',
         config: {screen: AccountScreen}
+    },
+    members: {
+        name: '_MEMBERS_',
+        config: { screen: MembersScreen }
+    },
+    projects: {
+        name: '_PROJECTS_',
+        config: { screen: ProjectsScreen }
+    },
+    settings: {
+        name: '_SETTING_',
+        config: { screen: SettingsScreen }
     }
 };
 

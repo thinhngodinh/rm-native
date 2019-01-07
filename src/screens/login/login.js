@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, ImageBackground } from "react-native";
+import { View, Text, Image, ImageBackground, StatusBar } from "react-native";
 import { connect } from 'react-redux';
 
 import { stacks } from '../screenConst';
@@ -10,6 +10,7 @@ import pageStyle from './loginStyle';
 class LoginScreen extends React.Component {
     static navigationOptions = {
         header: null,
+        headerTintColor: '#000'
     }
 
     render() {
@@ -22,6 +23,8 @@ class LoginScreen extends React.Component {
                 source={require('./assets/login_bg.jpg')}
                 blurRadius={1}
                 style={pageStyle.screen}>
+                <StatusBar
+                    barStyle='light-content' />
                 <View style={pageStyle.appLogo}>
                     <Image
                         resizeMode='contain' 

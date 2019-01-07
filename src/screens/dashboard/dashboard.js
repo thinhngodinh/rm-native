@@ -1,22 +1,34 @@
-import React from "react";
-
+import React from 'react';
+import { Platform } from 'react-native'
 // third-party import
 import { connect } from 'react-redux';
-import { Button, Icon, Content, Text } from 'native-base';
+import { Container, Header, Left, Right, Body, Title, Button, Icon, Content, Text } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
 // src import
 import { userActions } from '../../static/actionsIndex';
 import { stacks } from '../screenConst';
 
+const headerProps = Platform.select({
+    ios: () => ({
+        iosBarStyle: 'dark-content'
+    }),
+    android: () => ({
+        androidStatusBarColor: '#232323'
+    })
+})
+
 class DashboardScreen extends React.Component {
     constructor(props) {
         super(props);
         this._dispatchLogout = this._dispatchLogout.bind(this);
+        Text.defaultProps = {
+            uppercase: false
+        };
     }
 
     static navigationOptions = {
-        header: null,
+        drawerLabel: 'Dashboard',
     }
 
     _dispatchLogout(e) {
@@ -33,19 +45,35 @@ class DashboardScreen extends React.Component {
 
     render() {
         return (
-            <Content>
-                <Grid>
-                    <Row style={{justifyContent: 'center'}}>
-                        <Text>Dashboard Screen</Text>
-                    </Row>
-                    <Row style={{justifyContent: 'center'}}>
-                        <Button onPress={this._dispatchLogout}>
-                            <Icon name='md-log-out' />
-                            <Text>Logout</Text>
+            <Container>
+                <Header
+                    iosBarStyle='light-content'
+                    androidStatusBarColor='#232323'
+                    noShadow
+                    style={{ backgroundColor: '#333' }}>
+                    <Left>
+                        <Button
+                            transparent
+                            onPress={() => this.props.navigation.toggleDrawer()}>
+                            <Icon name="menu" style={{ color: '#fff' }} />
                         </Button>
-                    </Row>
-                </Grid>
-            </Content>
+                    </Left>
+                    <Body>
+                        <Title style={{ color: '#fff', textAlign: "center" }}>Dashboard</Title>
+                    </Body>
+                    <Right />
+                </Header>
+                <Content>
+                    <Grid>
+                        <Row>
+                            <Button onPress={this._dispatchLogout}>
+                                <Icon name='md-log-out' />
+                                <Text>Logout</Text>
+                            </Button>
+                        </Row>
+                    </Grid>
+                </Content>
+            </Container>
         );
     }
 }

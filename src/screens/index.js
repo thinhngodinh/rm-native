@@ -1,29 +1,33 @@
+import React from 'react';
 import { createStackNavigator, createAppContainer, createSwitchNavigator, createDrawerNavigator } from "react-navigation";
 import screens, {stacks} from './screenConst';
 
-// const leftDrawer = createDrawerNavigator(
-//     {},
-//     {
-//         drawerPosition: 'left',
-//         drawerType: 'slide' 
-//     }
-// );
-// const rightDrawer = createDrawerNavigator(
-//     {},
+import SideBar from  './_layout/leftSideBar';
+
+// const RightDrawer = createDrawerNavigator(
+//     {[screens.dashboard.name]: {...screens.dashboard.config}},
 //     {
 //         drawerPosition: 'right',
-//         drawerType: 'slide' 
+//         drawerType: 'slide',
+//         drawerBackgroundColor: '#232323'
 //     }
 // );
 
-const AppStack = createStackNavigator(
+const LeftDrawer = createDrawerNavigator(
     {
         [screens.dashboard.name]: {...screens.dashboard.config},
-        [screens.account.name]: {...screens.dashboard.config}
-    },{
-        initialRouteName: screens.dashboard.name
+        [screens.members.name]: {...screens.members.config},
+        [screens.projects.name]: {...screens.projects.config},
+        [screens.settings.name]: {...screens.settings.config}
+    },
+    {
+        drawerType: 'front',
+        drawerBackgroundColor: '#232323',
+        drawerLockMode: 'unlocked'
     }
 );
+
+const AppStack = LeftDrawer;
 
 const AuthStack = createStackNavigator({
     [screens.login.name]: {...screens.login.config}

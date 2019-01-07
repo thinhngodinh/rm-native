@@ -7,8 +7,10 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 // Header Config
 // Footer Config
 
-class AccountScreen extends React.Component {
-    
+class MembersScreen extends React.Component {
+    static navigationOptions = {
+        drawerLabel: 'Members',
+    }
     render() {
         return (
             <Container>
@@ -25,14 +27,14 @@ class AccountScreen extends React.Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Title style={{ color: '#fff', textAlign: "center" }}>Account</Title>
+                        <Title style={{ color: '#fff', textAlign: "center" }}>Members</Title>
                     </Body>
                     <Right />
                 </Header>
                 <Content>
                     <Grid>
                         <Row>
-                            <Text>Account Screen</Text>
+                            <Text>Members Screen</Text>
                         </Row>
                     </Grid>
                 </Content>
@@ -41,4 +43,4 @@ class AccountScreen extends React.Component {
     }
 }
 
-export default AccountScreen;
+export default MembersScreen;
