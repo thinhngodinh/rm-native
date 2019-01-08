@@ -1,12 +1,10 @@
-import { StyleSheet, Platform } from 'react-native';
-import { Right } from 'native-base';
+import { StyleSheet } from 'react-native';
 
 const projectItemStyle = StyleSheet.create(
     {
         mainCard: {
             width: '100%'
         },
-
         cardHdr: {
             position: 'relative'
         },
@@ -36,43 +34,6 @@ const projectItemStyle = StyleSheet.create(
             top: 17,
             fontSize: 20
         },
-        projectProcess: {
-            position: 'relative',
-            height: 5,
-            width: '100%',
-            backgroundColor: '#eeeeee',
-            marginTop: 20,
-            marginBottom: 20
-        },
-        labelPercentComplete: {
-            position: 'absolute',
-            left: 0,
-            bottom: '100%',
-            color: '#000',
-            fontSize: 14
-        },
-        labelProcessIssues: {
-            position: 'absolute',
-            right: 0,
-            bottom: '100%',
-            color: '#000',
-            fontSize: 14
-        },
-        itemProcess: {
-            borderWidth: 1,
-            borderColor: '#e0e0e0',
-            borderRadius: 3,
-            paddingTop: 3,
-            paddingBottom: 3,
-            paddingRight: 10,
-            paddingLeft: 10,
-            textAlign: 'center',
-            marginRight: 5
-        },
-        itemProcessText: {
-            fontSize: 13,
-            color: '#232323'
-        },
         cardTag: {
             marginTop: 10
         },
@@ -81,54 +42,20 @@ const projectItemStyle = StyleSheet.create(
             justifyContent: 'flex-start',
             flexDirection: 'row'
         },
+        cardTagTextLabel: {
+            fontSize: 13,
+            color: '#444444',
+            fontWeight: '400'
+        },
         cardTagTextItem: {
             fontSize: 13,
-            color: '#232323',
-            fontWeight: '400'
+            fontWeight: '400',
+            color: '#009bd7'
         },
         memberJoined: {
             borderTopWidth: 1,
-            borderColor: '#232323',
+            borderColor: '#cccccc',
             paddingTop: 17
-        },
-        memberList: {
-            display: 'flex',
-            justifyContent: 'flex-start',
-            flexDirection: 'row',
-            alignItems: 'center'
-        },
-        memberItem: {
-            marginLeft: 0,
-            marginRight: 10,
-            width: 46,
-            paddingLeft: 0,
-            paddingRight: 0,
-            borderBottomWidth: 0,
-            position: 'relative',
-            marginBottom: 10
-        },
-        memberImage: {
-            width: 46,
-            height: 46,
-            borderRadius: 23
-        },
-        statusMemberProcess: {
-            position: 'absolute',
-            right: -2,
-            top: 5,
-            width: 20,
-            height: 20,
-            lineHeight: 20,
-            borderRadius: 10,
-            backgroundColor: '#ddce01',
-            color: '#000000',
-            fontSize: 14,
-            textAlign: 'center'
-        },
-        viewMore: {
-            fontSize: 20,
-            color: '#000000',
-            marginBottom: 10
         }
     }
 );

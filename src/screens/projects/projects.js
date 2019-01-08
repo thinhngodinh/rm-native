@@ -34,12 +34,12 @@ class ProjectsScreen extends React.Component {
                     </Body>
                     <Right />
                 </Header>
-                <Content>
+                <Content padder>
                     <Grid>
                         <Row>
                             <Text style={{marginTop: 10, paddingLeft: 10}}>Current 1 Projects To Show</Text>
                         </Row>
-                        <Row style={{ marginTop: 20, paddingLeft: 10, paddingRight: 10}}>
+                        <Row style={{ marginTop: 20}}>
                             <ProjectItem />
                         </Row>
                     </Grid>
