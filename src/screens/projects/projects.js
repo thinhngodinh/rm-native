@@ -1,17 +1,25 @@
 import React from "react";
 // third-party import
 
-import { Container, Header, Left, Right, Body, Title, Button, Icon, Content, Text } from 'native-base';
+import {
+    Container,
+    Header,
+    Footer,
+    Left,
+    Right, Body, Title, Button, Icon, Content, Text
+} from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import ProjectItem from './projectItem/projectItem';
 
 // Header Config
 // Footer Config
+import ProjectFooterTab from './components/projectFooter';
+
 
 class ProjectsScreen extends React.Component {
     static navigationOptions = {
         drawerLabel: 'Projects',
-        drawerIcon: () => <Icon name='md-folder' style={{color: '#fff'}} />
+        drawerIcon: () => <Icon name='md-folder' style={{ color: '#fff' }} />
     }
 
     render() {
@@ -26,24 +34,43 @@ class ProjectsScreen extends React.Component {
                         <Button
                             transparent
                             onPress={() => this.props.navigation.toggleDrawer()}>
-                            <Icon name="menu" style={{ color: '#fff' }} />
+                            <Icon name="md-menu" style={{ color: '#fff' }} />
                         </Button>
                     </Left>
                     <Body>
-                        <Title style={{ color: '#fff', textAlign: "center" }}>Projects</Title>
+                        <Title style={{ color: '#fff' }}>Projects</Title>
                     </Body>
-                    <Right />
+                    <Right>
+                        <Button transparent>
+                            <Icon name='md-search' style={{ color: '#fff' }} />
+                        </Button>
+                        <Button transparent>
+                            <Icon name='md-notifications-outline' style={{ color: '#fff' }} />
+                        </Button>
+                    </Right>
                 </Header>
                 <Content padder>
                     <Grid>
                         <Row>
-                            <Text style={{marginTop: 10, paddingLeft: 10}}>Current 1 Projects To Show</Text>
+                            <Text style={{ marginTop: 10, paddingLeft: 10 }}>Current 1 Projects To Show</Text>
                         </Row>
-                        <Row style={{ marginTop: 20}}>
+                        <Row style={{ marginTop: 20 }}>
+                            <ProjectItem />
+                        </Row>
+                        <Row style={{ marginTop: 20 }}>
+                            <ProjectItem />
+                        </Row>
+                        <Row style={{ marginTop: 20 }}>
+                            <ProjectItem />
+                        </Row>
+                        <Row style={{ marginTop: 20 }}>
                             <ProjectItem />
                         </Row>
                     </Grid>
                 </Content>
+                <Footer>
+                    <ProjectFooterTab />
+                </Footer>
             </Container>
         );
     }

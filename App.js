@@ -26,11 +26,13 @@ import AppContainer from './src/screens'
 export default class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-          <Root>
-            <AppContainer ref={navigatorRef => { NavigationService.setTopLevelNavigator(navigatorRef) }} />
-          </Root>
-      </Provider>
+      <StyleProvider style={getTheme(material)}>
+        <Provider store={store}>
+            <Root>
+              <AppContainer ref={navigatorRef => { NavigationService.setTopLevelNavigator(navigatorRef) }} />
+            </Root>
+        </Provider>
+      </StyleProvider>
     );
   }
 }

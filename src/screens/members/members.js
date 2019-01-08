@@ -30,7 +30,14 @@ class MembersScreen extends React.Component {
                     <Body>
                         <Title style={{ color: '#fff', textAlign: "center" }}>Members</Title>
                     </Body>
-                    <Right />
+                    <Right>
+                        <Button transparent>
+                            <Icon name="md-search" style={{ color: '#fff' }} />
+                        </Button>
+                        <Button transparent>
+                            <Icon name="md-notifications" style={{ color: '#fff' }} />
+                        </Button>
+                    </Right>
                 </Header>
                 <Content>
                     <Grid>

@@ -30,9 +30,16 @@ class SettingsScreen extends React.Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Title style={{ color: '#fff', textAlign: "center" }}>Settings</Title>
+                        <Title style={{ color: '#fff' }}>Settings</Title>
                     </Body>
-                    <Right />
+                    <Right>
+                        <Button transparent>
+                            <Icon name='md-search' style={{ color: '#fff' }} />
+                        </Button>
+                        <Button transparent>
+                            <Icon name='ios-notifications-outline' style={{ color: '#fff' }} />
+                        </Button>
+                    </Right>
                 </Header>
                 <Content>
                     <Grid>
