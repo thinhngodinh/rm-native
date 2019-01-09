@@ -11,19 +11,23 @@ const ProcessBar = (props) => (
     </View>
 );
 
-const ProjectInformation = (props) => (
-    <View style={{ flex: 1, flexDirection: 'row' }}>
-        <Col style={projectProcessStyle.itemProcess}>
-            <Text style={projectProcessStyle.itemProcessText}>{props.issues} issues</Text>
-        </Col>
-        <Col style={projectProcessStyle.itemProcess}>
-            <Text style={projectProcessStyle.itemProcessText}>Spent {props.spentHours} hrs</Text>
-        </Col>
-        <Col style={projectProcessStyle.itemProcess}>
-            <Text style={projectProcessStyle.itemProcessText}>Est. {props.estHours} hrs</Text>
-        </Col>
-    </View>
-);
+const ProjectInformation = (props) => {
+    const spentHoursCvt = Number(props.spentHours);
+    const estHoursCvt = Number(props.estHours);
+    return (
+        <View style={{ flex: 1, flexDirection: 'row' }}>
+            <Col style={projectProcessStyle.itemProcess}>
+                <Text style={projectProcessStyle.itemProcessText}>{props.issues.toLocaleString()} issues</Text>
+            </Col>
+            <Col style={projectProcessStyle.itemProcess}>
+                <Text style={projectProcessStyle.itemProcessText}>Spent {spentHoursCvt.toLocaleString()} hrs</Text>
+            </Col>
+            <Col style={projectProcessStyle.itemProcess}>
+                <Text style={projectProcessStyle.itemProcessText}>Est. {estHoursCvt.toLocaleString()} hrs</Text>
+            </Col>
+        </View>
+    );
+}
 
 const ProjectProcess = (props) => (
     <Grid>

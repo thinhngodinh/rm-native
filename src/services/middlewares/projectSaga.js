@@ -1,4 +1,4 @@
-import { call, takeLatest, put, takeEvery } from 'redux-saga/effects';
+import { call, takeLatest, put } from 'redux-saga/effects';
 
 import { projectActions } from '../../static/actionsIndex';
 import { showToast } from '../../util/toast';
@@ -13,5 +13,5 @@ function *getListProject(apiService) {
     } 
 }
 export function * projectSaga(apiService) {
-    yield takeEvery(projectActions.fetchApiProjects.action, getListProject, apiService)
+    yield takeLatest(projectActions.fetchApiProjects.action, getListProject, apiService)
 }

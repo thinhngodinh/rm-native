@@ -25,14 +25,13 @@ function getWorkloadStatus(workloadPercent) {
 }
 
 const MemberItem = (props) => {
-    const workloadStatus = props.workloadStatus
     return (
         <ListItem avatart style={memberStyle.memberItem}> 
             <Left>
-                <Thumbnail style={memberStyle.memberImage} source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' }} />
+                <Thumbnail style={memberStyle.memberImage} source={{ uri: props.projectMember.profile_picture }} />
             </Left>
-            <Badge style={[memberStyle.statusMemberProcess, getWorkloadStatus(workloadStatus)]}>
-                <Text>2</Text>
+            <Badge style={[memberStyle.statusMemberProcess, getWorkloadStatus(props.projectMember.percent_workload)]}>
+                <Text>{props.projectMember.opened_issues}</Text>
             </Badge>
         </ListItem>
     );
@@ -42,26 +41,32 @@ class MemberList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            viewMore: true
+            viewMore: false
         }
     }
     
     render() {
         return(
             <Grid>
-                <Text style={memberStyle.totalMemberLabel}>10 members joined</Text>
+                <Text style={memberStyle.totalMemberLabel}>{this.props.members.length} members joined</Text>
                 <Row>
                     <Col>
                         <List style={memberStyle.memberList}>
-                            <MemberItem 
-                                workloadStatus = {WORKLOAD_PERCENT.LOW}
-                            />
-                            <MemberItem 
-                                workloadStatus = {WORKLOAD_PERCENT.MEDIUM}
-                            />
-                            {this.state.viewMore &&
-                                <Label style={memberStyle.viewMore}>...</Label>
-                            }
+                            {this.props.members.length && this.props.members.map((member, index) => {
+                                if (index <= 4 ) {
+                                    return (
+                                        <MemberItem 
+                                            key={index}
+                                            projectMember={member}
+                                        />
+                                    );
+                                } else if (index === 5 ) {
+                                    return (
+                                        <Label style={memberStyle.viewMore} key={index}>...</Label>
+                                    );
+                                }
+                            })}
+                            
                         </List>
                     </Col>
                 </Row>

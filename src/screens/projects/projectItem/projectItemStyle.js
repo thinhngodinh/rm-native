@@ -56,7 +56,8 @@ const projectItemStyle = StyleSheet.create(
             borderTopWidth: 1,
             borderBottomWidth: 1,
             borderColor: '#cccccc',
-            paddingTop: 17
+            paddingTop: 17,
+            flexDirection: 'row'
         },
         actionWrapper: {
             flex: 1,

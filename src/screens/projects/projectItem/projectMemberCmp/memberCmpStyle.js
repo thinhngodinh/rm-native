@@ -7,7 +7,9 @@ const memberCmpStyle = StyleSheet.create(
             display: 'flex',
             justifyContent: 'flex-start',
             flexDirection: 'row',
-            alignItems: 'center'
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            alignContent: 'flex-start'
         },
         memberItem: {
             marginLeft: 0,
