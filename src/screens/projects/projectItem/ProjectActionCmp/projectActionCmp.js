@@ -8,19 +8,19 @@ class ProjectActionList extends React.Component {
             <Left>
                 <Button small iconLeft full transparent style={projectActionStyle.btnStyle}>
                     <Icon name='md-pricetags' />
-                    <Text style={projectActionStyle.textAct}>Add Tag</Text>
+                    <Text style={projectActionStyle.textAct}>Tag</Text>
                 </Button>
             </Left>,
             <Body>
                 <Button small iconLeft full transparent style={projectActionStyle.btnStyle}>
                     <Icon name='md-add' />
-                    <Text style={projectActionStyle.textAct}>Add Task</Text>
+                    <Text style={projectActionStyle.textAct}>Task</Text>
                 </Button>
             </Body>,
             <Right>
                 <Button small iconLeft full transparent style={projectActionStyle.btnStyle}>
                     <Icon name='md-person-add' />
-                    <Text style={projectActionStyle.textAct}>Add Member</Text>
+                    <Text style={projectActionStyle.textAct}>Member</Text>
                 </Button>
             </Right>
         ];

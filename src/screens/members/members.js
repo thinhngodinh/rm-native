@@ -35,7 +35,7 @@ class MembersScreen extends React.Component {
                             <Icon name="md-search" style={{ color: '#fff' }} />
                         </Button>
                         <Button transparent>
-                            <Icon name="md-notifications" style={{ color: '#fff' }} />
+                            <Icon name="ios-notifications-outline" style={{ color: '#fff' }} />
                         </Button>
                     </Right>
                 </Header>

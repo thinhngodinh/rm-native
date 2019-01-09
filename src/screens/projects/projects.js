@@ -45,7 +45,7 @@ class ProjectsScreen extends React.Component {
                             <Icon name='md-search' style={{ color: '#fff' }} />
                         </Button>
                         <Button transparent>
-                            <Icon name='md-notifications-outline' style={{ color: '#fff' }} />
+                            <Icon name='ios-notifications-outline' style={{ color: '#fff' }} />
                         </Button>
                     </Right>
                 </Header>
@@ -55,16 +55,16 @@ class ProjectsScreen extends React.Component {
                             <Text style={{ marginTop: 10, paddingLeft: 10 }}>Current 4 Projects To Show</Text>
                         </Row>
                         <Row style={{ marginTop: 20 }}>
-                            <ProjectItem />
+                            <ProjectItem key={1} />
                         </Row>
                         <Row style={{ marginTop: 20 }}>
-                            <ProjectItem />
+                            <ProjectItem key={2} />
                         </Row>
                         <Row style={{ marginTop: 20 }}>
-                            <ProjectItem />
+                            <ProjectItem key={3} />
                         </Row>
                         <Row style={{ marginTop: 20 }}>
-                            <ProjectItem />
+                            <ProjectItem key={4} />
                         </Row>
                     </Grid>
                 </Content>
