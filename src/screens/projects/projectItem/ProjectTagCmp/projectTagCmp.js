@@ -6,7 +6,9 @@ import projectTagStyle from './projectTagCmpStyle';
 const TagItem = (props) => {
     const tagList = props.listTag
     return(
-        <Text style={projectTagStyle.cardTagTextItem}>{tagList.join(', ')}</Text>
+        <Text style={tagList.length > 0 ? projectTagStyle.cardTagTextItem : projectTagStyle.noCardTagItem}>
+            {tagList.length > 0 ? tagList.join(', ') : 'N/A'}
+        </Text>
     )
 }
 

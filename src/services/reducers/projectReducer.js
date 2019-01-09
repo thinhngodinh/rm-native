@@ -8,9 +8,9 @@ const getInitialState = () => ({
 });
 
 const ACTION_HANDLERS =  {
-    [projectActions.getProjectList.action]: (state, action) => ({
+    [projectActions.setList.action]: (state, action) => ({
         ...state,
-        projectList: action.projectListData
+        projectList: action.listProject
     })
 }
 

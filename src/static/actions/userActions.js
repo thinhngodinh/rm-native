@@ -14,5 +14,10 @@ export const userActions = {
     logout: {
         action: '_LOGOUT_',
         invoke: () => ({type: userActions.logout.action})
+    },
+    getProjectList: {
+        working: () => ({type: '_GET_PROJECT_LIST_WORKING_'}),
+        upnext: () => ({type: '_GET_PROJECT_LIST_UPNEXT_'}), 
+        done: () => ({type: '_GET_PROJECT_LIST_DONE_'})
     }
 };

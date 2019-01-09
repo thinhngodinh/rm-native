@@ -20,6 +20,12 @@ const projectTagCmpStyle = StyleSheet.create(
             fontWeight: '300',
             color: '#009bd7'
         },
+        noCardTagItem: {
+            fontSize: 13,
+            fontWeight: '300',
+            color: '#cccccc',
+            fontStyle: 'italic'
+        },
         memberJoined: {
             borderTopWidth: 1,
             borderColor: '#cccccc',
