@@ -1,5 +1,6 @@
 import React from "react";
 // third-party import
+import { connect } from 'react-redux';
 
 import {
     Container,
@@ -14,15 +15,24 @@ import ProjectItem from './projectItem/projectItem';
 // Header Config
 // Footer Config
 import ProjectFooterTab from './components/projectFooter';
-
+import { projectActions } from './../../static/actionsIndex';
 
 class ProjectsScreen extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
     static navigationOptions = {
         drawerLabel: 'Projects',
         drawerIcon: () => <Icon name='md-folder' style={{ color: '#fff' }} />
     }
 
+    componentWillMount() {
+        this.props.dispatch(projectActions.fetchApiProjects.invoke())
+    }
+
     render() {
+        const projectListData = this.props.project.projectList;
         return (
             <Container>
                 <Header
@@ -49,25 +59,22 @@ class ProjectsScreen extends React.Component {
                         </Button>
                     </Right>
                 </Header>
+                {projectListData != null &&
                 <Content padder>
                     <Grid>
                         <Row>
-                            <Text style={{ marginTop: 10, paddingLeft: 10 }}>Current 4 Projects To Show</Text>
+                            <Text style={{ marginTop: 10, paddingLeft: 10 }}>Total {projectListData.total_items} Projects</Text>
                         </Row>
-                        <Row style={{ marginTop: 20 }}>
-                            <ProjectItem key={1} />
+                        { projectListData.projects.map((project, index) => 
+                        <Row style={{ marginTop: 20 }} key={index}>
+                            <ProjectItem
+                                projectInfo={project}
+                            />
                         </Row>
-                        <Row style={{ marginTop: 20 }}>
-                            <ProjectItem key={2} />
-                        </Row>
-                        <Row style={{ marginTop: 20 }}>
-                            <ProjectItem key={3} />
-                        </Row>
-                        <Row style={{ marginTop: 20 }}>
-                            <ProjectItem key={4} />
-                        </Row>
+                        )}
                     </Grid>
                 </Content>
+                }
                 <Footer>
                     <ProjectFooterTab />
                 </Footer>
@@ -76,4 +83,8 @@ class ProjectsScreen extends React.Component {
     }
 }
 
-export default ProjectsScreen;
+const mapStateToProps = state => ({
+    project: state.project
+});
+
+export default connect(mapStateToProps)(ProjectsScreen);;

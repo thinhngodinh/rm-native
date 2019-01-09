@@ -62,4 +62,8 @@ export default class ApiService {
     logout() {
         return this.httpService.get(API_URL.LOGOUT, this._defaultRequestHeader);
     }
+
+    getProjectsList () {
+        return this.httpService.get(API_URL.GET_PROJECT, this._defaultRequestHeader);
+    }
 }

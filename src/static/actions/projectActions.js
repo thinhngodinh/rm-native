@@ -1,6 +1,10 @@
 export const projectActions = {
-    getProjectsList: {
-        action: '_GET_PROJECTS_LIST_',
-        invoke: () => ({ type: projectActions.getProjectsList.action })
+    fetchApiProjects: {
+        action: '_FETCH_API_PROJECTS_',
+        invoke: () => ({ type: projectActions.fetchApiProjects.action })
+    },
+    getProjectList: {
+        action: '_GET_PROJECT_LIST_',
+        invoke: projectListData => ({ type: projectActions.getProjectList.action, projectListData })
     }
 };

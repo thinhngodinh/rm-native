@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import createSagaMiddleware from 'redux-saga';
 import { Provider } from 'react-redux';
 import { authSaga } from './src/services/middlewares/authorizationSaga';
+import { projectSaga } from './src/services/middlewares/projectSaga';
 import configStore from './src/services/createStore';
 import { Root, StyleProvider } from "native-base";
 
@@ -20,6 +21,7 @@ import material from './native-base-theme/variables/material';
 
 // implement run saga here
 saga.run(authSaga, apiService)
+saga.run(projectSaga, apiService)
 
 import AppContainer from './src/screens'
 

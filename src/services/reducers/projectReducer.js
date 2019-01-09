@@ -5,13 +5,13 @@ const getInitialState = () => ({
 });
 
 const ACTION_HANDLERS =  {
-    [projectActions.getProjectsList.action]: (state, action) => ({
+    [projectActions.getProjectList.action]: (state, action) => ({
         ...state,
-        projectList: action
+        projectList: action.projectListData
     })
 }
 
-const projectReducer = (state = {}, action) => {
+const projectReducer = (state = getInitialState(), action) => {
     const handler = ACTION_HANDLERS[action.type];
     return handler ? handler(state, action) : state;
 };

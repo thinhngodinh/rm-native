@@ -3,30 +3,22 @@ import { Text, View } from 'native-base';
 import { Row } from 'react-native-easy-grid';
 import projectTagStyle from './projectTagCmpStyle';
 
-const TAG_LIST = {
-    LIST: 'apollo, Jest, Arsopolis'
-}
-
 const TagItem = (props) => {
     const tagList = props.listTag
     return(
-        <Text style={projectTagStyle.cardTagTextItem}>{tagList}</Text>
+        <Text style={projectTagStyle.cardTagTextItem}>{tagList.join(', ')}</Text>
     )
 }
 
-class TagList extends React.Component{
-    render() {
-        return (
-            <Row style={projectTagStyle.cardTag}>
-                <View style={projectTagStyle.cardTagItem}>
-                    <Text style={projectTagStyle.cardTagTextLabel}>Tags: </Text>
-                    <TagItem 
-                        listTag = {TAG_LIST.LIST}
-                    />
-                </View>
-            </Row>
-        )
-    }
-};
+const TagList = (props) => (
+    <Row style={projectTagStyle.cardTag}>
+        <View style={projectTagStyle.cardTagItem}>
+            <Text style={projectTagStyle.cardTagTextLabel}>Tags: </Text>
+            <TagItem 
+                listTag = {this.props.tags}
+            />
+        </View>
+    </Row>
+);
 
 export default TagList
