@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, ListItem, Left, Thumbnail, Label, Text } from 'native-base';
+import { List, ListItem, Left, Thumbnail, Label, Text, Badge } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import memberStyle from './memberCmpStyle';
 
@@ -31,7 +31,9 @@ const MemberItem = (props) => {
             <Left>
                 <Thumbnail style={memberStyle.memberImage} source={{ uri: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg' }} />
             </Left>
-            <Label style={[memberStyle.statusMemberProcess, getWorkloadStatus(workloadStatus)]}>5</Label>
+            <Badge style={[memberStyle.statusMemberProcess, getWorkloadStatus(workloadStatus)]}>
+                <Text>2</Text>
+            </Badge>
         </ListItem>
     );
 }

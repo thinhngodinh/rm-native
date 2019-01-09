@@ -54,8 +54,15 @@ const projectItemStyle = StyleSheet.create(
         },
         memberJoined: {
             borderTopWidth: 1,
+            borderBottomWidth: 1,
             borderColor: '#cccccc',
             paddingTop: 17
+        },
+        actionWrapper: {
+            flex: 1,
+            justifyContent: 'space-around',
+            alignSelf: 'stretch',
+            flexDirection: 'row'
         }
     }
 );
