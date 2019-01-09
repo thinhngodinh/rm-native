@@ -54,7 +54,7 @@ class ProjectsAddMembersScreen extends React.Component {
                 <Content padder>
                     <Grid>
                         <Row>
-                            <Text style={{ marginTop: 10, paddingLeft: 10 }}>Project Add Members From</Text>
+                            <Text style={{ marginTop: 10, paddingLeft: 10 }}>Project Add Members Form</Text>
                         </Row>
                     </Grid>
                     <MemberList members={project.members} />

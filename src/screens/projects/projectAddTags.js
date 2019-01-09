@@ -52,7 +52,7 @@ class ProjectsAddTagsScreen extends React.Component {
                 <Content padder>
                     <Grid>
                         <Row>
-                            <Text style={{ marginTop: 10, paddingLeft: 10 }}>Project Add Tags From</Text>
+                            <Text style={{ marginTop: 10, paddingLeft: 10 }}>Project Add Tags Form</Text>
                         </Row>
                     </Grid>
                 </Content>

@@ -52,7 +52,7 @@ class ProjectsAddTasksScreen extends React.Component {
                 <Content padder>
                     <Grid>
                         <Row>
-                            <Text style={{ marginTop: 10, paddingLeft: 10 }}>Project Add Task From</Text>
+                            <Text style={{ marginTop: 10, paddingLeft: 10 }}>Project Add Task Form</Text>
                         </Row>
                     </Grid>
                 </Content>
