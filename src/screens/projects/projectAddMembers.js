@@ -56,10 +56,8 @@ class ProjectsAddMembersScreen extends React.Component {
                         <Row>
                             <Text style={{ marginTop: 10, paddingLeft: 10 }}>Project Add Members From</Text>
                         </Row>
-                        <Row>
-                            <MemberList members={project.members} />
-                        </Row>
                     </Grid>
+                    <MemberList members={project.members} />
                 </Content>
             </Container>
         );

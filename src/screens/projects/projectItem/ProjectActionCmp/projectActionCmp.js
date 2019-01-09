@@ -14,7 +14,7 @@ class ProjectActionList extends React.Component {
                 <Left>
                     <Button
                         onPress={() => navigation.navigate(projectScreens.ProjectAddTags, {projectInfo: projectInfo})}
-                        small iconLeft full transparent style={projectActionStyle.btnStyle}>
+                        small info iconLeft full transparent style={projectActionStyle.btnStyle}>
                         <Icon name='md-pricetags' />
                         <Text style={projectActionStyle.textAct}>Tag</Text>
                     </Button>
@@ -22,7 +22,7 @@ class ProjectActionList extends React.Component {
                 <Body>
                     <Button
                         onPress={() => navigation.navigate(projectScreens.ProjectAddTasks, {projectInfo: projectInfo})}
-                        small iconLeft full transparent style={projectActionStyle.btnStyle}>
+                        small info iconLeft full transparent style={projectActionStyle.btnStyle}>
                         <Icon name='md-add' />
                         <Text style={projectActionStyle.textAct}>Task</Text>
                     </Button>
@@ -30,7 +30,7 @@ class ProjectActionList extends React.Component {
                 <Right>
                     <Button
                         onPress={() => navigation.navigate(projectScreens.ProjectAddMembers, {projectInfo: projectInfo})}
-                        small iconLeft full transparent style={projectActionStyle.btnStyle}>
+                        small info iconLeft full transparent style={projectActionStyle.btnStyle}>
                         <Icon name='md-person-add' />
                         <Text style={projectActionStyle.textAct}>Member</Text>
                     </Button>
