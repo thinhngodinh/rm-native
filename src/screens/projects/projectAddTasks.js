@@ -13,7 +13,7 @@ import { Row, Grid } from 'react-native-easy-grid';
 // Footer Config
 
 
-class ProjectsAddTagsScreen extends React.Component {
+class ProjectsAddTasksScreen extends React.Component {
 
     componentWillMount() {
         this.setState({
@@ -52,7 +52,7 @@ class ProjectsAddTagsScreen extends React.Component {
                 <Content padder>
                     <Grid>
                         <Row>
-                            <Text style={{ marginTop: 10, paddingLeft: 10 }}>Project Add Tags From</Text>
+                            <Text style={{ marginTop: 10, paddingLeft: 10 }}>Project Add Task From</Text>
                         </Row>
                     </Grid>
                 </Content>
@@ -61,4 +61,4 @@ class ProjectsAddTagsScreen extends React.Component {
     }
 }
 
-export default ProjectsAddTagsScreen;
+export default ProjectsAddTasksScreen;

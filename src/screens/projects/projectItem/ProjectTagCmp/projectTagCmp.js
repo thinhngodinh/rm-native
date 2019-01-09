@@ -15,7 +15,7 @@ const TagList = (props) => (
         <View style={projectTagStyle.cardTagItem}>
             <Text style={projectTagStyle.cardTagTextLabel}>Tags: </Text>
             <TagItem 
-                listTag = {this.props.tags}
+                listTag = {props.tags}
             />
         </View>
     </Row>

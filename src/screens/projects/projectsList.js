@@ -9,7 +9,7 @@ import {
     Left,
     Right, Body, Title, Button, Icon, Content, Text
 } from 'native-base';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import { Row, Grid } from 'react-native-easy-grid';
 import ProjectItem from './projectItem/projectItem';
 
 // Header Config
@@ -18,14 +18,10 @@ import ProjectFooterTab from './components/projectFooter';
 import { projectActions } from './../../static/actionsIndex';
 
 class ProjectsScreen extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
-    static navigationOptions = {
-        drawerLabel: 'Projects',
-        drawerIcon: () => <Icon name='md-folder' style={{ color: '#fff' }} />
-    }
+    // static navigationOptions = {
+    //     drawerLabel: 'Projects',
+    //     drawerIcon: () => <Icon name='md-folder' style={{ color: '#fff' }} />
+    // }
 
     componentWillMount() {
         this.props.dispatch(projectActions.fetchApiProjects.invoke())
@@ -59,22 +55,22 @@ class ProjectsScreen extends React.Component {
                         </Button>
                     </Right>
                 </Header>
-                {projectListData != null &&
-                <Content padder>
-                    <Grid>
-                        <Row>
-                            <Text style={{ marginTop: 10, paddingLeft: 10 }}>Total {projectListData.total_items} Projects</Text>
-                        </Row>
-                        { projectListData.projects.map((project, index) => 
-                        <Row style={{ marginTop: 20 }} key={index}>
-                            <ProjectItem
-                                projectInfo={project}
-                            />
-                        </Row>
-                        )}
-                    </Grid>
-                </Content>
-                }
+                    <Content padder>
+                        <Grid>
+                            {projectListData &&
+                                <Row>
+                                    <Text style={{ marginTop: 10, paddingLeft: 10 }}>Total {projectListData.total_items} Projects</Text>
+                                </Row>
+                            }
+                            {projectListData && projectListData.projects.map((project, index) =>
+                                <Row style={{ marginTop: 20 }} key={index}>
+                                    <ProjectItem
+                                        projectInfo={project}
+                                    />
+                                </Row>
+                            )}
+                        </Grid>
+                    </Content>
                 <Footer>
                     <ProjectFooterTab />
                 </Footer>

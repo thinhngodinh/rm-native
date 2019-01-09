@@ -4,15 +4,6 @@ import screens, {stacks} from './screenConst';
 
 import SideBar from  './_layout/leftSideBar';
 
-// const RightDrawer = createDrawerNavigator(
-//     {[screens.dashboard.name]: {...screens.dashboard.config}},
-//     {
-//         drawerPosition: 'right',
-//         drawerType: 'slide',
-//         drawerBackgroundColor: '#232323'
-//     }
-// );
-
 const LeftDrawer = createDrawerNavigator(
     {
         [screens.projects.name]: {...screens.projects.config},

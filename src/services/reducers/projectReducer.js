@@ -1,7 +1,10 @@
 import { projectActions } from '../../static/actionsIndex';
 
 const getInitialState = () => ({
-    projectList: null
+    projectList: null,
+    working: null,
+    upnext: null,
+    done: null
 });
 
 const ACTION_HANDLERS =  {

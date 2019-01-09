@@ -35,7 +35,7 @@ const ProjectItem = ({projectInfo}) => {
             </CardItem>
             <CardItem footer style={{paddingTop: 5}}>
                 <View style={projectItemStyle.actionWrapper}>
-                    <ProjectActionList />
+                    <ProjectActionList projectInfo={projectInfo} />
                 </View>
             </CardItem>
         </Card>

@@ -2,7 +2,7 @@ import LoginScreen from './login/login';
 import DashboardScreen from './dashboard/dashboard';
 import AccountScreen from './account/account';
 import MembersScreen from './members/members';
-import ProjectsScreen from './projects/projects';
+import ProjectStack from './projects';
 import SettingsScreen from './setting/settings'
 
 const screens = {
@@ -24,7 +24,7 @@ const screens = {
     },
     projects: {
         name: '_PROJECTS_',
-        config: { screen: ProjectsScreen }
+        config: { screen: ProjectStack }
     },
     settings: {
         name: '_SETTING_',
