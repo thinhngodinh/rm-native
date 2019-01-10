@@ -1,12 +1,9 @@
 import React from 'react';
-import { List, ListItem, Left, Thumbnail, Label, Text, Badge } from 'native-base';
+import { List, ListItem, Left, Thumbnail, Text, Badge, Button } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import memberStyle from './memberCmpStyle';
-
-const WORKLOAD_PERCENT = {
-    LOW: 15,
-    MEDIUM: 60
-};
+import { withNavigation } from 'react-navigation';
+import { projectScreens } from '../../index';
 
 function getWorkloadStatus(workloadPercent) {
     let workloadStatus = '';
@@ -38,31 +35,30 @@ const MemberItem = (props) => {
 }
 
 class MemberList extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            viewMore: false
-        }
-    }
-    
     render() {
+        const {navigation, projectInfo, members} = this.props;
         return(
             <Grid>
-                <Text style={memberStyle.totalMemberLabel}>{this.props.members.length} members joined</Text>
+                <Text style={memberStyle.totalMemberLabel}>{members.length} members joined</Text>
                 <Row>
                     <Col>
                         <List style={memberStyle.memberList}>
-                            {this.props.members.length && this.props.members.map((member, index) => {
-                                if (index <= 4 ) {
+                            {members.length && members.map((member, index) => {
+                                if (index <= 3 ) {
                                     return (
                                         <MemberItem 
                                             key={index}
                                             projectMember={member}
                                         />
                                     );
-                                } else if (index === 5 ) {
+                                } else if (index === 4 ) {
                                     return (
-                                        <Label style={memberStyle.viewMore} key={index}>...</Label>
+                                        <Button
+                                            onPress={() => navigation.navigate(projectScreens.ProjectAddMembers, {projectInfo: projectInfo})}
+                                            style={memberStyle.btnViewMore} light key={index}
+                                        >
+                                            <Text style={memberStyle.viewMore}>...</Text>
+                                        </Button>
                                     );
                                 }
                             })}
@@ -75,4 +71,4 @@ class MemberList extends React.Component {
     }
 }
 
-export default MemberList
+export default withNavigation(MemberList)

@@ -13,7 +13,7 @@ const memberCmpStyle = StyleSheet.create(
         },
         memberItem: {
             marginLeft: 0,
-            marginRight: 10,
+            marginRight: 20,
             width: 46,
             paddingLeft: 0,
             paddingRight: 0,
@@ -54,7 +54,21 @@ const memberCmpStyle = StyleSheet.create(
         viewMore: {
             fontSize: 20,
             color: '#000000',
-            marginBottom: 16
+            marginRight: 0,
+            marginLeft: 0,
+            paddingLeft: 0,
+            paddingRight: 0,
+            marginTop: 3
+        },
+        btnViewMore: {
+            width: 46,
+            height: 46,
+            borderRadius: 23,
+            paddingTop: 0,
+            paddingBottom: 0,
+            justifyContent: 'center',
+            marginTop: 13,
+            alignItems: 'flex-start'
         },
         totalMemberLabel: {
             fontSize: 14,

@@ -30,6 +30,7 @@ const ProjectItem = ({projectInfo}) => {
                 <Body style={projectItemStyle.memberJoined}>
                     <MemberList
                         members={projectInfo.members}
+                        projectInfo={projectInfo}
                     />
                 </Body>
             </CardItem>

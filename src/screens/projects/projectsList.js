@@ -7,11 +7,11 @@ import {
     Header,
     Footer,
     Left,
-    Right, Body, Title, Button, Icon, Content, Text
+    Right, Body, Title, Button, Icon, Content, Text,
+    Spinner
 } from 'native-base';
 import { Row, Grid } from 'react-native-easy-grid';
 import ProjectItem from './projectItem/projectItem';
-
 // Header Config
 // Footer Config
 import ProjectFooterTab from './components/projectFooter';
@@ -55,22 +55,25 @@ class ProjectsScreen extends React.Component {
                         </Button>
                     </Right>
                 </Header>
-                    <Content padder>
-                        <Grid>
-                            {projectListData &&
-                                <Row>
-                                    <Text style={{ marginTop: 10, paddingLeft: 10 }}>Total {projectListData.total_items} Projects</Text>
-                                </Row>
-                            }
-                            {projectListData && projectListData.projects.map((project, index) =>
-                                <Row style={{ marginTop: 20 }} key={index}>
-                                    <ProjectItem
-                                        projectInfo={project}
-                                    />
-                                </Row>
-                            )}
-                        </Grid>
-                    </Content>
+                <Content padder>
+                    {!projectListData &&
+                        <Spinner color='#04b6fe'/>
+                    }
+                    <Grid>
+                        {projectListData &&
+                            <Row>
+                                <Text style={{ marginTop: 10, paddingLeft: 10 }}>Total {projectListData.total_items} Projects</Text>
+                            </Row>
+                        }
+                        {projectListData && projectListData.projects.map((project, index) =>
+                            <Row style={{ marginTop: 20 }} key={index}>
+                                <ProjectItem
+                                    projectInfo={project}
+                                />
+                            </Row>
+                        )}
+                    </Grid>
+                </Content>
                 <Footer>
                     <ProjectFooterTab />
                 </Footer>
