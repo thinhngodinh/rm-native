@@ -29,7 +29,6 @@ const ProjectItem = ({projectInfo}) => {
             <CardItem footer style={{paddingTop: 5}}>
                 <Body style={projectItemStyle.memberJoined}>
                     <MemberList
-                        members={projectInfo.members}
                         projectInfo={projectInfo}
                     />
                 </Body>

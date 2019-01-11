@@ -53,10 +53,10 @@ const projectItemStyle = StyleSheet.create(
             color: '#009bd7'
         },
         memberJoined: {
-            borderTopWidth: 1,
             borderBottomWidth: 1,
             borderColor: '#cccccc',
-            paddingTop: 17,
+            paddingTop: 10,
+            paddingBottom: 17,
             flexDirection: 'row'
         },
         actionWrapper: {

@@ -29,19 +29,19 @@ const ProjectInformation = (props) => {
     );
 }
 
-const ProjectProcess = (props) => (
+const ProjectProcess = ({percentComplete, openIssues, issues, spentHours, estHours}) => (
     <Grid>
         <Row>
             <ProcessBar
-                percentComplete={props.percentComplete}
-                openIssues={props.openIssues}
+                percentComplete={percentComplete}
+                openIssues={openIssues}
             />
         </Row>
         <Row>
             <ProjectInformation
-                issues={props.issues}
-                spentHours={props.spentHours}
-                estHours={props.estHours}
+                issues={issues}
+                spentHours={spentHours}
+                estHours={estHours}
             />
         </Row>
     </Grid>

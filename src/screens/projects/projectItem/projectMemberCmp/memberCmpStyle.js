@@ -28,8 +28,8 @@ const memberCmpStyle = StyleSheet.create(
         },
         statusMemberProcess: {
             position: 'absolute',
-            right: -10,
-            top: 0,
+            right: 0,
+            top: -10,
             backgroundColor: '#ddce01',
             color: '#ffffff',
             fontSize: 14,
@@ -67,13 +67,13 @@ const memberCmpStyle = StyleSheet.create(
             paddingTop: 0,
             paddingBottom: 0,
             justifyContent: 'center',
-            marginTop: 13,
             alignItems: 'flex-start'
         },
         totalMemberLabel: {
             fontSize: 14,
             color: '#666666',
-            fontWeight: '300'
+            fontWeight: '300',
+            marginBottom: 15
         }
     }
 );

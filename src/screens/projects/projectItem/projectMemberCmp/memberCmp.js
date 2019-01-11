@@ -23,52 +23,39 @@ function getWorkloadStatus(workloadPercent) {
 
 const MemberItem = (props) => {
     return (
-        <ListItem avatart style={memberStyle.memberItem}> 
-            <Left>
-                <Thumbnail style={memberStyle.memberImage} source={{ uri: props.projectMember.profile_picture }} />
-            </Left>
+        <Col style={{position: 'relative'}}>
+            <Thumbnail style={memberStyle.memberImage} source={{ uri: props.projectMember.profile_picture }} />
             <Badge style={[memberStyle.statusMemberProcess, getWorkloadStatus(props.projectMember.percent_workload)]}>
                 <Text>{props.projectMember.opened_issues}</Text>
             </Badge>
-        </ListItem>
+        </Col>
     );
 }
 
-class MemberList extends React.Component {
-    render() {
-        const {navigation, projectInfo, members} = this.props;
-        return(
-            <Grid>
-                <Text style={memberStyle.totalMemberLabel}>{members.length} members joined</Text>
-                <Row>
-                    <Col>
-                        <List style={memberStyle.memberList}>
-                            {members.length && members.map((member, index) => {
-                                if (index <= 3 ) {
-                                    return (
-                                        <MemberItem 
-                                            key={index}
-                                            projectMember={member}
-                                        />
-                                    );
-                                } else if (index === 4 ) {
-                                    return (
-                                        <Button
-                                            onPress={() => navigation.navigate(projectScreens.ProjectAddMembers, {projectInfo: projectInfo})}
-                                            style={memberStyle.btnViewMore} light key={index}
-                                        >
-                                            <Text style={memberStyle.viewMore}>...</Text>
-                                        </Button>
-                                    );
-                                }
-                            })}
-                            
-                        </List>
-                    </Col>
-                </Row>
-            </Grid>            
-        );
-    }
-}
+const MemberList = ({navigation, projectInfo, projectInfo: { members } }) => {
+    return(
+        <Grid>
+            <Text style={memberStyle.totalMemberLabel}>{members.length} members joined</Text>
+            <Row>
+                {members.length && members.slice(0,4).map((member, index) => 
+                    (
+                        <MemberItem 
+                            key={index}
+                            projectMember={member}
+                        />
+                    )
+                )}
+                <Col>
+                    <Button
+                        onPress={() => navigation.navigate(projectScreens.ProjectAddMembers, {projectInfo: projectInfo})}
+                        style={memberStyle.btnViewMore} light
+                    >
+                        <Text style={memberStyle.viewMore}>...</Text>
+                    </Button>
+                </Col>
+            </Row>
+        </Grid>            
+    );
+};
 
 export default withNavigation(MemberList)

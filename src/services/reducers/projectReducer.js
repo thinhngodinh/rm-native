@@ -5,7 +5,7 @@ const getInitialState = () => ({
         status: 'working',
         order_by: 'percent_complete',
         order: 'DESC',
-        limit: 5,
+        limit: 8,
     },
     projectList: null,
     working: null,
