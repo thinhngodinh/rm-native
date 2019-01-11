@@ -135,17 +135,17 @@ export default {
   },
 
   // Footer
-  footerHeight: 55,
-  footerDefaultBg: "#e6e6e6",
+  footerHeight: 45,
+  footerDefaultBg: "#f2f2f2",
   footerPaddingBottom: 0,
 
   // FooterTab
-  tabBarTextColor: "#4d4d4d",
-  tabBarTextSize: 11,
+  tabBarTextColor: "#b3c6ff",
+  tabBarTextSize: 14,
   activeTab: "#fff",
-  sTabBarActiveTextColor: "#007aff",
-  tabBarActiveTextColor: "#4d4d4d",
-  tabActiveBgColor: "#ccc",
+  sTabBarActiveTextColor: "#0040ff",
+  tabBarActiveTextColor: "#0040ff",
+  tabActiveBgColor: "transparent",
 
   // Header
   toolbarBtnColor: "#fff",

@@ -1,6 +1,5 @@
 import React from "react";
-import { Form, Item, Input, Label, Icon, Button, Text, Thumbnail } from 'native-base';
-import { DoubleBounce } from 'react-native-loader';
+import { Form, Item, Input, Label, Icon, Button, Text, Thumbnail, Spinner } from 'native-base';
 
 import { connect } from 'react-redux';
 
@@ -61,7 +60,7 @@ class LoginForm extends React.Component {
                     onPress={this._handleSubmit}
                     disabled={app.fetchingApi}
                     rounded danger style={pageStyle.loginButton}>
-                    {app.fetchingApi && <DoubleBounce size={30} color="#ff6666" />}
+                    {app.fetchingApi && <Spinner color='white' />}
                     {!app.fetchingApi && <Text style={pageStyle.loginButtonLabel}>SIGN IN</Text>}
                 </Button>}
             </Form>

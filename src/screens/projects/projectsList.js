@@ -15,20 +15,37 @@ import ProjectItem from './projectItem/projectItem';
 // Header Config
 // Footer Config
 import ProjectFooterTab from './components/projectFooter';
-import { projectActions } from './../../static/actionsIndex';
+import { projectActions, userActions } from './../../static/actionsIndex';
 
 class ProjectsScreen extends React.Component {
-    // static navigationOptions = {
-    //     drawerLabel: 'Projects',
-    //     drawerIcon: () => <Icon name='md-folder' style={{ color: '#fff' }} />
-    // }
-
-    componentWillMount() {
-        this.props.dispatch(projectActions.fetchApiProjects.invoke())
+    constructor(props) {
+        super(props);
+        this.state = {
+            projectTypes: props.navigation.getParam('projectTypes')
+        }
     }
 
+    _getProjectTypeLabel(status) {
+        const foundType = this.state.projectTypes.filter(pType => pType.type === status);
+        return foundType ? foundType[0].label : '';
+    }
+
+    componentWillMount() {
+        const {dispatch, navigation} = this.props;
+        dispatch(userActions.changeProjectFilter.invoke(
+            navigation.getParam('initFilter')
+        ));
+    }
+
+
     render() {
-        const projectListData = this.props.project.projectList;
+        const { 
+            project: { 
+                filter,
+                projectList: projectListData
+            } 
+        } = this.props;
+        const { projectTypes} = this.state;
         return (
             <Container>
                 <Header
@@ -43,15 +60,15 @@ class ProjectsScreen extends React.Component {
                             <Icon name="md-menu" style={{ color: '#fff' }} />
                         </Button>
                     </Left>
-                    <Body>
-                        <Title style={{ color: '#fff' }}>Projects</Title>
+                    <Body style={{flex: 2}}>
+                        <Title style={{ color: '#fff' }}>{this._getProjectTypeLabel(filter.status)} Projects</Title>
                     </Body>
                     <Right>
                         <Button transparent>
                             <Icon name='md-search' style={{ color: '#fff' }} />
                         </Button>
                         <Button transparent>
-                            <Icon name='ios-notifications-outline' style={{ color: '#fff' }} />
+                            <Icon name='md-notifications-outline' style={{ color: '#fff' }} />
                         </Button>
                     </Right>
                 </Header>
@@ -75,7 +92,9 @@ class ProjectsScreen extends React.Component {
                     </Grid>
                 </Content>
                 <Footer>
-                    <ProjectFooterTab />
+                    <ProjectFooterTab
+                        projectTypes={projectTypes}
+                        status={filter.status} />
                 </Footer>
             </Container>
         );

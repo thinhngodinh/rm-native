@@ -1,3 +1,5 @@
+import { filter } from "rsvp";
+
 export const userActions = {
     login: {
         action: '_LOGIN_',
@@ -16,8 +18,11 @@ export const userActions = {
         invoke: () => ({type: userActions.logout.action})
     },
     getProjectList: {
-        working: () => ({type: '_GET_PROJECT_LIST_WORKING_'}),
-        upnext: () => ({type: '_GET_PROJECT_LIST_UPNEXT_'}), 
-        done: () => ({type: '_GET_PROJECT_LIST_DONE_'})
-    }
+        action: '_GET_PROJECT_LIST_',
+        invoke: () => ({type: userActions.getProjectList.action})
+    },
+    changeProjectFilter: {
+        action: '_CHANGE_PROJECT_FILTER_',
+        invoke: filter => ({ type: userActions.changeProjectFilter.action, filter })
+    },
 };

@@ -33,10 +33,31 @@ const ProjectStack = createStackNavigator(
             screen: ScreenProjectList,
             path: projectRoute.list,
             params: {
-                defaultConfig: {
-                    view: 'working'
-                }
-            }
+                initFilter: {
+                    status: 'working',
+                    order_by: 'percent_complete',
+                    order: 'DESC',
+                    limit: 5,
+                },
+                projectTypes: [
+                    {
+                        icon: 'md-code-working',
+                        label: 'Working',
+                        type: 'working'
+                    },
+                    {
+                        icon: 'md-clipboard',
+                        label: 'Up-Next',
+                        type: 'upnext'
+                    },
+                    {
+                        icon: 'md-done-all',
+                        label: 'Done',
+                        type: 'done'
+                    }
+
+                ]
+            },
         },
         [projectScreens.ProjectAddTasks]: {
             screen: ScreenAddTasks,
@@ -57,9 +78,7 @@ const ProjectStack = createStackNavigator(
     },
     {
         initialRouteName: 'ProjectList',
-        headerMode: 'none',
-        drawerLabel: 'Projects',
-        drawerIcon: () => <Icon name='md-folder' style={{ color: '#fff' }} />
+        headerMode: 'none'
     }
 )
 

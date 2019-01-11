@@ -55,9 +55,9 @@ export default class HttpService {
         if (response.status >= 200 && response.status < 300) {
             return Promise.resolve(response.json());
         } else {
-            if(response.hasOwnProperty('error')) {
+            if (response.hasOwnProperty('error')) {
                 return Promise.reject(response.error());
-            } else if(response.headers.get('Content-Type').indexOf('json') >= 0) {
+            } else if (response.headers.get('Content-Type').indexOf('json') >= 0) {
                 return Promise.reject(response.json());
             } else {
                 return Promise.reject({
@@ -67,7 +67,7 @@ export default class HttpService {
             }
         }
     }
-    
+
     _handleError(error) {
         if (error instanceof Promise) {
             return error.then(response => Promise.reject(response));

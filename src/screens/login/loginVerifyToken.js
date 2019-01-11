@@ -1,8 +1,6 @@
 import React from "react";
-import { Form, Text } from 'native-base';
+import { Form, Text, Spinner } from 'native-base';
 import { connect } from 'react-redux';
-
-import { DoubleBounce } from 'react-native-loader';
 
 import { appActions } from '../../static/actionsIndex';
 import pageStyle from './loginStyle';
@@ -15,7 +13,7 @@ class VerifyToken extends React.Component {
     render () {
         return(
             <Form style={{ justifyContent: "center", alignItems: 'center', alignSelf: 'center', paddingTop: 80 }}>
-                <DoubleBounce size={20} color="#ff4d4d" />
+                <Spinner color='red' />
                 <Text style={[pageStyle.defaultTextColor]}>Validating User Info</Text>
             </Form>
         );

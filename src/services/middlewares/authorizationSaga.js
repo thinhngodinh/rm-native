@@ -1,6 +1,5 @@
 import { AsyncStorage } from "react-native"
 import { call, select, put, takeLatest } from 'redux-saga/effects'
-import { delay } from 'redux-saga'
 
 import { userActions, appActions } from '../../static/actionsIndex'
 import { showToast } from '../../util/toast';
@@ -11,7 +10,6 @@ function* verifyUser(apiService) {
         authInfor: state.user.authInfo,
         appConfig: state.app
     }));
-    yield call(delay, 2000)
     try {
         const sessionInfo = yield call([apiService, apiService.login], { authInfor, appConfig });
         yield put(appActions.setSessionToken.invoke(sessionInfo));

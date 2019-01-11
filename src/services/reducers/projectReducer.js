@@ -1,6 +1,12 @@
-import { projectActions } from '../../static/actionsIndex';
+import { projectActions, userActions } from '../../static/actionsIndex';
 
 const getInitialState = () => ({
+    filter: {
+        status: 'working',
+        order_by: 'percent_complete',
+        order: 'DESC',
+        limit: 5,
+    },
     projectList: null,
     working: null,
     upnext: null,
@@ -8,9 +14,15 @@ const getInitialState = () => ({
 });
 
 const ACTION_HANDLERS =  {
-    [projectActions.setList.action]: (state, action) => ({
+    [userActions.changeProjectFilter.action]: (state, payload) => ({
+        filter: {
+            ...state.filter,
+            ...payload.filter
+        }
+    }),
+    [projectActions.setList.action]: (state, payload) => ({
         ...state,
-        projectList: action.listProject
+        projectList: payload.listProject
     })
 }
 

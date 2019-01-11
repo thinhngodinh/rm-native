@@ -20,6 +20,19 @@ export default class ApiService {
         }
     }
 
+    paraGen(options, url) {
+        let result = ''
+
+        for (let key in options) {
+            if (options[key]) {
+                result += '&' + key + '=' + options[key]
+            }
+        }
+        result = '?' + result.substring(result.indexOf('&') + 1)
+        result = result.replace(' ', '%20')
+        return url + result
+    }
+
     createDefaultHeaders(token, tokenType) {
         this._storeToken(`${tokenType} ${token}`);
         this.createHeaders(`${tokenType} ${token}`);
@@ -63,7 +76,8 @@ export default class ApiService {
         return this.httpService.get(API_URL.LOGOUT, this._defaultRequestHeader);
     }
 
-    getProjectsList () {
-        return this.httpService.get(API_URL.GET_PROJECT, this._defaultRequestHeader);
+    getProjectsList (filter) {
+        const urlWithFilter = this.paraGen(filter, API_URL.GET_PROJECT)
+        return this.httpService.get(urlWithFilter, this._defaultRequestHeader);
     }
 }

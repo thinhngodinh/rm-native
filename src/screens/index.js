@@ -11,7 +11,7 @@ const LeftDrawer = createDrawerNavigator(
         [screens.settings.name]: {...screens.settings.config}
     },
     {
-        drawerType: 'slide',
+        drawerType: 'front',
         drawerBackgroundColor: '#232323',
         contentComponent: SideBar
     }

@@ -39,15 +39,15 @@ class ProjectsAddMembersScreen extends React.Component {
                             <Icon name='ios-arrow-back' style={{ color: '#fff' }} />
                         </Button>
                     </Left>
-                    <Body>
+                    <Body style={{flexGrow: 1}}>
                         <Title style={{ color: '#fff' }}>{project.name}</Title>
                     </Body>
-                    <Right>
+                    <Right style={{flexShrink: 0}}>
                         <Button transparent>
                             <Icon name='md-search' style={{ color: '#fff' }} />
                         </Button>
                         <Button transparent>
-                            <Icon name='ios-notifications-outline' style={{ color: '#fff' }} />
+                            <Icon name='md-notifications-outline' style={{ color: '#fff' }} />
                         </Button>
                     </Right>
                 </Header>

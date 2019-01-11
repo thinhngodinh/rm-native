@@ -1,11 +1,13 @@
-import { call, takeLatest, put } from 'redux-saga/effects';
+import { call, takeLatest, put, select } from 'redux-saga/effects';
 
-import { projectActions } from '../../static/actionsIndex';
+import { projectActions, userActions } from '../../static/actionsIndex';
 import { showToast } from '../../util/toast';
 
-function *getListProject(apiService, ...option) {
+function * getListProject(apiService, ...option) {
+    const filter = yield select(state => state.project.filter);
+    console.log('project filter', filter);
     try{
-        const projectListData = yield call([apiService, apiService.getProjectsList]);
+        const projectListData = yield call([apiService, apiService.getProjectsList], filter);
         console.log('projectListData >>>>>>>>', projectListData);
         yield put(projectActions.setList.invoke(projectListData.data));
     } catch (e) {
@@ -13,5 +15,5 @@ function *getListProject(apiService, ...option) {
     } 
 }
 export function * projectSaga(apiService) {
-    yield takeLatest(projectActions.fetchApiProjects.action, getListProject, apiService)
+    yield takeLatest(userActions.getProjectList.action, getListProject, apiService)
 }

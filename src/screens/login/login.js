@@ -13,11 +13,18 @@ class LoginScreen extends React.Component {
         headerTintColor: '#000'
     }
 
-    render() {
-        const {app, user, navigation} = this.props;
+    componentDidUpdate() {
+        const {user, navigation} = this.props;
+
         if (user.info){
-            setTimeout(() => navigation.navigate(stacks.app), 1500);
+            navigation.navigate(stacks.app)
+            return null;
         }
+    }
+
+    render() {
+        const { app } = this.props;
+        
         return (
             <ImageBackground
                 source={require('./assets/login_bg.jpg')}
