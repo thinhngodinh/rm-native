@@ -15,6 +15,7 @@ const getInitialState = () => ({
 
 const ACTION_HANDLERS =  {
     [userActions.changeProjectFilter.action]: (state, payload) => ({
+        ...state,
         filter: {
             ...state.filter,
             ...payload.filter

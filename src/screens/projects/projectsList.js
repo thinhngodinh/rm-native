@@ -12,16 +12,46 @@ import {
 } from 'native-base';
 import { Row, Grid } from 'react-native-easy-grid';
 import ProjectItem from './projectItem/projectItem';
+import moment from 'moment';
+
 // Header Config
+import ProjectFilter from './components/projectFilter'
+
 // Footer Config
 import ProjectFooterTab from './components/projectFooter';
-import { projectActions, userActions } from './../../static/actionsIndex';
+import { userActions } from './../../static/actionsIndex';
 
 class ProjectsScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            projectTypes: props.navigation.getParam('projectTypes')
+            initFilter: {
+                status: 'working',
+                order_by: 'percent_complete',
+                order: 'DESC',
+                from_date: moment().format('YYYY-MM-DD'),
+                to_date: moment().subtract(1, 'month').format('YYYY-MM-DD'),
+                page: 1,
+                limit: 5,
+            },
+            projectTypes: [
+                {
+                    icon: 'md-code-working',
+                    label: 'Working',
+                    type: 'working'
+                },
+                {
+                    icon: 'md-clipboard',
+                    label: 'Up-Next',
+                    type: 'upnext'
+                },
+                {
+                    icon: 'md-done-all',
+                    label: 'Done',
+                    type: 'done'
+                }
+
+            ]
         }
     }
 
@@ -31,15 +61,16 @@ class ProjectsScreen extends React.Component {
     }
 
     componentWillMount() {
-        const {dispatch, navigation} = this.props;
+        const { dispatch } = this.props;
         dispatch(userActions.changeProjectFilter.invoke(
-            navigation.getParam('initFilter')
+            this.state.initFilter
         ));
     }
 
 
     render() {
-        const { 
+        const {
+            dispatch,
             project: { 
                 filter,
                 projectList: projectListData
@@ -73,6 +104,7 @@ class ProjectsScreen extends React.Component {
                     </Right>
                 </Header>
                 <Content padder>
+                    <ProjectFilter dispatch={dispatch.bind(this)} />
                     {!projectListData &&
                         <Spinner color='#04b6fe'/>
                     }
