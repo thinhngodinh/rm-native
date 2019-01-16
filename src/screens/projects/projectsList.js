@@ -32,7 +32,8 @@ class ProjectsScreen extends React.Component {
                 from_date: moment().format('YYYY-MM-DD'),
                 to_date: moment().subtract(1, 'month').format('YYYY-MM-DD'),
                 page: 1,
-                limit: 5,
+                tags: '',
+                limit: 5
             },
             projectTypes: [
                 {
@@ -50,9 +51,9 @@ class ProjectsScreen extends React.Component {
                     label: 'Done',
                     type: 'done'
                 }
-
             ]
-        }
+        },
+        this._handleViewMore = this._handleViewMore.bind(this);
     }
 
     _getProjectTypeLabel(status) {
@@ -67,15 +68,37 @@ class ProjectsScreen extends React.Component {
         ));
     }
 
+    _handleViewMore(nextPage) {
+        const { dispatch } = this.props;
+        dispatch(userActions.changeProjectFilter.invoke({page: nextPage}));
+        dispatch(userActions.getProjectList.invoke());
+    };
 
     render() {
         const {
             dispatch,
             project: { 
                 filter,
-                projectList: projectListData
+                projectList: projectListData,
+                loadingData
             } 
         } = this.props;
+        const viewMoreStyle = {
+            btnViewMore: {
+                alignItems: 'flex-start',
+                justifyContent: 'center',
+                alignSelf: 'center',
+                width: 46,
+                height: 46,
+                borderRadius: 23
+            },
+            viewMoreText: {
+                fontSize: 20,
+                paddingRight: 0,
+                paddingLeft: 0,
+                marginTop: -3
+            }
+        }
         const { projectTypes} = this.state;
         return (
             <Container>
@@ -107,13 +130,10 @@ class ProjectsScreen extends React.Component {
                     <ProjectFilter
                         filter={filter}
                         dispatch={dispatch.bind(this)} />
-                    {!projectListData &&
-                        <Spinner color='#04b6fe'/>
-                    }
                     <Grid>
                         {projectListData &&
                             <Row>
-                                <Text style={{ marginTop: 10, paddingLeft: 10 }}>Total {projectListData.total_items} Projects</Text>
+                                <Text style={{ marginTop: 10, paddingLeft: 10 }}>Total {projectListData.projects.length} Projects</Text>
                             </Row>
                         }
                         {projectListData && projectListData.projects.map((project, index) =>
@@ -123,6 +143,23 @@ class ProjectsScreen extends React.Component {
                                 />
                             </Row>
                         )}
+                        {loadingData &&
+                            <Row style={{justifyContent: 'center'}}>
+                                <Spinner
+                                    color='#04b6fe'/>
+                            </Row>
+                        }
+                        {projectListData && (projectListData.paged < projectListData.total_pages) &&
+                            <Row style={{justifyContent: 'center', marginTop: 10}}>
+                                <Button
+                                    onPress={() => this._handleViewMore(projectListData.paged + 1)}
+                                    light
+                                    style={viewMoreStyle.btnViewMore}
+                                    >
+                                    <Text style={viewMoreStyle.viewMoreText}>...</Text>
+                                </Button>
+                            </Row>
+                        }
                     </Grid>
                 </Content>
                 <Footer>

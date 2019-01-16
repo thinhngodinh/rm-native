@@ -1,6 +1,25 @@
 import React from 'react';
-import {ActionSheetIOS} from 'react-native';
-import { Button, Text, ActionSheet } from 'native-base';
+import {StyleSheet} from 'react-native';
+import { Button, Text, ActionSheet, Icon } from 'native-base';
+const filterStyle = StyleSheet.create(
+    {
+        selectBtn: {
+            marginBottom: 10,
+            borderRadius: 0,
+            borderTopWidth: 0,
+            borderRightWidth: 0,
+            borderLeftWidth: 0
+        },
+        changeBorder: {
+            borderBottomWidth: 1,
+            borderBottomColor: '#aaa'
+        },
+        customText: {
+            paddingLeft: 0,
+            flexGrow: 2
+        }
+    }
+)
 
 const renderOptions = (options, activeIndex) => {
     const defaultOptions = [];
@@ -46,8 +65,12 @@ export const ActionSheetOptionsIos = ({
     return (
         <Button 
             onPress={() => showOptions(triggerLabel, options, onValueChange, activeIndex)}
-            rounded block bordered transparent>
-            <Text>{triggerLabel}{selectedItem ? `: ${selectedItem.label}` : ''}</Text>
+            rounded block bordered transparent
+            style={[filterStyle.selectBtn, filterStyle.changeBorder]}
+            iconRight
+        >
+            <Text style={filterStyle.customText}>{triggerLabel}{selectedItem ? `: ${selectedItem.label}` : ''}</Text>
+            <Icon name='md-arrow-dropdown' />
         </Button>
     );
 };

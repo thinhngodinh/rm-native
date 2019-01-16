@@ -4,13 +4,15 @@ const getInitialState = () => ({
     filter: {
         status: 'working',
         order_by: 'percent_complete',
-        order: 'DESC',
-        limit: 5,
+        order: 'desc',
+        tags: '',
+        limit: 5
     },
     projectList: null,
     working: null,
     upnext: null,
-    done: null
+    done: null,
+    loadingData: false
 });
 
 const ACTION_HANDLERS =  {
@@ -24,6 +26,10 @@ const ACTION_HANDLERS =  {
     [projectActions.setList.action]: (state, payload) => ({
         ...state,
         projectList: payload.listProject
+    }),
+    [projectActions.loadingData.action]: (state, payload) => ({
+        ...state,
+        loadingData: payload.fetching
     })
 }
 

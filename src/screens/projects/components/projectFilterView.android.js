@@ -1,15 +1,23 @@
 import React from 'react';
 
 import { View } from 'react-native';
-import { Button, Text } from 'native-base';
+import { Button, Text, Item, Input, Label } from 'native-base';
 
 import { ActionSheetOptionsIos } from '../../_commonCmp/IosActionSheet';
-
 
 const ProjectFilterView = ({ dispatch, updateFilter, updateProjectList, filter }) => {
     return (
         <View>
             <Text>Android Filter</Text>
+            <Item inlineLabel style={{marginBottom: 10, borderBottomWidth: 1, borderBottomColor: '#aaa' }}>
+                <Label style={{color: '#04b6fe'}}>Search:</Label>
+                <Input
+                    value={filter.tags}
+                    placeholder='Input text, tags'
+                    placeholderTextColor='#aaa'
+                    onChangeText={(text) => updateFilter(dispatch, { tags: text, key: text})}
+                />
+            </Item>
             <ActionSheetOptionsIos
                 options={[
                     { label: 'Ascending', value: 'asc' },
