@@ -1,45 +1,52 @@
 import React from 'react';
 import {ActionSheetIOS} from 'react-native';
-import { Button, Text } from 'native-base';
+import { Button, Text, ActionSheet } from 'native-base';
 
-const renderOptions = (options, cancelLabel) => {
-    const defaultOptions = [cancelLabel];
+const renderOptions = (options, activeIndex) => {
+    const defaultOptions = [];
     if ( Array.isArray(options) ) {
-        options.forEach(item => {
-            defaultOptions.push(item.label)
+        options.forEach((item, itemIndex) => {
+            defaultOptions.push({
+                text: item.label,
+                icon: activeIndex === itemIndex ? 'md-radio-button-on' :'md-radio-button-off'
+            })
         });
     }
     console.log(defaultOptions);
+    defaultOptions.push({
+        text: 'Back',
+        icon: 'md-arrow-back'
+    });
     return defaultOptions;
 };
 
-const showOptions = (cancelLabel, title, options, onValueChange, activeIndex) => {
-    ActionSheetIOS.showActionSheetWithOptions(
+const showOptions = (title, options, onValueChange, activeIndex) => {
+    ActionSheet.show(
         {
-            options: renderOptions(options, cancelLabel),
-            destructiveButtonIndex: activeIndex + 1,
+            options: renderOptions(options, activeIndex),
+            destructiveButtonIndex: activeIndex,
+            cancelButtonIndex: options.length,
             title: title,
-            cancelButtonIndex: 0,
         },
         (selectedIndex) => {
-            if (onValueChange && selectedIndex > 0) {
+            if (onValueChange && selectedIndex < options.length) {
                 console.log(selectedIndex);
-                onValueChange(options[selectedIndex - 1].value);
+                onValueChange(options[selectedIndex].value);
             }
         }
     )
 };
 
 export const ActionSheetOptionsIos = ({
-    triggerLabel = 'Select', cancelLabel = 'Cancel', options, value = null,
+    triggerLabel = 'Select', options, value = null,
     onValueChange = null
 }) => {
     const selectedItem = options.find(item => value === item.value);
     const activeIndex = options.indexOf(selectedItem);
     return (
         <Button 
-            onPress={() => showOptions(cancelLabel, triggerLabel, options, onValueChange, activeIndex)}
-            rounded block bordered transparent small>
+            onPress={() => showOptions(triggerLabel, options, onValueChange, activeIndex)}
+            rounded block bordered transparent>
             <Text>{triggerLabel}{selectedItem ? `: ${selectedItem.label}` : ''}</Text>
         </Button>
     );
