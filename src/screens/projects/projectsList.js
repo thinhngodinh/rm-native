@@ -28,7 +28,7 @@ class ProjectsScreen extends React.Component {
             initFilter: {
                 status: 'working',
                 order_by: 'percent_complete',
-                order: 'DESC',
+                order: 'desc',
                 from_date: moment().format('YYYY-MM-DD'),
                 to_date: moment().subtract(1, 'month').format('YYYY-MM-DD'),
                 page: 1,
@@ -104,7 +104,9 @@ class ProjectsScreen extends React.Component {
                     </Right>
                 </Header>
                 <Content padder>
-                    <ProjectFilter dispatch={dispatch.bind(this)} />
+                    <ProjectFilter
+                        filter={filter}
+                        dispatch={dispatch.bind(this)} />
                     {!projectListData &&
                         <Spinner color='#04b6fe'/>
                     }

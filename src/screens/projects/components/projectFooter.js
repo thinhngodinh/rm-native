@@ -7,12 +7,11 @@ import { userActions } from '../../../static/actionsIndex';
 class ProjectListFooter extends React.Component {
 
     componentDidMount() {
-        console.log('Footer Did Mount');
         this.props.dispatch(userActions.getProjectList.invoke());
     }
 
     _changeProjectType (status) {
-        this.props.dispatch(userActions.changeProjectFilter.invoke({status: status}));
+        this.props.dispatch(userActions.changeProjectFilter.invoke({status: status, page: 1}));
         this.props.dispatch(userActions.getProjectList.invoke());
     }
 

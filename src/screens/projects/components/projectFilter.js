@@ -14,10 +14,10 @@ const updateProjectList = (caller) => {
     caller(userActions.getProjectList.invoke());
 }
 
-const ProjectFilter = ({dispatch}) => {
+const ProjectFilter = (props) => {
     return (
         <ProjectFilterView
-            dispatch={dispatch}
+            {...props}
             updateFilter={updateFilter}
             updateProjectList={updateProjectList}
         />
