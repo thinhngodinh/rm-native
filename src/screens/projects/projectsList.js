@@ -3,7 +3,7 @@ import { RefreshControl } from 'react-native'
 
 // third-party import
 import { connect } from 'react-redux';
-
+import Collapsible from 'react-native-collapsible';
 import {
     Container,
     Header,
@@ -13,7 +13,6 @@ import {
     Spinner
 } from 'native-base';
 import { Row, Grid } from 'react-native-easy-grid';
-import ProjectItem from './projectItem/projectItem';
 import moment from 'moment';
 
 // Header Config
@@ -22,6 +21,8 @@ import ProjectFilter from './components/projectFilter'
 // Footer Config
 import ProjectFooterTab from './components/projectFooter';
 import { userActions } from './../../static/actionsIndex';
+
+import ProjectItem from './projectItem/projectItem';
 
 const initFilter = {
     status: 'working',
@@ -60,6 +61,7 @@ class ProjectsScreen extends React.Component {
             initFilter: {...initFilter},
             projectTypes: configProjectTypes,
             refreshing: false,
+            isFilterCollapsed: true
         };
     }
 
@@ -104,7 +106,7 @@ class ProjectsScreen extends React.Component {
             } 
         } = this.props;
 
-        const { projectTypes} = this.state;
+        const { projectTypes, isFilterCollapsed } = this.state;
         return (
             <Container>
                 <Header
@@ -122,7 +124,12 @@ class ProjectsScreen extends React.Component {
                         <Title style={{ color: '#fff' }}>{this._getProjectTypeLabel(filter.status)} Projects</Title>
                     </Body>
                     <Right>
-                        <Button transparent>
+                        <Button
+                            onPress={() => {
+                                setTimeout(() => this.setState({isFilterCollapsed: !this.state.isFilterCollapsed}), 150);
+                                this._contentScroll.props.scrollToPosition(0, 0);
+                            }}
+                            transparent>
                             <Icon name='md-search' style={{ color: '#fff' }} />
                         </Button>
                         <Button transparent>
@@ -142,9 +149,11 @@ class ProjectsScreen extends React.Component {
                         />
                     }
                     padder>
-                    <ProjectFilter
-                        filter={filter}
-                        dispatch={dispatch.bind(this)} />
+                    <Collapsible collapsed={isFilterCollapsed}>
+                        <ProjectFilter
+                            filter={filter}
+                            dispatch={dispatch.bind(this)} />
+                    </Collapsible>
                     <Grid>
                         {projectListData && projectListData.projects.map((project, index) =>
                             <Row style={{ marginTop: 20 }} key={index}>

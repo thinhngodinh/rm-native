@@ -32,7 +32,6 @@ const inputStyle = StyleSheet.create(
 const ProjectFilterView = ({ dispatch, updateFilter, updateProjectList, filter }) => {
     return (
         <View>
-            <Text>Androind Filter</Text>
             <Item style={inputStyle.wrapperIpt}>
                 <Label style={inputStyle.fieldLabel}>Search</Label>
                 <Input

@@ -1,6 +1,6 @@
 import React from 'react';
 import DateRangePicker from './DateRangePicker';
-import { Modal, View} from 'react-native';
+import { Modal, View, SafeAreaView } from 'react-native';
 import { Button, Text } from 'native-base';
 import moment from 'moment';
 import dateRangeStyle from './DateRangeStyle';
@@ -20,16 +20,16 @@ class DateRange extends React.Component {
     }
 
     setModalVisible(visible) {
-        this.setState({modalVisible: visible})
+        this.setState({ modalVisible: visible })
     }
 
-    setDateSelected(startDateSelected, endDateSelected){
+    setDateSelected(startDateSelected, endDateSelected) {
         this.setState({
             startDate: startDateSelected,
             endDate: endDateSelected
         })
 
-        this.props.updateFilter(this.props.dispatch, {from_date: startDateSelected, to_date: endDateSelected})
+        this.props.updateFilter(this.props.dispatch, { from_date: startDateSelected, to_date: endDateSelected })
     }
 
     handleChangeInitRange(startDate, endDate) {
@@ -47,14 +47,15 @@ class DateRange extends React.Component {
             endDate: endDate
         })
         this.handleChangeInitRange(startDate, endDate);
-        this.props.updateFilter(this.props.dispatch, {from_date: startDate, to_date: endDate})
+        this.props.updateFilter(this.props.dispatch, { from_date: startDate, to_date: endDate })
     }
 
-    render(){
-        return(
-            <View>
+    render() {
+        return (
+
+            <View style={{ flex: 1 }}>
                 <Button
-                    onPress={() => {this.setModalVisible(true)}}
+                    onPress={() => { this.setModalVisible(true) }}
                     block bordered transparent
                     style={dateRangeStyle.calendarField}
                 >
@@ -62,43 +63,48 @@ class DateRange extends React.Component {
                     <Text style={dateRangeStyle.textDate}>From: {this.state.startDate}</Text>
                     <Text style={dateRangeStyle.textDate}>To: {this.state.endDate}</Text>
                 </Button>
+
                 <Modal
                     animationType="slide"
-                    transparent={false}
+                    transparent={true}
+                    hardwareAccelerated={true}
                     visible={this.state.modalVisible}
-                    onRequestClose={() => {this.setModalVisible(false)}}
+                    onRequestClose={() => { this.setModalVisible(false) }}
                 >
-                    <DateRangePicker
-                        initialRange={[this.state.startInitRange, this.state.endInitRange]}
-                        onSuccess={(s, e) => {this.setDateSelected(s, e)}}
-                        theme={{markColor: '#f42c17', markTextColor: '#ffffff', todayTextColor: '#04b6fe', arrowColor: '#04b6fe'}}
-                        maxDate={this.state.maxDate}
+                    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+                        <DateRangePicker
+                            initialRange={[this.state.startInitRange, this.state.endInitRange]}
+                            onSuccess={(s, e) => { this.setDateSelected(s, e) }}
+                            theme={{ markColor: '#f42c17', markTextColor: '#ffffff', todayTextColor: '#04b6fe', arrowColor: '#04b6fe' }}
+                            maxDate={this.state.maxDate}
                         />
+                    </SafeAreaView>
                 </Modal>
+
                 <View style={dateRangeStyle.wraperCalendarFilter}>
                     <Button
-                        onPress={() => {this.filterCalendarPeriod('weeks')}}
+                        onPress={() => { this.filterCalendarPeriod('weeks') }}
                         style={dateRangeStyle.cldFilterItem}
                         light
                     >
                         <Text>Week</Text>
                     </Button>
                     <Button
-                        onPress={() => {this.filterCalendarPeriod('months')}}
+                        onPress={() => { this.filterCalendarPeriod('months') }}
                         style={dateRangeStyle.cldFilterItem}
                         light
                     >
                         <Text>Month</Text>
                     </Button>
                     <Button
-                        onPress={() => {this.filterCalendarPeriod('quarters')}}
+                        onPress={() => { this.filterCalendarPeriod('quarters') }}
                         style={dateRangeStyle.cldFilterItem}
                         light
                     >
                         <Text>Quarter</Text>
                     </Button>
                     <Button
-                        onPress={() => {this.filterCalendarPeriod('years')}}
+                        onPress={() => { this.filterCalendarPeriod('years') }}
                         style={dateRangeStyle.cldFilterItem}
                         light
                     >
