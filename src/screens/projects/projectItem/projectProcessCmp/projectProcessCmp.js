@@ -14,17 +14,17 @@ const ProcessBar = (props) => (
 const ProjectInformation = (props) => {
     const spentHoursCvt = Number(props.spentHours);
     const estHoursCvt = Number(props.estHours);
-    const formatToParts = new Intl.NumberFormat('en-IN');
+    // const formatToParts = new Intl.NumberFormat('en-IN');
     return (
         <View style={{ flex: 1, flexDirection: 'row' }}>
             <Col style={projectProcessStyle.itemProcess}>
-                <Text style={projectProcessStyle.itemProcessText}>{formatToParts.format(props.issues)} issues</Text>
+                <Text style={projectProcessStyle.itemProcessText}>{props.issues} issues</Text>
             </Col>
             <Col style={projectProcessStyle.itemProcess}>
-                <Text style={projectProcessStyle.itemProcessText}>Spent {formatToParts.format(spentHoursCvt)} hrs</Text>
+                <Text style={projectProcessStyle.itemProcessText}>Spent {spentHoursCvt}hrs</Text>
             </Col>
             <Col style={projectProcessStyle.itemProcess}>
-                <Text style={projectProcessStyle.itemProcessText}>Est. {formatToParts.format(estHoursCvt)} hrs</Text>
+                <Text style={projectProcessStyle.itemProcessText}>Est. {estHoursCvt}hrs</Text>
             </Col>
         </View>
     );

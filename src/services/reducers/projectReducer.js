@@ -12,7 +12,8 @@ const getInitialState = () => ({
     working: null,
     upnext: null,
     done: null,
-    loadingData: false
+    loadingData: false,
+    refreshing: false
 });
 
 const ACTION_HANDLERS =  {
@@ -27,9 +28,29 @@ const ACTION_HANDLERS =  {
         ...state,
         projectList: payload.listProject
     }),
+    [projectActions.appendList.action]: (state, payload) => ({
+        ...state,
+        projectList: {
+            ...payload.listProject,
+            projects: [
+                ...state.projectList.projects,
+                ...payload.listProject.projects
+            ]
+        }
+    }),
+    [userActions.refreshProjectsList.action]: (state) => ({
+        ...state,
+        filter: {
+            ...state.filter,
+            page: 1
+        },
+        loadingData: false,
+        refreshing: true
+    }),
     [projectActions.loadingData.action]: (state, payload) => ({
         ...state,
-        loadingData: payload.fetching
+        loadingData: !state.refreshing ? payload.fetching : false,
+        refreshing: state.refreshing ? payload.fetching : false,
     })
 }
 

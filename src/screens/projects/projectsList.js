@@ -1,4 +1,6 @@
 import React from "react";
+import { RefreshControl } from 'react-native'
+
 // third-party import
 import { connect } from 'react-redux';
 
@@ -21,39 +23,48 @@ import ProjectFilter from './components/projectFilter'
 import ProjectFooterTab from './components/projectFooter';
 import { userActions } from './../../static/actionsIndex';
 
+const initFilter = {
+    status: 'working',
+    order_by: 'percent_complete',
+    order: 'desc',
+    from_date: moment().format('YYYY-MM-DD'),
+    to_date: moment().subtract(1, 'month').format('YYYY-MM-DD'),
+    page: 1,
+    tags: '',
+    limit: 5
+};
+
+const configProjectTypes = [
+    {
+        icon: 'md-code-working',
+        label: 'Working',
+        type: 'working'
+    },
+    {
+        icon: 'md-clipboard',
+        label: 'Up-Next',
+        type: 'upnext'
+    },
+    {
+        icon: 'md-done-all',
+        label: 'Done',
+        type: 'done'
+    }
+];
+
 class ProjectsScreen extends React.Component {
     constructor(props) {
         super(props);
+        this._contentScroll = null;
         this.state = {
-            initFilter: {
-                status: 'working',
-                order_by: 'percent_complete',
-                order: 'desc',
-                from_date: moment().format('YYYY-MM-DD'),
-                to_date: moment().subtract(1, 'month').format('YYYY-MM-DD'),
-                page: 1,
-                tags: '',
-                limit: 5
-            },
-            projectTypes: [
-                {
-                    icon: 'md-code-working',
-                    label: 'Working',
-                    type: 'working'
-                },
-                {
-                    icon: 'md-clipboard',
-                    label: 'Up-Next',
-                    type: 'upnext'
-                },
-                {
-                    icon: 'md-done-all',
-                    label: 'Done',
-                    type: 'done'
-                }
-            ]
-        },
-        this._handleViewMore = this._handleViewMore.bind(this);
+            initFilter: {...initFilter},
+            projectTypes: configProjectTypes,
+            refreshing: false,
+        };
+    }
+
+    _onRefresh = () => {
+        this.props.dispatch(userActions.refreshProjectsList.invoke());
     }
 
     _getProjectTypeLabel(status) {
@@ -68,10 +79,18 @@ class ProjectsScreen extends React.Component {
         ));
     }
 
-    _handleViewMore(nextPage) {
-        const { dispatch } = this.props;
-        dispatch(userActions.changeProjectFilter.invoke({page: nextPage}));
-        dispatch(userActions.getProjectList.invoke());
+    _handleViewMore = (e) => {
+        const {contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
+        const { project: {  loadingData } } = this.props;
+
+        if (
+            !loadingData
+            && Math.round(contentOffset.y) === Math.round(contentSize.height - layoutMeasurement.height) 
+            && contentSize.height > layoutMeasurement.height) {
+            const { dispatch } = this.props;
+            console.log('invoke load more action');
+            dispatch(userActions.loadMoreProjects.invoke());
+        }
     };
 
     render() {
@@ -80,32 +99,17 @@ class ProjectsScreen extends React.Component {
             project: { 
                 filter,
                 projectList: projectListData,
-                loadingData
+                loadingData,
+                refreshing
             } 
         } = this.props;
-        const viewMoreStyle = {
-            btnViewMore: {
-                alignItems: 'flex-start',
-                justifyContent: 'center',
-                alignSelf: 'center',
-                width: 46,
-                height: 46,
-                borderRadius: 23
-            },
-            viewMoreText: {
-                fontSize: 20,
-                paddingRight: 0,
-                paddingLeft: 0,
-                marginTop: -3
-            }
-        }
+
         const { projectTypes} = this.state;
         return (
             <Container>
                 <Header
                     iosBarStyle='light-content'
                     androidStatusBarColor='#232323'
-                    noShadow
                     style={{ backgroundColor: '#333' }}>
                     <Left>
                         <Button
@@ -126,16 +130,22 @@ class ProjectsScreen extends React.Component {
                         </Button>
                     </Right>
                 </Header>
-                <Content padder>
+                <Content
+                    innerRef={(ref) => {this._contentScroll = ref}}
+                    onScroll={this._handleViewMore}
+                    refreshControl={
+                        <RefreshControl
+                            tintColor='#ff8080'
+                            colors={['#ff8080']}
+                            refreshing={refreshing}
+                            onRefresh={this._onRefresh}
+                        />
+                    }
+                    padder>
                     <ProjectFilter
                         filter={filter}
                         dispatch={dispatch.bind(this)} />
                     <Grid>
-                        {projectListData &&
-                            <Row>
-                                <Text style={{ marginTop: 10, paddingLeft: 10 }}>Total {projectListData.projects.length} Projects</Text>
-                            </Row>
-                        }
                         {projectListData && projectListData.projects.map((project, index) =>
                             <Row style={{ marginTop: 20 }} key={index}>
                                 <ProjectItem
@@ -143,21 +153,15 @@ class ProjectsScreen extends React.Component {
                                 />
                             </Row>
                         )}
-                        {loadingData &&
+                        {(loadingData ||(projectListData && projectListData.total_pages > 0 && (projectListData.paged < projectListData.total_pages))) &&
                             <Row style={{justifyContent: 'center'}}>
                                 <Spinner
-                                    color='#04b6fe'/>
+                                    color={loadingData ? '#04b6fe' : '#fff'}/>
                             </Row>
-                        }
-                        {projectListData && (projectListData.paged < projectListData.total_pages) &&
-                            <Row style={{justifyContent: 'center', marginTop: 10}}>
-                                <Button
-                                    onPress={() => this._handleViewMore(projectListData.paged + 1)}
-                                    light
-                                    style={viewMoreStyle.btnViewMore}
-                                    >
-                                    <Text style={viewMoreStyle.viewMoreText}>...</Text>
-                                </Button>
+                        }                        
+                        {projectListData && projectListData.total_pages > 0 && (projectListData.paged === projectListData.total_pages) &&
+                            <Row style={{justifyContent: 'center'}}>
+                                <Text style={{color: '#00000050'}}>All Projects are loaded.</Text>
                             </Row>
                         }
                     </Grid>

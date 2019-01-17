@@ -47,6 +47,9 @@ function * _getCurrentUserInfo(apiService) {
         yield put(userActions.setUserInfo.invoke(userInfo.data.users));
         showToast.sucess(`Welcome, ${userInfo.data.users.first_name} ${userInfo.data.users.last_name}!`)
     } catch (e) {
+        yield AsyncStorage.removeItem('token');
+        yield AsyncStorage.removeItem('username');
+        yield put(appActions.renderLoginForm.invoke(true));
         yield _handleToastError(e);
     }
 }
