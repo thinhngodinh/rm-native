@@ -10,13 +10,25 @@ const filterStyle = StyleSheet.create(
             borderRightWidth: 0,
             borderLeftWidth: 0
         },
-        changeBorder: {
+        fieldWrapper: {
+            position: 'relative',
+        },
+        setBorder: {
             borderBottomWidth: 1,
             borderBottomColor: '#aaa'
         },
-        customText: {
+        fieldLabel: {
+            fontSize: 12,
+            position: 'absolute',
+            left: 0,
+            top: -5,
             paddingLeft: 0,
-            flexGrow: 2
+            color: '#a9a9a9'
+        },
+        fieldValue: {
+            paddingLeft: 0,
+            flexGrow: 2,
+            color: '#141414'
         }
     }
 )
@@ -66,11 +78,12 @@ export const ActionSheetOptionsIos = ({
         <Button 
             onPress={() => showOptions(triggerLabel, options, onValueChange, activeIndex)}
             rounded block bordered transparent
-            style={[filterStyle.selectBtn, filterStyle.changeBorder]}
+            style={[filterStyle.selectBtn, filterStyle.setBorder, filterStyle.fieldWrapper]}
             iconRight
         >
-            <Text style={filterStyle.customText}>{triggerLabel}{selectedItem ? `: ${selectedItem.label}` : ''}</Text>
-            <Icon name='md-arrow-dropdown' />
+            <Text style={filterStyle.fieldLabel}>{triggerLabel}</Text>
+            <Text style={filterStyle.fieldValue}>{selectedItem ? `${selectedItem.label}` : ''}</Text>
+            <Icon name='md-arrow-dropdown' style={{color: '#e0e0e0'}} />
         </Button>
     );
 };

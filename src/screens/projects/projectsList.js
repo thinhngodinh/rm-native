@@ -135,8 +135,8 @@ class ProjectsScreen extends React.Component {
                     onScroll={this._handleViewMore}
                     refreshControl={
                         <RefreshControl
-                            tintColor='#ff8080'
-                            colors={['#ff8080']}
+                            tintColor='#04b6fe'
+                            colors={['#04b6fe']}
                             refreshing={refreshing}
                             onRefresh={this._onRefresh}
                         />

@@ -1,21 +1,46 @@
 import React from 'react';
 
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Button, Text, Item, Input, Label } from 'native-base';
 
 import { ActionSheetOptionsIos } from '../../_commonCmp/IosActionSheet';
+import DateRange from '../../_commonCmp/dateRange/dateRange';
+
+const inputStyle = StyleSheet.create(
+    {
+        wrapperIpt: { 
+            marginBottom: 10,
+            borderBottomWidth: 1,
+            borderBottomColor: '#aaa',
+            position: 'relative'
+        },
+        fieldLabel: {
+            color: '#a9a9a9',
+            fontSize: 12,
+            paddingRight: 0,
+            position: 'absolute',
+            left: 0,
+            top: -5,
+        },
+        fieldValue: {
+            fontSize: 14,
+            paddingLeft: 0
+        }
+    }
+)
 
 const ProjectFilterView = ({ dispatch, updateFilter, updateProjectList, filter }) => {
     return (
         <View>
-            <Text>Android Filter</Text>
-            <Item inlineLabel style={{marginBottom: 10, borderBottomWidth: 1, borderBottomColor: '#aaa' }}>
-                <Label style={{color: '#04b6fe'}}>Search:</Label>
+            <Text>Androind Filter</Text>
+            <Item style={inputStyle.wrapperIpt}>
+                <Label style={inputStyle.fieldLabel}>Search</Label>
                 <Input
                     value={filter.tags}
-                    placeholder='Input text, tags'
-                    placeholderTextColor='#aaa'
                     onChangeText={(text) => updateFilter(dispatch, { tags: text, key: text})}
+                    placeholder='Input text, tags'
+                    placeholderTextColor='#a9a9a9'
+                    style={inputStyle.fieldValue}
                 />
             </Item>
             <ActionSheetOptionsIos
@@ -59,7 +84,10 @@ const ProjectFilterView = ({ dispatch, updateFilter, updateProjectList, filter }
                 value={filter.order_by}
                 onValueChange={(value) => updateFilter(dispatch, { order_by: value })}
             />
-
+            <DateRange
+                updateFilter={updateFilter}
+                dispatch={dispatch}
+            />
             <Button
                 onPress={() => updateProjectList(dispatch)}
                 primary small>
