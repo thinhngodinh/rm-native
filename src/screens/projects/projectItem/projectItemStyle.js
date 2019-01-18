@@ -3,7 +3,9 @@ import { StyleSheet } from 'react-native';
 const projectItemStyle = StyleSheet.create(
     {
         mainCard: {
-            width: '100%'
+            marginLeft: 10,
+            marginRight: 5,
+            flex: 1
         },
         cardHdr: {
             position: 'relative'

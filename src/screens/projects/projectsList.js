@@ -1,9 +1,8 @@
 import React from "react";
-import { RefreshControl } from 'react-native'
+import { RefreshControl, View, LayoutAnimation, NativeModules } from 'react-native'
 
 // third-party import
 import { connect } from 'react-redux';
-import Collapsible from 'react-native-collapsible';
 import {
     Container,
     Header,
@@ -13,7 +12,7 @@ import {
     Spinner
 } from 'native-base';
 import { Row, Grid } from 'react-native-easy-grid';
-import moment from 'moment';
+import moment, { duration } from 'moment';
 
 // Header Config
 import ProjectFilter from './components/projectFilter'
@@ -23,6 +22,11 @@ import ProjectFooterTab from './components/projectFooter';
 import { userActions } from './../../static/actionsIndex';
 
 import ProjectItem from './projectItem/projectItem';
+
+const { UIManager } = NativeModules;
+
+UIManager.setLayoutAnimationEnabledExperimental &&
+  UIManager.setLayoutAnimationEnabledExperimental(true);
 
 const initFilter = {
     status: 'working',
@@ -58,10 +62,10 @@ class ProjectsScreen extends React.Component {
         super(props);
         this._contentScroll = null;
         this.state = {
-            initFilter: {...initFilter},
+            initFilter: { ...initFilter },
             projectTypes: configProjectTypes,
             refreshing: false,
-            isFilterCollapsed: true
+            paddingTopContent: 0
         };
     }
 
@@ -82,12 +86,12 @@ class ProjectsScreen extends React.Component {
     }
 
     _handleViewMore = (e) => {
-        const {contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
-        const { project: {  loadingData } } = this.props;
+        const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
+        const { project: { loadingData } } = this.props;
 
         if (
             !loadingData
-            && Math.round(contentOffset.y) === Math.round(contentSize.height - layoutMeasurement.height) 
+            && Math.round(contentOffset.y) === Math.round(contentSize.height - layoutMeasurement.height)
             && contentSize.height > layoutMeasurement.height) {
             const { dispatch } = this.props;
             console.log('invoke load more action');
@@ -98,12 +102,12 @@ class ProjectsScreen extends React.Component {
     render() {
         const {
             dispatch,
-            project: { 
+            project: {
                 filter,
                 projectList: projectListData,
                 loadingData,
-                refreshing
-            } 
+                refreshing,
+            }
         } = this.props;
 
         const { projectTypes, isFilterCollapsed } = this.state;
@@ -120,14 +124,16 @@ class ProjectsScreen extends React.Component {
                             <Icon name="md-menu" style={{ color: '#fff' }} />
                         </Button>
                     </Left>
-                    <Body style={{flex: 2}}>
+                    <Body style={{ flex: 2 }}>
                         <Title style={{ color: '#fff' }}>{this._getProjectTypeLabel(filter.status)} Projects</Title>
                     </Body>
                     <Right>
                         <Button
                             onPress={() => {
-                                setTimeout(() => this.setState({isFilterCollapsed: !this.state.isFilterCollapsed}), 150);
-                                this._contentScroll.props.scrollToPosition(0, 0);
+                                LayoutAnimation.easeInEaseOut();
+                                this.setState({
+                                    paddingTopContent: this.state.paddingTopContent ? 0 : 320});
+                                // this._contentScroll.props.scrollToPosition(0, 0);
                             }}
                             transparent>
                             <Icon name='md-search' style={{ color: '#fff' }} />
@@ -138,7 +144,7 @@ class ProjectsScreen extends React.Component {
                     </Right>
                 </Header>
                 <Content
-                    innerRef={(ref) => {this._contentScroll = ref}}
+                    innerRef={(ref) => { this._contentScroll = ref }}
                     onScroll={this._handleViewMore}
                     refreshControl={
                         <RefreshControl
@@ -147,33 +153,25 @@ class ProjectsScreen extends React.Component {
                             refreshing={refreshing}
                             onRefresh={this._onRefresh}
                         />
-                    }
-                    padder>
-                    <Collapsible collapsed={isFilterCollapsed}>
-                        <ProjectFilter
-                            filter={filter}
-                            dispatch={dispatch.bind(this)} />
-                    </Collapsible>
-                    <Grid>
+                    }>
+                    <ProjectFilter
+                        filter={filter}
+                        dispatch={dispatch.bind(this)} />
+                    <View style={{ paddingTop: this.state.paddingTopContent, marginTop: 5, minHeight: 350 }}>
                         {projectListData && projectListData.projects.map((project, index) =>
-                            <Row style={{ marginTop: 20 }} key={index}>
-                                <ProjectItem
-                                    projectInfo={project}
-                                />
-                            </Row>
+                            <ProjectItem
+                                key={index}
+                                projectInfo={project}
+                            />
                         )}
-                        {(loadingData ||(projectListData && projectListData.total_pages > 0 && (projectListData.paged < projectListData.total_pages))) &&
-                            <Row style={{justifyContent: 'center'}}>
-                                <Spinner
-                                    color={loadingData ? '#04b6fe' : '#fff'}/>
-                            </Row>
-                        }                        
-                        {projectListData && projectListData.total_pages > 0 && (projectListData.paged === projectListData.total_pages) &&
-                            <Row style={{justifyContent: 'center'}}>
-                                <Text style={{color: '#00000050'}}>All Projects are loaded.</Text>
-                            </Row>
+                        {(loadingData || (projectListData && projectListData.total_pages > 0 && (projectListData.paged < projectListData.total_pages))) &&
+                            <Spinner
+                                color={loadingData ? '#04b6fe' : '#fff'} />
                         }
-                    </Grid>
+                        {projectListData && projectListData.total_pages > 0 && (projectListData.paged === projectListData.total_pages) &&
+                            <Text style={{ color: '#00000050' }}>All Projects are loaded.</Text>
+                        }
+                    </View>
                 </Content>
                 <Footer>
                     <ProjectFooterTab

@@ -5,7 +5,8 @@ const dateRangeStyle = StyleSheet.create(
         calendarField: {
             marginBottom: 10,
             borderWidth: 1,
-            borderColor: '#aaa'
+            borderColor: '#ddd',
+            padding: 0
         },
         textDate: {
             color: '#141414'
@@ -24,14 +25,20 @@ const dateRangeStyle = StyleSheet.create(
             paddingLeft: 5,
             minWidth: 60,
             height: 35,
-            justifyContent: 'center'
+            justifyContent: 'center',
+            flex: 1
         },
         activeWorkLoad: {
-            backgroundColor: '#04b6fe',
-            color: '#fff'
+            backgroundColor: '#fff',
+            color: '#000',
+            borderColor: '#ddd',
+            borderWidth: 1
+        },
+        activeWorkloadTxt: {
+            color: '#000',
         },
         workloadTxt: {
-            color: '#fff'
+            color: '#bbb',
         },
         wrapperBack: {
             flex: 1,

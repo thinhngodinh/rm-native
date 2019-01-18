@@ -37,7 +37,7 @@ const inputStyle = StyleSheet.create(
 
 const ProjectFilterView = ({ dispatch, updateFilter, updateProjectList, filter }) => {
     return (
-        <View>
+        <View style={{flex: 1, marginLeft: 5, paddingTop: 10, padding: 5, position: 'absolute', top: 0, right: 0, left: 0 }}>
             <Item style={inputStyle.wrapperIpt}>
                 <Label style={inputStyle.fieldLabel}>Search</Label>
                 <Input

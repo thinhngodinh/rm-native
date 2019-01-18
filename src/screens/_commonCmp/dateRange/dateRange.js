@@ -60,14 +60,13 @@ class DateRange extends React.Component {
 
     render() {
         return (
-
             <View style={{ flex: 1 }}>
                 <Button
                     onPress={() => { this.setModalVisible(true) }}
                     block bordered transparent
                     style={dateRangeStyle.calendarField}
                 >
-                    <Text style={dateRangeStyle.textDate}>WORKLOAD</Text>
+                    <Text style={[dateRangeStyle.textDate]}>WORKLOAD</Text>
                     <Text style={dateRangeStyle.textDate}>From: {this.state.startDate}</Text>
                     <Text style={dateRangeStyle.textDate}>To: {this.state.endDate}</Text>
                 </Button>
@@ -100,31 +99,31 @@ class DateRange extends React.Component {
                 <View style={dateRangeStyle.wraperCalendarFilter}>
                     <Button
                         onPress={() => { this.filterCalendarPeriod('weeks') }}
-                        transparent bordered small info 
-                        style={[dateRangeStyle.cldFilterItem, this.isActivePeriod('weeks') ? dateRangeStyle.activeWorkLoad : '']}
+                        transparent small info 
+                        style={[dateRangeStyle.cldFilterItem, this.isActivePeriod('weeks') ? dateRangeStyle.activeWorkLoad : {}]}
                     >
-                        <Text style={this.isActivePeriod('weeks') ? dateRangeStyle.workloadTxt: ''}>Week</Text>
+                        <Text style={this.isActivePeriod('weeks') ? dateRangeStyle.activeWorkloadTxt: dateRangeStyle.workloadTxt}>Week</Text>
                     </Button>
                     <Button
                         onPress={() => { this.filterCalendarPeriod('months') }}
-                        transparent bordered small info
-                        style={[dateRangeStyle.cldFilterItem, this.isActivePeriod('months') ? dateRangeStyle.activeWorkLoad : '']}
+                        transparent small info
+                        style={[dateRangeStyle.cldFilterItem, this.isActivePeriod('months') ? dateRangeStyle.activeWorkLoad : {}]}
                     >
-                        <Text style={this.isActivePeriod('months') ? dateRangeStyle.workloadTxt: ''}>Month</Text>
+                        <Text style={this.isActivePeriod('months') ? dateRangeStyle.activeWorkloadTxt: dateRangeStyle.workloadTxt}>Month</Text>
                     </Button>
                     <Button
                         onPress={() => { this.filterCalendarPeriod('quarters') }}
-                        transparent bordered small info
-                        style={[dateRangeStyle.cldFilterItem, this.isActivePeriod('quarters') ? dateRangeStyle.activeWorkLoad : '']}
+                        transparent small info
+                        style={[dateRangeStyle.cldFilterItem, this.isActivePeriod('quarters') ? dateRangeStyle.activeWorkLoad : {}]}
                     >
-                        <Text style={this.isActivePeriod('quarters') ? dateRangeStyle.workloadTxt: ''}>Quarter</Text>
+                        <Text style={this.isActivePeriod('quarters') ? dateRangeStyle.activeWorkloadTxt: dateRangeStyle.workloadTxt}>Quarter</Text>
                     </Button>
                     <Button
                         onPress={() => { this.filterCalendarPeriod('years') }}
-                        transparent bordered small info
-                        style={[dateRangeStyle.cldFilterItem, this.isActivePeriod('years') ? dateRangeStyle.activeWorkLoad : '']}
+                        transparent small info
+                        style={[dateRangeStyle.cldFilterItem, this.isActivePeriod('years') ? dateRangeStyle.activeWorkLoad : {}]}
                     >
-                        <Text style={this.isActivePeriod('years') ? dateRangeStyle.workloadTxt: ''}>Year</Text>
+                        <Text style={this.isActivePeriod('years') ? dateRangeStyle.activeWorkloadTxt: dateRangeStyle.workloadTxt}>Year</Text>
                     </Button>
                 </View>
             </View>
