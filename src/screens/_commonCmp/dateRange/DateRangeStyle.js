@@ -25,6 +25,13 @@ const dateRangeStyle = StyleSheet.create(
             minWidth: 60,
             height: 35,
             justifyContent: 'center'
+        },
+        activeWorkLoad: {
+            backgroundColor: '#04b6fe',
+            color: '#fff'
+        },
+        workloadTxt: {
+            color: '#fff'
         }
     }
 );

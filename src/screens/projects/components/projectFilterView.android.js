@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { View, StyleSheet } from 'react-native';
-import { Button, Text, Item, Input, Label } from 'native-base';
+import { Button, Text, Item, Input, Label, Icon } from 'native-base';
 
 import { ActionSheetOptionsIos } from '../../_commonCmp/IosActionSheet';
 import DateRange from '../../_commonCmp/dateRange/dateRange';
@@ -25,6 +25,12 @@ const inputStyle = StyleSheet.create(
         fieldValue: {
             fontSize: 14,
             paddingLeft: 0
+        },
+        submitSearch: {
+            flex: 1,
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'flex-end'
         }
     }
 )
@@ -87,11 +93,13 @@ const ProjectFilterView = ({ dispatch, updateFilter, updateProjectList, filter }
                 updateFilter={updateFilter}
                 dispatch={dispatch}
             />
-            <Button
-                onPress={() => updateProjectList(dispatch)}
-                primary small>
-                <Text>Search</Text>
-            </Button>
+            <View style={inputStyle.submitSearch}>
+                <Button
+                    onPress={() => updateProjectList(dispatch)}
+                    info small>
+                    <Text>Search</Text>
+                </Button>
+            </View>
         </View>
     )
 };
