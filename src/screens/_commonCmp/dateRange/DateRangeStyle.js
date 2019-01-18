@@ -32,6 +32,14 @@ const dateRangeStyle = StyleSheet.create(
         },
         workloadTxt: {
             color: '#fff'
+        },
+        wrapperBack: {
+            flex: 1,
+            flexDirection: 'row',
+            flexWrap: 'wrap',
+            justifyContent: 'flex-end',
+            paddingLeft: 16,
+            paddingRight: 16
         }
     }
 );

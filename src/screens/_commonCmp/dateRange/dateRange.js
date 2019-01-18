@@ -86,6 +86,14 @@ class DateRange extends React.Component {
                             theme={{ markColor: '#f42c17', markTextColor: '#ffffff', todayTextColor: '#04b6fe', arrowColor: '#04b6fe' }}
                             maxDate={this.state.maxDate}
                         />
+                        <View style={dateRangeStyle.wrapperBack}>
+                            <Button
+                                onPress={() => { this.setModalVisible(false) }}
+                                transparent bordered small info
+                            >
+                                <Text>Back</Text>
+                            </Button>
+                        </View>
                     </SafeAreaView>
                 </Modal>
 
