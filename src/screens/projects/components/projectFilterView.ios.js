@@ -90,6 +90,8 @@ const ProjectFilterView = ({ dispatch, updateFilter, updateProjectList, filter }
                 onValueChange={(value) => updateFilter(dispatch, { order_by: value })}
             />
             <DateRange
+                from_date={filter.from_date}
+                to_date={filter.to_date}
                 updateFilter={updateFilter}
                 dispatch={dispatch}
             />

@@ -32,8 +32,8 @@ const initFilter = {
     status: 'working',
     order_by: 'percent_complete',
     order: 'desc',
-    from_date: moment().format('YYYY-MM-DD'),
-    to_date: moment().subtract(1, 'month').format('YYYY-MM-DD'),
+    from_date: moment().subtract(1, 'month').format('YYYY-MM-DD'),
+    to_date: moment().format('YYYY-MM-DD'),
     page: 1,
     tags: '',
     limit: 5
@@ -65,7 +65,7 @@ class ProjectsScreen extends React.Component {
             initFilter: { ...initFilter },
             projectTypes: configProjectTypes,
             refreshing: false,
-            paddingTopContent: 0
+            isFilterCollapsed: false
         };
     }
 
@@ -99,6 +99,12 @@ class ProjectsScreen extends React.Component {
         }
     };
 
+    _toggleFilter() {
+        this.setState({
+            isFilterCollapsed:  !this.state.isFilterCollapsed
+        })
+    }
+
     render() {
         const {
             dispatch,
@@ -131,9 +137,7 @@ class ProjectsScreen extends React.Component {
                         <Button
                             onPress={() => {
                                 LayoutAnimation.easeInEaseOut();
-                                this.setState({
-                                    paddingTopContent: this.state.paddingTopContent ? 0 : 320});
-                                // this._contentScroll.props.scrollToPosition(0, 0);
+                                this._toggleFilter();
                             }}
                             transparent>
                             <Icon name='md-search' style={{ color: '#fff' }} />
@@ -154,10 +158,12 @@ class ProjectsScreen extends React.Component {
                             onRefresh={this._onRefresh}
                         />
                     }>
-                    <ProjectFilter
-                        filter={filter}
-                        dispatch={dispatch.bind(this)} />
-                    <View style={{ paddingTop: this.state.paddingTopContent, marginTop: 5, minHeight: 350 }}>
+                    {isFilterCollapsed &&
+                        <ProjectFilter
+                            filter={filter}
+                            dispatch={dispatch.bind(this)} />
+                    }
+                    <View style={{ marginTop: 5, minHeight: 350 }}>
                         {projectListData && projectListData.projects.map((project, index) =>
                             <ProjectItem
                                 key={index}
@@ -170,6 +176,11 @@ class ProjectsScreen extends React.Component {
                         }
                         {projectListData && projectListData.total_pages > 0 && (projectListData.paged === projectListData.total_pages) &&
                             <Text style={{ color: '#00000050' }}>All Projects are loaded.</Text>
+                        }
+                        {projectListData && projectListData.projects.length == 0 && !loadingData &&
+                            <View style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row'}}>
+                                <Text>No Projects</Text>
+                            </View>
                         }
                     </View>
                 </Content>

@@ -47,6 +47,11 @@ const dateRangeStyle = StyleSheet.create(
             justifyContent: 'flex-end',
             paddingLeft: 16,
             paddingRight: 16
+        },
+        btnCalendar: {
+            justifyContent: 'center',
+            minWidth: 100,
+            marginLeft: 10
         }
     }
 );

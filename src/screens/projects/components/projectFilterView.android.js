@@ -37,7 +37,7 @@ const inputStyle = StyleSheet.create(
 
 const ProjectFilterView = ({ dispatch, updateFilter, updateProjectList, filter }) => {
     return (
-        <View style={{flex: 1, marginLeft: 5, paddingTop: 10, padding: 5, position: 'absolute', top: 0, right: 0, left: 0 }}>
+        <View style={{flex: 1, marginLeft: 5, paddingTop: 10, padding: 5}}>
             <Item style={inputStyle.wrapperIpt}>
                 <Label style={inputStyle.fieldLabel}>Search</Label>
                 <Input
@@ -90,6 +90,8 @@ const ProjectFilterView = ({ dispatch, updateFilter, updateProjectList, filter }
                 onValueChange={(value) => updateFilter(dispatch, { order_by: value })}
             />
             <DateRange
+                from_date={filter.from_date}
+                to_date={filter.to_date}
                 updateFilter={updateFilter}
                 dispatch={dispatch}
             />
