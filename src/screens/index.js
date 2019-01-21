@@ -12,6 +12,7 @@ const LeftDrawer = createDrawerNavigator(
     },
     {
         drawerType: 'front',
+        useNativeAnimations: true,
         drawerBackgroundColor: '#232323',
         contentComponent: SideBar
     }

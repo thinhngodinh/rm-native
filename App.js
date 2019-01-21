@@ -6,24 +6,29 @@ import { projectSaga } from './src/services/middlewares/projectSaga';
 import configStore from './src/services/createStore';
 import { Root, StyleProvider } from "native-base";
 
+import { appActions } from './src/static/actionsIndex';
 import NavigationService from './src/services/navigationService'
 import HttpService from './src/services/httpServices';
 import ApiService from './src/services/apiService';
+import getTheme from './native-base-theme/components';
+import material from './native-base-theme/variables/material';
+
 const saga = createSagaMiddleware();
 const store = configStore(saga)
 
 const httpServices = new HttpService();
 const apiService = new ApiService(httpServices);
 
-import getTheme from './native-base-theme/components';
-import material from './native-base-theme/variables/material';
 
 
 // implement run saga here
-saga.run(authSaga, apiService)
-saga.run(projectSaga, apiService)
+saga.run(authSaga, apiService);
+saga.run(projectSaga, apiService);
 
-import AppContainer from './src/screens'
+store.dispatch(appActions.initApp.invoke());
+
+import AppContainer from './src/screens';
+import ConnectionStatus from './src/screens/_commonCmp/connectionStatus';
 
 export default class App extends Component {
   render() {
@@ -31,6 +36,7 @@ export default class App extends Component {
       <StyleProvider style={getTheme(material)}>
         <Provider store={store}>
             <Root>
+              <ConnectionStatus />
               <AppContainer ref={navigatorRef => { NavigationService.setTopLevelNavigator(navigatorRef) }} />
             </Root>
         </Provider>

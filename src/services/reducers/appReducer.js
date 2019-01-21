@@ -8,7 +8,11 @@ const getInitialState = () => ({
     grant_type: 'rm_validate',
     fetchingApi: false,
     session: null,
-    renderLoginForm: false
+    renderLoginForm: false,
+    netInfo: {
+        type: 'none',
+        isConnected: false
+    }
 });
 
 const ACTION_HANDLERS =  {
@@ -31,6 +35,13 @@ const ACTION_HANDLERS =  {
     [appActions.removeSessionToken.action]: state => ({
         ...state,
         session: null
+    }),
+    [appActions.setNetworkStatus.action]: (state, payload) => ({
+        ...state,
+        netInfo: {
+            ...state.netInfo,
+            ...payload.networkState
+        }
     })
 }
 

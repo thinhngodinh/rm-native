@@ -19,6 +19,10 @@ export const appActions = {
         action: '_RENDER_LOGIN_FORM_',
         invoke: shouldRenderLoginForm => ({ type: appActions.renderLoginForm.action, shouldRenderLoginForm })
     },
+    setNetworkStatus: {
+        action: '_SET_NETWORK_STATUS_',
+        invoke: networkState => ({ type: appActions.setNetworkStatus.action, networkState })
+    },
     exitApp: {
         action: '_EXIT_APP_',
         invoke: () => ({ type: appActions.exitApp.action })

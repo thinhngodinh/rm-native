@@ -1,7 +1,7 @@
 import {Toast} from 'native-base';
 
 const _defautlToastConfig = {
-    duration: 3000,
+    duration: 2000,
     position: 'bottom'
 }
 
