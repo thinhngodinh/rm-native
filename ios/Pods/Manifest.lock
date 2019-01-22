@@ -1,0 +1,16 @@
+PODS:
+  - UIDevice-PasscodeStatus (0.0.2)
+
+DEPENDENCIES:
+  - UIDevice-PasscodeStatus (~> 0.0.2)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - UIDevice-PasscodeStatus
+
+SPEC CHECKSUMS:
+  UIDevice-PasscodeStatus: 250b63a271e85223105ff4c1626056ce3aab3305
+
+PODFILE CHECKSUM: 86f4b20ff5e8a3b6f9104939dcafc40e16ae630b
+
+COCOAPODS: 1.5.3

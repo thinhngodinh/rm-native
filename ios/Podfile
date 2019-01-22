@@ -1,0 +1,4 @@
+#RNDeviceStatus
+target "RMNative" do
+pod 'UIDevice-PasscodeStatus', '~> 0.0.2'
+end

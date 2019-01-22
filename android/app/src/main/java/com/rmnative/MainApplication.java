@@ -3,7 +3,6 @@ package com.rmnative;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import services.genii.reactnative.rndevicestatus.RNDeviceStatusPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.rnfingerprint.FingerprintAuthPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
@@ -27,7 +26,6 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNDeviceStatusPackage(),
             new KeychainPackage(),
             new FingerprintAuthPackage(),
           new RNGestureHandlerPackage()

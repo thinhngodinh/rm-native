@@ -137,7 +137,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-device-status')
     compile project(':react-native-keychain')
     compile project(':react-native-touch-id')
     compile project(':react-native-gesture-handler')

@@ -1,0 +1,515 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7E87221841C9CE54EAC3E46E50EFD3A0 /* UIDevice+PasscodeStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 151AA004002C972C425BE187F1FCF9FD /* UIDevice+PasscodeStatus.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9436431B454A4879108489DF9B4D055D /* Pods-RMNative-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EF643D96F8DEBF9BB3056DBA6E362656 /* Pods-RMNative-dummy.m */; };
+		9DDB3D08F0817E460E4AF1DFCA9813A1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8106A7B174A3FEE0046B91D4D7738F37 /* Security.framework */; };
+		A589F1FC0D551DFCD46E30265270AB5C /* UIDevice-PasscodeStatus-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B76DDDDFAC779F5EA97DFA93941C30 /* UIDevice-PasscodeStatus-dummy.m */; };
+		FD4EC946E0A2691E2FADFC7042324C82 /* UIDevice+PasscodeStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2DF7DE0AF8EDCC798599E1E8530BE8 /* UIDevice+PasscodeStatus.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8CBC1DA8E5F53D8E5A7B52A419BC6782 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C729D31D35F599B0B0C8CF95AC50AC1E;
+			remoteInfo = "UIDevice-PasscodeStatus";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		151AA004002C972C425BE187F1FCF9FD /* UIDevice+PasscodeStatus.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIDevice+PasscodeStatus.h"; path = "Source/UIDevice+PasscodeStatus.h"; sourceTree = "<group>"; };
+		22F111F342926BA14A4F7229FFA2FE72 /* libUIDevice-PasscodeStatus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libUIDevice-PasscodeStatus.a"; path = "libUIDevice-PasscodeStatus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		29F0F4ABEF2980BDBFB71C6F865CC117 /* Pods-RMNative-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RMNative-frameworks.sh"; sourceTree = "<group>"; };
+		42EE36313BE1C0C2413DAE12AAA59444 /* libPods-RMNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-RMNative.a"; path = "libPods-RMNative.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		70B7AA80CD013A0061F395941E9DE70E /* UIDevice-PasscodeStatus-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIDevice-PasscodeStatus-prefix.pch"; sourceTree = "<group>"; };
+		74B76DDDDFAC779F5EA97DFA93941C30 /* UIDevice-PasscodeStatus-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIDevice-PasscodeStatus-dummy.m"; sourceTree = "<group>"; };
+		8106A7B174A3FEE0046B91D4D7738F37 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		8FB046EBAF62744920082E283797A96F /* Pods-RMNative-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RMNative-resources.sh"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9FD938616EE10E14311CDFEF9229B05A /* Pods-RMNative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RMNative.release.xcconfig"; sourceTree = "<group>"; };
+		AC2DF7DE0AF8EDCC798599E1E8530BE8 /* UIDevice+PasscodeStatus.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+PasscodeStatus.m"; path = "Source/UIDevice+PasscodeStatus.m"; sourceTree = "<group>"; };
+		BBEE5D1CD9B721C19D8224B3B076043C /* Pods-RMNative-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RMNative-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D50B76AAB8305BA6967FAF008E0E9F71 /* UIDevice-PasscodeStatus.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "UIDevice-PasscodeStatus.xcconfig"; sourceTree = "<group>"; };
+		EF643D96F8DEBF9BB3056DBA6E362656 /* Pods-RMNative-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RMNative-dummy.m"; sourceTree = "<group>"; };
+		EFA31346D82789D1AFD2A692AFB00C0D /* Pods-RMNative.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RMNative.debug.xcconfig"; sourceTree = "<group>"; };
+		F17F18CEA6B6F26569540B6E83C9F771 /* Pods-RMNative-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RMNative-acknowledgements.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		85522D530A295ED21380E3E046829562 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DDB3D08F0817E460E4AF1DFCA9813A1 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2F95403A133360D5521EB2C6B8AB893 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		18B215F4B2AAA675CA16D3787350BBF0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6EBD0B66DBAD9105ABCAC32615EF28D8 /* UIDevice-PasscodeStatus */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		29A1B0852D3DAA9EFCDFE92C2B441434 /* Pods-RMNative */ = {
+			isa = PBXGroup;
+			children = (
+				BBEE5D1CD9B721C19D8224B3B076043C /* Pods-RMNative-acknowledgements.markdown */,
+				F17F18CEA6B6F26569540B6E83C9F771 /* Pods-RMNative-acknowledgements.plist */,
+				EF643D96F8DEBF9BB3056DBA6E362656 /* Pods-RMNative-dummy.m */,
+				29F0F4ABEF2980BDBFB71C6F865CC117 /* Pods-RMNative-frameworks.sh */,
+				8FB046EBAF62744920082E283797A96F /* Pods-RMNative-resources.sh */,
+				EFA31346D82789D1AFD2A692AFB00C0D /* Pods-RMNative.debug.xcconfig */,
+				9FD938616EE10E14311CDFEF9229B05A /* Pods-RMNative.release.xcconfig */,
+			);
+			name = "Pods-RMNative";
+			path = "Target Support Files/Pods-RMNative";
+			sourceTree = "<group>";
+		};
+		6ADDDE83DAAFDA5378BF8A0822521B84 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				42EE36313BE1C0C2413DAE12AAA59444 /* libPods-RMNative.a */,
+				22F111F342926BA14A4F7229FFA2FE72 /* libUIDevice-PasscodeStatus.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6EBD0B66DBAD9105ABCAC32615EF28D8 /* UIDevice-PasscodeStatus */ = {
+			isa = PBXGroup;
+			children = (
+				151AA004002C972C425BE187F1FCF9FD /* UIDevice+PasscodeStatus.h */,
+				AC2DF7DE0AF8EDCC798599E1E8530BE8 /* UIDevice+PasscodeStatus.m */,
+				8C773AEF25E91D523EA1486374F0FC41 /* Support Files */,
+			);
+			name = "UIDevice-PasscodeStatus";
+			path = "UIDevice-PasscodeStatus";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				18B215F4B2AAA675CA16D3787350BBF0 /* Pods */,
+				6ADDDE83DAAFDA5378BF8A0822521B84 /* Products */,
+				BEE7C7337E977423E9D0D888345C08A9 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8C773AEF25E91D523EA1486374F0FC41 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D50B76AAB8305BA6967FAF008E0E9F71 /* UIDevice-PasscodeStatus.xcconfig */,
+				74B76DDDDFAC779F5EA97DFA93941C30 /* UIDevice-PasscodeStatus-dummy.m */,
+				70B7AA80CD013A0061F395941E9DE70E /* UIDevice-PasscodeStatus-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/UIDevice-PasscodeStatus";
+			sourceTree = "<group>";
+		};
+		A8741CACDC7BF26C5F1B8BBCCAFECBD9 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				8106A7B174A3FEE0046B91D4D7738F37 /* Security.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A8741CACDC7BF26C5F1B8BBCCAFECBD9 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BEE7C7337E977423E9D0D888345C08A9 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				29A1B0852D3DAA9EFCDFE92C2B441434 /* Pods-RMNative */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		99E9A94649D33A9A488684D18A77D8A9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0DB2CB8B09B70F856BBC986E32E19D2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E87221841C9CE54EAC3E46E50EFD3A0 /* UIDevice+PasscodeStatus.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		45735D69ED7FCCFC9444403CAF55F095 /* Pods-RMNative */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB87806AED346739F0220A66CA6AD208 /* Build configuration list for PBXNativeTarget "Pods-RMNative" */;
+			buildPhases = (
+				99E9A94649D33A9A488684D18A77D8A9 /* Headers */,
+				3C45BA8E8B381A845E970154DB3BB0BB /* Sources */,
+				E2F95403A133360D5521EB2C6B8AB893 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8D0D9A96D281D39272AD349F6A1104F8 /* PBXTargetDependency */,
+			);
+			name = "Pods-RMNative";
+			productName = "Pods-RMNative";
+			productReference = 42EE36313BE1C0C2413DAE12AAA59444 /* libPods-RMNative.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		C729D31D35F599B0B0C8CF95AC50AC1E /* UIDevice-PasscodeStatus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A22BC542D0AF251DF799EE7B1E62360F /* Build configuration list for PBXNativeTarget "UIDevice-PasscodeStatus" */;
+			buildPhases = (
+				F0DB2CB8B09B70F856BBC986E32E19D2 /* Headers */,
+				7EADC8F4301E3C14CEDAB5380835A67A /* Sources */,
+				85522D530A295ED21380E3E046829562 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "UIDevice-PasscodeStatus";
+			productName = "UIDevice-PasscodeStatus";
+			productReference = 22F111F342926BA14A4F7229FFA2FE72 /* libUIDevice-PasscodeStatus.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 6ADDDE83DAAFDA5378BF8A0822521B84 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				45735D69ED7FCCFC9444403CAF55F095 /* Pods-RMNative */,
+				C729D31D35F599B0B0C8CF95AC50AC1E /* UIDevice-PasscodeStatus */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3C45BA8E8B381A845E970154DB3BB0BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9436431B454A4879108489DF9B4D055D /* Pods-RMNative-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EADC8F4301E3C14CEDAB5380835A67A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FD4EC946E0A2691E2FADFC7042324C82 /* UIDevice+PasscodeStatus.m in Sources */,
+				A589F1FC0D551DFCD46E30265270AB5C /* UIDevice-PasscodeStatus-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8D0D9A96D281D39272AD349F6A1104F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "UIDevice-PasscodeStatus";
+			target = C729D31D35F599B0B0C8CF95AC50AC1E /* UIDevice-PasscodeStatus */;
+			targetProxy = 8CBC1DA8E5F53D8E5A7B52A419BC6782 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2E3513D930B5C8E49D7219A510ABD0AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D50B76AAB8305BA6967FAF008E0E9F71 /* UIDevice-PasscodeStatus.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/UIDevice-PasscodeStatus/UIDevice-PasscodeStatus-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = UIDevice_PasscodeStatus;
+				PRODUCT_NAME = "UIDevice-PasscodeStatus";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4461FD86F7085E25FF9FA8F4E88E6350 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FD938616EE10E14311CDFEF9229B05A /* Pods-RMNative.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		60DAF49CA7A9F362148D49C3C3123B2A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		A13EBBCE632E1846AF632DC305802854 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D50B76AAB8305BA6967FAF008E0E9F71 /* UIDevice-PasscodeStatus.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/UIDevice-PasscodeStatus/UIDevice-PasscodeStatus-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = UIDevice_PasscodeStatus;
+				PRODUCT_NAME = "UIDevice-PasscodeStatus";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C4EAA84F44D044E108500A81C635F21E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		CF158F0F23169F95246A7CB5EDB73FB4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EFA31346D82789D1AFD2A692AFB00C0D /* Pods-RMNative.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60DAF49CA7A9F362148D49C3C3123B2A /* Debug */,
+				C4EAA84F44D044E108500A81C635F21E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A22BC542D0AF251DF799EE7B1E62360F /* Build configuration list for PBXNativeTarget "UIDevice-PasscodeStatus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A13EBBCE632E1846AF632DC305802854 /* Debug */,
+				2E3513D930B5C8E49D7219A510ABD0AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB87806AED346739F0220A66CA6AD208 /* Build configuration list for PBXNativeTarget "Pods-RMNative" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF158F0F23169F95246A7CB5EDB73FB4 /* Debug */,
+				4461FD86F7085E25FF9FA8F4E88E6350 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
