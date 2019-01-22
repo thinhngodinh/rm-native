@@ -44,14 +44,14 @@ const dateRangeStyle = StyleSheet.create(
             flex: 1,
             flexDirection: 'row',
             flexWrap: 'wrap',
-            justifyContent: 'flex-end',
-            paddingLeft: 16,
-            paddingRight: 16
+            justifyContent: 'space-between',
+            width: '100%',
+            marginTop: 20
         },
         btnCalendar: {
             justifyContent: 'center',
-            minWidth: 100,
-            marginLeft: 10
+            flex: 1,
+            margin: 5
         }
     }
 );

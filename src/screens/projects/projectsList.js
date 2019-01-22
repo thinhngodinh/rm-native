@@ -99,9 +99,9 @@ class ProjectsScreen extends React.Component {
         }
     };
 
-    _toggleFilter() {
+    _handleCpllapsedFilter(isShow) {
         this.setState({
-            isFilterCollapsed:  !this.state.isFilterCollapsed
+            isFilterCollapsed:  isShow
         })
     }
 
@@ -137,7 +137,7 @@ class ProjectsScreen extends React.Component {
                         <Button
                             onPress={() => {
                                 LayoutAnimation.easeInEaseOut();
-                                this._toggleFilter();
+                                this._handleCpllapsedFilter(true);
                             }}
                             transparent>
                             <Icon name='md-search' style={{ color: '#fff' }} />
@@ -160,6 +160,7 @@ class ProjectsScreen extends React.Component {
                     }>
                     {isFilterCollapsed &&
                         <ProjectFilter
+                            isFilterCollapsed = {() => this._handleCpllapsedFilter(false)}
                             filter={filter}
                             dispatch={dispatch.bind(this)} />
                     }

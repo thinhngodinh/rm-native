@@ -92,7 +92,12 @@ class DateRange extends React.Component {
                         <DateRangePicker
                             initialRange={[this.state.startDate, this.state.endDate]}
                             onSuccess={(s, e) => { this._setDateSelected(s, e) }}
-                            theme={{ markColor: '#f42c17', markTextColor: '#ffffff', todayTextColor: '#04b6fe', arrowColor: '#04b6fe' }}
+                            theme={{
+                                markColor: '#add4f7',
+                                markTextColor: '#000000',
+                                todayTextColor: '#04b6fe',
+                                arrowColor: '#04b6fe'
+                            }}
                             maxDate={this.state.maxDate}
                         />
                         <View style={dateRangeStyle.wrapperBack}>
@@ -105,7 +110,7 @@ class DateRange extends React.Component {
                             </Button>
                             <Button
                                 onPress={this._confirmDateTime}
-                                transparent bordered small info
+                                small info
                                 style={dateRangeStyle.btnCalendar}
                             >
                                 <Text>Ok</Text>

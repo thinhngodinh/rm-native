@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Keyboard } from 'react-native';
 import { Button, Text, Item, Input, Label, Icon } from 'native-base';
 
 import { ActionSheetOptionsIos } from '../../_commonCmp/IosActionSheet';
@@ -35,7 +35,7 @@ const inputStyle = StyleSheet.create(
     }
 )
 
-const ProjectFilterView = ({ dispatch, updateFilter, updateProjectList, filter }) => {
+const ProjectFilterView = ({ dispatch, updateFilter, updateProjectList, filter, isFilterCollapsed }) => {
     return (
         <View style={{flex: 1, marginLeft: 5, paddingTop: 10, padding: 5}}>
             <Item style={inputStyle.wrapperIpt}>
@@ -97,7 +97,19 @@ const ProjectFilterView = ({ dispatch, updateFilter, updateProjectList, filter }
             />
             <View style={inputStyle.submitSearch}>
                 <Button
-                    onPress={() => updateProjectList(dispatch)}
+                    onPress={() => {
+                        Keyboard.dismiss();
+                        isFilterCollapsed();
+                    }}
+                    transparent bordered info small
+                    style={{marginRight: 5}}>
+                    <Text>Closed</Text>
+                </Button>
+                <Button
+                    onPress={() => {
+                        Keyboard.dismiss();
+                        updateProjectList(dispatch);
+                    }}
                     info small>
                     <Text>Search</Text>
                 </Button>
