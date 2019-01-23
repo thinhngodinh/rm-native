@@ -16,6 +16,7 @@ import moment, { duration } from 'moment';
 
 // Header Config
 import ProjectFilter from './components/projectFilter'
+import ConnectionStatus from '../_commonCmp/connectionStatus';
 
 // Footer Config
 import ProjectFooterTab from './components/projectFooter';
@@ -94,7 +95,6 @@ class ProjectsScreen extends React.Component {
             && Math.round(contentOffset.y) === Math.round(contentSize.height - layoutMeasurement.height)
             && contentSize.height > layoutMeasurement.height) {
             const { dispatch } = this.props;
-            console.log('invoke load more action');
             dispatch(userActions.loadMoreProjects.invoke());
         }
     };
@@ -147,6 +147,7 @@ class ProjectsScreen extends React.Component {
                         </Button>
                     </Right>
                 </Header>
+                <ConnectionStatus />
                 <Content
                     innerRef={(ref) => { this._contentScroll = ref }}
                     onScroll={this._handleViewMore}
@@ -164,7 +165,7 @@ class ProjectsScreen extends React.Component {
                             filter={filter}
                             dispatch={dispatch.bind(this)} />
                     }
-                    <View style={{ marginTop: 5, minHeight: 350 }}>
+                    <View style={{ marginTop: 5 }}>
                         {projectListData && projectListData.projects.map((project, index) =>
                             <ProjectItem
                                 key={index}
@@ -180,7 +181,7 @@ class ProjectsScreen extends React.Component {
                         }
                         {projectListData && projectListData.projects.length == 0 && !loadingData &&
                             <View style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row', flexWrap: 'wrap'}}>
-                                <Icon name='md-folder-open' style={{fontSize: 50, color: '#77777770'}}></Icon>
+                                <Icon name='md-folder-open' style={{fontSize: 50, color: '#77777770', marginTop: 80}}></Icon>
                                 <Text style={{display: 'flex', width: '100%', textAlign: 'center', color: '#77777770'}}>No Project Found</Text>
                             </View>
                         }

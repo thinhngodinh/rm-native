@@ -55,15 +55,12 @@ function * _getCurrentUserInfo(apiService) {
 }
 
 function _handleToastError(e) {
-    console.log(e)
     showToast.error(e.message);
 }
 
 function * logout(apiService) {
-    console.log('Saga Handle logout process');
     try {
         const logoutResponse = yield call([apiService, apiService.logout]);
-        console.log(logoutResponse);
         showToast.sucess(logoutResponse.message);
     } catch(e) {
         yield _handleToastError(e);

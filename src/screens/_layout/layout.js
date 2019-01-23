@@ -1,42 +1,27 @@
 import React from "react";
 // third-party import
 
-import { Container, Header, Left, Right, Body, Title, Footer, FooterTab, Button, Icon, Content, Text } from 'native-base';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import { Container, Footer, Button, Icon, Content } from 'native-base';
 
-// Header Config
-// Footer Config
+// Header Import
+import LayoutHeader from './layoutHeader';
+import ConnectionStatus from '../_commonCmp/connectionStatus';
+
+// Content Import
+import LayoutContent from './layoutContent';
+
+// Footer Import
+import LayoutFooter from './layoutFooter';
 
 class MasterLayout extends React.Component {
-    
     render() {
+        const { headerProps, contentProps, footerProps } = this.props;
         return (
             <Container>
-                <Header
-                    iosBarStyle='light-content'
-                    androidStatusBarColor='#232323'
-                    noShadow
-                    style={{backgroundColor: '#333'}}>
-                    <Left>
-                        <Button transparent>
-                            <Icon name="menu" style={{color: '#fff'}} />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title style={{color: '#fff', textAlign: "center"}}>Dashboard</Title>
-                    </Body>
-                    <Right />
-                </Header>
-                <Content>
-                    <Grid>
-                        <Row>
-                            <Button onPress={this._dispatchLogout}>
-                                <Icon name='md-log-out' />
-                                <Text>Logout</Text>
-                            </Button>
-                        </Row>
-                    </Grid>
-                </Content>
+                <LayoutHeader {...headerProps} />
+                <ConnectionStatus />
+                <LayoutContent {...contentProps} />
+                <LayoutFooter {...footerProps} />
             </Container>
         );
     }

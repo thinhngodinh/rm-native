@@ -36,7 +36,6 @@ class DashboardScreen extends React.Component {
     }
 
     componentDidUpdate() {
-        console.log(this.props);
         const { app, navigation } = this.props;
         if (!app.session) {
             navigation.navigate(stacks.auth);

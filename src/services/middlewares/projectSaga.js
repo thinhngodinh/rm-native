@@ -42,7 +42,6 @@ function * getProjects (apiService, filter) {
     yield put(projectActions.loadingData.invoke(true));
     try{
         const projectListData = yield call([apiService, apiService.getProjectsList], filter);
-        console.log('projectListData >>>>>>>>', filter, projectListData);
         yield put(projectActions.loadingData.invoke(false))
         return projectListData || null;
     } catch (e) {

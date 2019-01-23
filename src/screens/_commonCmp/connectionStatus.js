@@ -1,5 +1,5 @@
 import React from 'react'
-import { NetInfo } from 'react-native';
+import { NetInfo, SafeAreaView } from 'react-native';
 
 import { View } from 'react-native';
 import { Button, Icon, Text  } from 'native-base';
@@ -28,17 +28,25 @@ class NetworkStatus extends React.PureComponent {
     }
 
     componentWillMount() {
+
+        NetInfo.getConnectionInfo().then(
+            this._networkChange
+        );
+
+        NetInfo.isConnected.fetch().then(
+            this._connectedStateChange
+        )
+
         NetInfo.addEventListener('connectionChange', this._networkChange);
         NetInfo.isConnected.addEventListener('connectionChange', this._connectedStateChange)
     }
     componentWillUnmount() {
         NetInfo.removeEventListener('connectionChange', this._networkChange);
         NetInfo.isConnected.removeEventListener('connectionChange', this._connectedStateChange)
-
     }
 
     render() {
-        console.log(this.props.network);
+        console.log('>>>>> Network Information', this.props.network);
         const { type, isConnected} = this.props.network;
         return (
             <View style={{backgroundColor: 'red', alignContent: 'center'}}>

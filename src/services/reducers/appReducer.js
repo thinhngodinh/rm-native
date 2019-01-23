@@ -11,7 +11,7 @@ const getInitialState = () => ({
     renderLoginForm: false,
     netInfo: {
         type: 'none',
-        isConnected: false
+        isConnected: true
     }
 });
 

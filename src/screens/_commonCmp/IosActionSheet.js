@@ -43,7 +43,6 @@ const renderOptions = (options, activeIndex) => {
             })
         });
     }
-    console.log(defaultOptions);
     defaultOptions.push({
         text: 'Back',
         icon: 'md-arrow-back'
@@ -61,7 +60,6 @@ const showOptions = (title, options, onValueChange, activeIndex) => {
         },
         (selectedIndex) => {
             if (onValueChange && selectedIndex < options.length) {
-                console.log(selectedIndex);
                 onValueChange(options[selectedIndex].value);
             }
         }

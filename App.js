@@ -28,7 +28,7 @@ saga.run(projectSaga, apiService);
 store.dispatch(appActions.initApp.invoke());
 
 import AppContainer from './src/screens';
-import ConnectionStatus from './src/screens/_commonCmp/connectionStatus';
+
 
 export default class App extends Component {
   render() {
@@ -36,7 +36,6 @@ export default class App extends Component {
       <StyleProvider style={getTheme(material)}>
         <Provider store={store}>
             <Root>
-              <ConnectionStatus />
               <AppContainer ref={navigatorRef => { NavigationService.setTopLevelNavigator(navigatorRef) }} />
             </Root>
         </Provider>
