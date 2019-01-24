@@ -1,10 +1,10 @@
 import React from 'react';
 import { Footer } from 'native-base';
 
-const LayoutFooter = ({children}) => {
+const LayoutFooter = ({FooterCmp}) => {
     return(
         <Footer>
-            {children}
+            {FooterCmp && <FooterCmp />}
         </Footer>
     );
 };

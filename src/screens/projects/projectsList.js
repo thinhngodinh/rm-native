@@ -1,5 +1,5 @@
 import React from "react";
-import { RefreshControl, View, LayoutAnimation, NativeModules } from 'react-native'
+import { View, LayoutAnimation, NativeModules } from 'react-native'
 
 // third-party import
 import { connect } from 'react-redux';
@@ -18,16 +18,21 @@ import moment, { duration } from 'moment';
 import ProjectFilter from './components/projectFilter'
 import ConnectionStatus from '../_commonCmp/connectionStatus';
 
+// Content Config
+import ProjectListContent from './components/projectListContent';
+
 // Footer Config
 import ProjectFooterTab from './components/projectFooter';
 import { userActions } from './../../static/actionsIndex';
 
 import ProjectItem from './projectItem/projectItem';
+import MasterLayout from '../_layout/layout';
+
 
 const { UIManager } = NativeModules;
 
 UIManager.setLayoutAnimationEnabledExperimental &&
-  UIManager.setLayoutAnimationEnabledExperimental(true);
+    UIManager.setLayoutAnimationEnabledExperimental(true);
 
 const initFilter = {
     status: 'working',
@@ -84,6 +89,7 @@ class ProjectsScreen extends React.Component {
         dispatch(userActions.changeProjectFilter.invoke(
             this.state.initFilter
         ));
+        dispatch(userActions.getProjectList.invoke());
     }
 
     _handleViewMore = (e) => {
@@ -101,7 +107,7 @@ class ProjectsScreen extends React.Component {
 
     _handleCpllapsedFilter(isShow) {
         this.setState({
-            isFilterCollapsed:  isShow
+            isFilterCollapsed: isShow
         })
     }
 
@@ -117,82 +123,51 @@ class ProjectsScreen extends React.Component {
         } = this.props;
 
         const { projectTypes, isFilterCollapsed } = this.state;
+
         return (
-            <Container>
-                <Header
-                    iosBarStyle='light-content'
-                    androidStatusBarColor='#232323'
-                    style={{ backgroundColor: '#333' }}>
-                    <Left>
-                        <Button
-                            transparent
-                            onPress={() => this.props.navigation.toggleDrawer()}>
-                            <Icon name="md-menu" style={{ color: '#fff' }} />
-                        </Button>
-                    </Left>
-                    <Body style={{ flex: 2 }}>
-                        <Title style={{ color: '#fff' }}>{this._getProjectTypeLabel(filter.status)} Projects</Title>
-                    </Body>
-                    <Right>
-                        <Button
-                            onPress={() => {
-                                LayoutAnimation.easeInEaseOut();
-                                this._handleCpllapsedFilter(true);
-                            }}
-                            transparent>
-                            <Icon name='md-search' style={{ color: '#fff' }} />
-                        </Button>
-                        <Button transparent>
-                            <Icon name='md-notifications-outline' style={{ color: '#fff' }} />
-                        </Button>
-                    </Right>
-                </Header>
-                <ConnectionStatus />
-                <Content
-                    innerRef={(ref) => { this._contentScroll = ref }}
-                    onScroll={this._handleViewMore}
-                    refreshControl={
-                        <RefreshControl
-                            tintColor='#04b6fe'
-                            colors={['#04b6fe']}
-                            refreshing={refreshing}
-                            onRefresh={this._onRefresh}
-                        />
-                    }>
-                    {isFilterCollapsed &&
-                        <ProjectFilter
-                            isFilterCollapsed = {() => this._handleCpllapsedFilter(false)}
-                            filter={filter}
-                            dispatch={dispatch.bind(this)} />
-                    }
-                    <View style={{ marginTop: 5 }}>
-                        {projectListData && projectListData.projects.map((project, index) =>
-                            <ProjectItem
-                                key={index}
-                                projectInfo={project}
+            <MasterLayout
+                headerProps={{
+                    props: {},
+                    title: `${this._getProjectTypeLabel(filter.status)} Projects`,
+                    RightCmp: () => (
+                        <React.Fragment>
+                            <Button
+                                onPress={() => {
+                                    LayoutAnimation.easeInEaseOut();
+                                    this._handleCpllapsedFilter(true);
+                                }}
+                                transparent>
+                                <Icon name='md-search' style={{ color: '#fff' }} />
+                            </Button>
+                        </React.Fragment>
+                    )
+                }}
+                contentProps={{
+                    onScrollHandler: this._handleViewMore,
+                    refreshControlHandler: this._onRefresh,
+                    refreshing: refreshing,
+                    ContentCmp: () =>
+                        <React.Fragment>
+                            {isFilterCollapsed &&
+                                <ProjectFilter
+                                    isFilterCollapsed={() => this._handleCpllapsedFilter(false)}
+                                    filter={filter}
+                                    dispatch={dispatch.bind(this)} />
+                            }
+                            <ProjectListContent
+                                projectListData={projectListData}
+                                loadingData={loadingData}
                             />
-                        )}
-                        {(loadingData || (projectListData && projectListData.total_pages > 0 && (projectListData.paged < projectListData.total_pages))) &&
-                            <Spinner
-                                color={loadingData ? '#04b6fe' : '#fff'} />
-                        }
-                        {projectListData && projectListData.total_pages > 0 && (projectListData.paged === projectListData.total_pages) &&
-                            <Text style={{ color: '#00000050', paddingLeft: 16, paddingRight: 16 }}>All Projects are loaded.</Text>
-                        }
-                        {projectListData && projectListData.projects.length == 0 && !loadingData &&
-                            <View style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row', flexWrap: 'wrap'}}>
-                                <Icon name='md-folder-open' style={{fontSize: 50, color: '#77777770', marginTop: 80}}></Icon>
-                                <Text style={{display: 'flex', width: '100%', textAlign: 'center', color: '#77777770'}}>No Project Found</Text>
-                            </View>
-                        }
-                    </View>
-                </Content>
-                <Footer>
-                    <ProjectFooterTab
-                        projectTypes={projectTypes}
-                        status={filter.status} />
-                </Footer>
-            </Container>
+                        </React.Fragment>
+                }}
+                footerProps={{
+                    FooterCmp: () => <React.Fragment>
+                        <ProjectFooterTab
+                            projectTypes={projectTypes}
+                            status={filter.status} />
+                    </React.Fragment>
+                }}
+            />
         );
     }
 }

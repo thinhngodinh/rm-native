@@ -4,8 +4,7 @@ import React from "react";
 import { Container, Header, Left, Right, Body, Title, Button, Icon, Content, Text } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 
-// Header Config
-// Footer Config
+import MasterLayout from '../_layout/layout';
 
 class SettingsScreen extends React.Component {
     
@@ -14,41 +13,38 @@ class SettingsScreen extends React.Component {
         drawerIcon: () => <Icon name='md-settings' style={{color: '#fff'}} />
     }
 
-    render() {
+    renderHeaderRightCmp () {
         return (
-            <Container>
-                <Header
-                    iosBarStyle='light-content'
-                    androidStatusBarColor='#232323'
-                    noShadow
-                    style={{ backgroundColor: '#333' }}>
-                    <Left>
-                        <Button
-                            transparent
-                            onPress={() => this.props.navigation.toggleDrawer()}>
-                            <Icon name="menu" style={{ color: '#fff' }} />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title style={{ color: '#fff' }}>Settings</Title>
-                    </Body>
-                    <Right>
-                        <Button transparent>
-                            <Icon name='md-search' style={{ color: '#fff' }} />
-                        </Button>
-                        <Button transparent>
-                            <Icon name='md-notifications-outline' style={{ color: '#fff' }} />
-                        </Button>
-                    </Right>
-                </Header>
-                <Content>
-                    <Grid>
-                        <Row>
-                            <Text>Settings Screen</Text>
-                        </Row>
-                    </Grid>
-                </Content>
-            </Container>
+            <React.Fragment>
+                <Button transparent>
+                    <Icon name='md-search' style={{ color: '#fff' }} />
+                </Button>
+            </React.Fragment>
+        );
+    }
+
+    renderContentCmp() {
+        return (
+            <React.Fragment>
+                <Text>Settings Screen</Text>
+            </React.Fragment>
+        );
+    }
+
+    render() {        
+        return(
+            <MasterLayout
+                headerProps={{
+                        title:'Settings',
+                        isBack: false, //defautl value is false
+                        CenterCmp: null,
+                        RightCmp: this.renderHeaderRightCmp
+                    }}
+                contentProps={{ 
+                        padder: true,
+                        ContentCmp: this.renderContentCmp
+                    }}
+            />
         );
     }
 }
