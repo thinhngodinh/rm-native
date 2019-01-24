@@ -50,8 +50,24 @@ function * getProjects (apiService, filter) {
     } 
 }
 
+function * updateProjectTagsList (apiService, payload) {
+    const projectIdRequest = payload.updateTagData.projectId;
+    const tagDataRequest = payload.updateTagData.tagData;
+    try {
+        const newProjectData = yield call([apiService, apiService.updateProjectTag], projectIdRequest, tagDataRequest)
+        console.log('data tag >>>>>>>>>>>>>', newProjectData)
+        yield put(projectActions.updateTag.invoke({projectId: projectIdRequest, tagData: tagDataRequest}));
+    } catch (e) {
+        showToast.error(e.message);
+        console.log('call API failed e', e);
+        console.log('call API failed', e.message);
+    }
+
+}
+
 export function * projectSaga(apiService) {
     yield takeLatest(userActions.getProjectList.action, getListProject, apiService);
     yield takeLatest(userActions.loadMoreProjects.action, loadMoreProject, apiService);
     yield takeLatest(userActions.refreshProjectsList.action, refreshList, apiService);
+    yield takeLatest(userActions.updateProjectTags.action, updateProjectTagsList, apiService);
 }

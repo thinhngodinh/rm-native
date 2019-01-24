@@ -80,4 +80,13 @@ export default class ApiService {
         const urlWithFilter = this.paraGen(filter, API_URL.GET_PROJECT)
         return this.httpService.get(urlWithFilter, this._defaultRequestHeader);
     }
+
+    updateProjectTag(projectId, tagData) {
+        const tagList = {
+            tags: tagData
+        }
+        console.log('urlUpdateTag', projectId, tagData, this._defaultRequestHeader);
+        const urlUpdateTag = API_URL.PROJECT_TAGS + projectId + '/tags';
+        return this.httpService.put(urlUpdateTag, tagList, this._defaultRequestHeader)
+    }
 }

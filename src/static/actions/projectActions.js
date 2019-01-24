@@ -14,5 +14,9 @@ export const projectActions = {
     loadingData: {
         action: '_LOADING_',
         invoke: fetching => ({ type: projectActions.loadingData.action, fetching})
+    },
+    updateTag: {
+        action: '_UPDATE_TAG_',
+        invoke: tagInfor =>({type: projectActions.updateTag.action, tagInfor})
     }
 };

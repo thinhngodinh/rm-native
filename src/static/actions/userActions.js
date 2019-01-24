@@ -33,4 +33,8 @@ export const userActions = {
         action: '_CHANGE_PROJECT_FILTER_',
         invoke: filter => ({ type: userActions.changeProjectFilter.action, filter })
     },
+    updateProjectTags: {
+        action: '_UPDATE_PROJECT_TAGS_',
+        invoke: updateTagData => ({ type: userActions.updateProjectTags.action, updateTagData})
+    }
 };

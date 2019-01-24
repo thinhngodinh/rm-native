@@ -19,7 +19,7 @@ export default class HttpService {
     }
 
     put(url, body, headers = null) {
-        return this.call('put', url, body, headers);
+        return this.call('PUT', url, body, headers);
     }
 
     patch(url, body, headers = null) {
@@ -36,10 +36,10 @@ export default class HttpService {
             method: method,
             body: JSON.stringify(body),
             headers: {
-                Accept: 'application/json',
                 ...headers
             }
         }
+        console.log('fetchConfig', fetchConfig);
         if (!body) {
             delete fetchConfig.body;
         }

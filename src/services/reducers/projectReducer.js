@@ -51,7 +51,17 @@ const ACTION_HANDLERS =  {
         ...state,
         loadingData: !state.refreshing ? payload.fetching : false,
         refreshing: state.refreshing ? payload.fetching : false,
-    })
+    }),
+    [projectActions.updateTag.action]: (state, payload) => {
+        const found = state.projectList.projects.map(project => {
+            if (project.id === payload.projectId) {
+                project.tags = payload.tagData;
+            }
+        });
+        return {
+            ...state
+        }
+    }
 }
 
 const projectReducer = (state = getInitialState(), action) => {
