@@ -71,18 +71,30 @@ class ProjectsAddTagsScreen extends React.Component {
     }
 
     submitForm = values => {
+        if(!values.tagName) {
+            return;
+        }
         let tagSubmit = this.state.project.tags;
         tagValue = values.tagName.trim().split(',');
-        tagSubmit.push(...tagValue)
+        tagSubmit.push(...tagValue);
         this.setState({
             project: {
                 ...this.state.project,
                 tags: tagSubmit
             }
-        }, ()=> {
-            this._updateTag();
-        })
+        }, ()=> this._updateTag());
 
+    }
+
+    removeTagItem(index) {
+        let listTags = this.state.project.tags;
+        listTags.splice(index, 1);
+        this.setState({
+            project: {
+                ...this.state.project,
+                tags: listTags
+            }
+        }, () => this._updateTag());
     }
 
     _updateTag() {
@@ -94,26 +106,10 @@ class ProjectsAddTagsScreen extends React.Component {
         dispatch(reset('projectAddTag'));
     }
 
-    removeTagItem(index) {
-        let listTags = this.state.project.tags;
-        listTags.splice(index, 1);
-        console.log('remove tag', listTags[index], listTags);
-        this.setState({
-            project: {
-                ...this.state.project,
-                tags: listTags
-            }
-        }),
-        () => {
-            this._updateTag();
-        };
-    }
-
     render() {
         const { project } = this.state;
         const { handleSubmit } = this.props;
         const listTags = project.tags;
-        console.log('project info', project);
         return (
             <Container>
                 <Header
@@ -132,9 +128,6 @@ class ProjectsAddTagsScreen extends React.Component {
                         <Title style={{ color: '#fff' }}>{project.name}</Title>
                     </Body>
                     <Right>
-                        <Button transparent>
-                            <Icon name='md-search' style={{ color: '#fff' }} />
-                        </Button>
                         <Button transparent>
                             <Icon name='md-notifications-outline' style={{ color: '#fff' }} />
                         </Button>
@@ -188,7 +181,9 @@ class ProjectsAddTagsScreen extends React.Component {
 export default reduxForm({
     form: 'projectAddTag',
     fields: ['tagName'],
-    validate: (values, props) => validateService(values, props, {
-        required: ['tagName']
-    })
+    validate: (values, props) => validateService(
+        values, props, 
+        {
+            required: ['tagName']
+        })
 })(ProjectsAddTagsScreen);
