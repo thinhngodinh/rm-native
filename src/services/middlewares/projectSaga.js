@@ -55,12 +55,10 @@ function * updateProjectTagsList (apiService, payload) {
     const tagDataRequest = payload.updateTagData.tagData;
     try {
         const newProjectData = yield call([apiService, apiService.updateProjectTag], projectIdRequest, tagDataRequest)
-        console.log('data tag >>>>>>>>>>>>>', newProjectData)
         yield put(projectActions.updateTag.invoke({projectId: projectIdRequest, tagData: tagDataRequest}));
     } catch (e) {
         showToast.error(e.message);
-        console.log('call API failed e', e);
-        console.log('call API failed', e.message);
+        console.log('call API failed', e);
     }
 
 }

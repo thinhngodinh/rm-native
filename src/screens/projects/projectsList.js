@@ -130,16 +130,14 @@ class ProjectsScreen extends React.Component {
                     props: {},
                     title: `${this._getProjectTypeLabel(filter.status)} Projects`,
                     RightCmp: () => (
-                        <React.Fragment>
-                            <Button
-                                onPress={() => {
-                                    LayoutAnimation.easeInEaseOut();
-                                    this._handleCpllapsedFilter(true);
-                                }}
-                                transparent>
-                                <Icon name='md-search' style={{ color: '#fff' }} />
-                            </Button>
-                        </React.Fragment>
+                        <Button
+                            onPress={() => {
+                                LayoutAnimation.easeInEaseOut();
+                                this._handleCpllapsedFilter(true);
+                            }}
+                            transparent>
+                            <Icon name='md-search' style={{ color: '#fff' }} />
+                        </Button>
                     )
                 }}
                 contentProps={{

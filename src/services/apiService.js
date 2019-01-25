@@ -45,7 +45,8 @@ export default class ApiService {
     createHeaders(authToken) {
         this._defaultRequestHeader = {
             Authorization: authToken,
-            Accept: 'application/x.rest.v1+json'
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
         }
     }
 
@@ -82,11 +83,10 @@ export default class ApiService {
     }
 
     updateProjectTag(projectId, tagData) {
-        const tagList = {
+        const bodyPayload = {
             tags: tagData
         }
-        console.log('urlUpdateTag', projectId, tagData, this._defaultRequestHeader);
         const urlUpdateTag = API_URL.PROJECT_TAGS + projectId + '/tags';
-        return this.httpService.put(urlUpdateTag, tagList, this._defaultRequestHeader)
+        return this.httpService.put(urlUpdateTag, bodyPayload, this._defaultRequestHeader)
     }
 }

@@ -1,5 +1,6 @@
 import {compose} from 'redux';
 import {connect} from 'react-redux';
+import {reset} from 'redux-form';
 import React from "react";
 // third-party import
 import { StyleSheet } from 'react-native';
@@ -37,7 +38,7 @@ const addTagStyle = StyleSheet.create(
         },
         wrapperTag: {
             borderRadius: 20,
-            paddingLeft: 7,
+            paddingLeft: 10,
             paddingTop: 5,
             paddingRight: 7,
             paddingBottom: 7,
@@ -49,22 +50,19 @@ const addTagStyle = StyleSheet.create(
             marginBottom: 5
         },
         tagItem: {
-            fontSize: 12,
+            fontSize: 14,
             marginRight: 10,
+            marginLeft: 10,
             fontWeight: '300'
         },
         removeTag: {
-            fontSize: 16,
-            paddingRight: 0
+            fontSize: 18,
+            padding: 5
         }
     }
 );
 
 class ProjectsAddTagsScreen extends React.Component {
-    constructor(props) {
-        super(props);
-        this.removeTagItem = this.removeTagItem.bind(this);
-    }
 
     componentWillMount() {
         this.setState({
@@ -73,30 +71,42 @@ class ProjectsAddTagsScreen extends React.Component {
     }
 
     submitForm = values => {
-        let tagSubmit = {
-            tags: this.state.project.tags
-        }
-
-        let tagValue = values.tagName.trim();
-
-        tagSubmit.tags.push(tagValue)
-
+        let tagSubmit = this.state.project.tags;
+        tagValue = values.tagName.trim().split(',');
+        tagSubmit.push(...tagValue)
         this.setState({
             project: {
                 ...this.state.project,
-                tags: tagSubmit.tags
+                tags: tagSubmit
             }
         }, ()=> {
-            const projectId = this.state.project.id;
-            const tagData   = this.state.project.tags;
-            const updateTagInforData = {projectId, tagData};
-            this.props.dispatch(userActions.updateProjectTags.invoke(updateTagInforData));
+            this._updateTag();
         })
 
     }
 
-    removeTagItem() {
-        console.log('remove tag');
+    _updateTag() {
+        const {dispatch} = this.props;
+        dispatch(userActions.updateProjectTags.invoke({
+            projectId: this.state.project.id, 
+            tagData: this.state.project.tags}));
+        
+        dispatch(reset('projectAddTag'));
+    }
+
+    removeTagItem(index) {
+        let listTags = this.state.project.tags;
+        listTags.splice(index, 1);
+        console.log('remove tag', listTags[index], listTags);
+        this.setState({
+            project: {
+                ...this.state.project,
+                tags: listTags
+            }
+        }),
+        () => {
+            this._updateTag();
+        };
     }
 
     render() {
@@ -157,11 +167,11 @@ class ProjectsAddTagsScreen extends React.Component {
                         </Row>
                         <Row style={{flexWrap: 'wrap'}}>
                             <Text style={addTagStyle.tagLabel}>List tags</Text>
-                            {listTags.length > 0 && listTags.map((tagItems, index)=> (
+                            {listTags.length && listTags.map((tagItems, index)=> (
                                 <Item style={addTagStyle.wrapperTag} key={index}>
                                     <Text style={[addTagStyle.tagItem]}>{tagItems}</Text>
                                     <Icon 
-                                        onPress={this.removeTagItem}
+                                        onPress={() => this.removeTagItem(index)}
                                         style={addTagStyle.removeTag}
                                         name='md-close'></Icon>
                                 </Item>
@@ -175,15 +185,10 @@ class ProjectsAddTagsScreen extends React.Component {
 }
 
 
-export default compose(
-    reduxForm({
-        form: 'projectAddTag',
-        fields: ['tagName'],
-        validate: (values, props) => validateService(values, props, {
-            required: ['tagName']
-        })
-    }),
-    connect(state => ({
-        project: state.projects
-    }))
-)(ProjectsAddTagsScreen);
+export default reduxForm({
+    form: 'projectAddTag',
+    fields: ['tagName'],
+    validate: (values, props) => validateService(values, props, {
+        required: ['tagName']
+    })
+})(ProjectsAddTagsScreen);
