@@ -51,16 +51,18 @@ function * getProjects (apiService, filter) {
 }
 
 function * updateProjectTagsList (apiService, payload) {
+    yield put(projectActions.loadingData.invoke(true));
     const projectIdRequest = payload.updateTagData.projectId;
     const tagDataRequest = payload.updateTagData.tagData;
     try {
         const newProjectData = yield call([apiService, apiService.updateProjectTag], projectIdRequest, tagDataRequest)
+        console.log('success API call', newProjectData)
         yield put(projectActions.updateTag.invoke({projectId: projectIdRequest, tagData: tagDataRequest}));
     } catch (e) {
         showToast.error(e.message);
         console.log('call API failed', e);
     }
-
+    yield put(projectActions.loadingData.invoke(false));
 }
 
 export function * projectSaga(apiService) {

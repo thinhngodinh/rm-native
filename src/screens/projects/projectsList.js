@@ -1,22 +1,13 @@
 import React from "react";
-import { View, LayoutAnimation, NativeModules } from 'react-native'
+import { LayoutAnimation, NativeModules } from 'react-native'
 
 // third-party import
 import { connect } from 'react-redux';
-import {
-    Container,
-    Header,
-    Footer,
-    Left,
-    Right, Body, Title, Button, Icon, Content, Text,
-    Spinner
-} from 'native-base';
-import { Row, Grid } from 'react-native-easy-grid';
+import { Button, Icon } from 'native-base';
 import moment, { duration } from 'moment';
 
 // Header Config
 import ProjectFilter from './components/projectFilter'
-import ConnectionStatus from '../_commonCmp/connectionStatus';
 
 // Content Config
 import ProjectListContent from './components/projectListContent';
@@ -25,7 +16,6 @@ import ProjectListContent from './components/projectListContent';
 import ProjectFooterTab from './components/projectFooter';
 import { userActions } from './../../static/actionsIndex';
 
-import ProjectItem from './projectItem/projectItem';
 import MasterLayout from '../_layout/layout';
 
 
@@ -66,7 +56,6 @@ const configProjectTypes = [
 class ProjectsScreen extends React.Component {
     constructor(props) {
         super(props);
-        this._contentScroll = null;
         this.state = {
             initFilter: { ...initFilter },
             projectTypes: configProjectTypes,
@@ -105,7 +94,7 @@ class ProjectsScreen extends React.Component {
         }
     };
 
-    _handleCpllapsedFilter(isShow) {
+    _handleCollapsedFilter(isShow) {
         this.setState({
             isFilterCollapsed: isShow
         })
@@ -133,7 +122,7 @@ class ProjectsScreen extends React.Component {
                         <Button
                             onPress={() => {
                                 LayoutAnimation.easeInEaseOut();
-                                this._handleCpllapsedFilter(true);
+                                this._handleCollapsedFilter(true);
                             }}
                             transparent>
                             <Icon name='md-search' style={{ color: '#fff' }} />
@@ -148,7 +137,7 @@ class ProjectsScreen extends React.Component {
                         <React.Fragment>
                             {isFilterCollapsed &&
                                 <ProjectFilter
-                                    isFilterCollapsed={() => this._handleCpllapsedFilter(false)}
+                                    isFilterCollapsed={() => this._handleCollapsedFilter(false)}
                                     filter={filter}
                                     dispatch={dispatch.bind(this)} />
                             }

@@ -13,7 +13,8 @@ const getInitialState = () => ({
     upnext: null,
     done: null,
     loadingData: false,
-    refreshing: false
+    refreshing: false,
+    projectTag: []
 });
 
 const ACTION_HANDLERS =  {
@@ -53,13 +54,10 @@ const ACTION_HANDLERS =  {
         refreshing: state.refreshing ? payload.fetching : false,
     }),
     [projectActions.updateTag.action]: (state, payload) => {
-        const found = state.projectList.projects.map(project => {
-            if (project.id === payload.projectId) {
-                project.tags = payload.tagData;
-            }
-        });
         return {
-            ...state
+            ...state,
+            projectTag: payload.tagInfor.tagData,
+            loadingData: false
         }
     }
 }

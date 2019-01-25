@@ -18,13 +18,14 @@ import { Field, reduxForm } from 'redux-form';
 
 import { RenderInput } from './../_commonCmp/renderFormField';
 import validateService from './../_commonCmp/validateFormField/validateField';
+import LoadingModal from '../_commonCmp/loadingModal';
 
-import { userActions } from './../../static/actions/userActions';
+import { userActions, projectActions } from './../../static/actionsIndex';
 
 const addTagStyle = StyleSheet.create(
     {
         formWrapper: {
-            marginTop: 20
+            paddingTop: 20
         },
         wrapperBtn: {
             flex: 1,
@@ -55,6 +56,9 @@ const addTagStyle = StyleSheet.create(
             marginLeft: 10,
             fontWeight: '300'
         },
+        noTag: {
+            color: '#00000030'
+        },
         removeTag: {
             fontSize: 18,
             padding: 5
@@ -65,53 +69,47 @@ const addTagStyle = StyleSheet.create(
 class ProjectsAddTagsScreen extends React.Component {
 
     componentWillMount() {
-        this.setState({
-            project: this.props.navigation.getParam('projectInfo')
-        })
+        const project = this.props.navigation.getParam('projectInfo');
+        this._project = project;
+        this.props.dispatch(projectActions.updateTag.invoke({
+            projectId: project.id,
+            tagData: project.tags
+        }))
     }
 
     submitForm = values => {
         if(!values.tagName) {
             return;
         }
-        let tagSubmit = this.state.project.tags;
+        const tagSubmit = Array.from(this.props.projectTag);
+        // tagSubmit.concat(this.props.projectTag)
         tagValue = values.tagName.trim().split(',');
         tagSubmit.push(...tagValue);
-        this.setState({
-            project: {
-                ...this.state.project,
-                tags: tagSubmit
-            }
-        }, ()=> this._updateTag());
-
+        this._updateTag(tagSubmit);
     }
 
     removeTagItem(index) {
-        let listTags = this.state.project.tags;
+        const listTags = Array.from(this.props.projectTag);
         listTags.splice(index, 1);
-        this.setState({
-            project: {
-                ...this.state.project,
-                tags: listTags
-            }
-        }, () => this._updateTag());
+        this._updateTag(listTags)
     }
 
-    _updateTag() {
+    _updateTag(tagSubmit) {
         const {dispatch} = this.props;
         dispatch(userActions.updateProjectTags.invoke({
-            projectId: this.state.project.id, 
-            tagData: this.state.project.tags}));
+            projectId: this._project.id, 
+            tagData: tagSubmit}));
         
         dispatch(reset('projectAddTag'));
     }
 
     render() {
-        const { project } = this.state;
-        const { handleSubmit } = this.props;
-        const listTags = project.tags;
+        const { handleSubmit, loadingData, projectTag } = this.props;
+        console.log('render', projectTag)
         return (
             <Container>
+                <LoadingModal
+                    isLoading={loadingData} />
                 <Header
                     iosBarStyle='light-content'
                     androidStatusBarColor='#232323'
@@ -125,7 +123,7 @@ class ProjectsAddTagsScreen extends React.Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Title style={{ color: '#fff' }}>{project.name}</Title>
+                        <Title style={{ color: '#fff' }}>{this._project.name}</Title>
                     </Body>
                     <Right>
                         <Button transparent>
@@ -136,7 +134,7 @@ class ProjectsAddTagsScreen extends React.Component {
                 <Content padder>
                     <Grid>
                         <Row>
-                            <Text style={{ marginTop: 10 }}>Project Add Tags Form</Text>
+                            <Text style={{ marginTop: 10 }}>Add Tags To {this._project.name}</Text>
                         </Row>
                         <Row>
                             <Form style={addTagStyle.formWrapper}>
@@ -160,7 +158,7 @@ class ProjectsAddTagsScreen extends React.Component {
                         </Row>
                         <Row style={{flexWrap: 'wrap'}}>
                             <Text style={addTagStyle.tagLabel}>List tags</Text>
-                            {listTags.length && listTags.map((tagItems, index)=> (
+                            {projectTag && projectTag.length > 0 && projectTag.map((tagItems, index)=> (
                                 <Item style={addTagStyle.wrapperTag} key={index}>
                                     <Text style={[addTagStyle.tagItem]}>{tagItems}</Text>
                                     <Icon 
@@ -169,6 +167,7 @@ class ProjectsAddTagsScreen extends React.Component {
                                         name='md-close'></Icon>
                                 </Item>
                             ))}
+                            {projectTag && projectTag.length === 0 && <Text style={[addTagStyle.noTag, addTagStyle.tagItem]}>There's no tag in {this._project.name} Project yet.</Text> }
                         </Row>
                     </Grid>
                 </Content>
@@ -178,12 +177,19 @@ class ProjectsAddTagsScreen extends React.Component {
 }
 
 
-export default reduxForm({
-    form: 'projectAddTag',
-    fields: ['tagName'],
-    validate: (values, props) => validateService(
-        values, props, 
-        {
-            required: ['tagName']
-        })
-})(ProjectsAddTagsScreen);
+export default compose(
+    reduxForm({
+        form: 'projectAddTag',
+        fields: ['tagName'],
+        validate: (values, props) => validateService(
+            values, props, 
+            {
+                required: ['tagName']
+            })
+    }),
+    connect(state => ({
+        loadingData: state.project.loadingData,
+        projectTag: state.project.projectTag
+    }))
+)(ProjectsAddTagsScreen);
+

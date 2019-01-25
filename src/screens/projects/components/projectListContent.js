@@ -8,7 +8,7 @@ import { ProjectItem } from '../projectItem'
 const ProjectListContent = ({projectListData, loadingData }) => {
     return (
         <React.Fragment>
-            <View style={{ marginTop: 5 }}>
+            <View style={[{marginTop: 5}]}>
                 {projectListData && projectListData.projects.map((project, index) =>
                     <ProjectItem
                         key={index}
