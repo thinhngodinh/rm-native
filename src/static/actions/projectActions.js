@@ -18,5 +18,13 @@ export const projectActions = {
     updateTag: {
         action: '_UPDATE_TAG_',
         invoke: tagInfor =>({type: projectActions.updateTag.action, tagInfor})
+    },
+    setListIssues: {
+        action: '_SET_LIST_ISSUES_',
+        invoke: setIssuesData =>({type: projectActions.setListIssues.action, setIssuesData})
+    },
+    appendListIssues: {
+        action: '_APPEND_LIST_ISSUES_',
+        invoke: listIssuesData =>({type: projectActions.appendListIssues.action, listIssuesData})
     }
 };

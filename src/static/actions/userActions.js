@@ -36,5 +36,17 @@ export const userActions = {
     updateProjectTags: {
         action: '_UPDATE_PROJECT_TAGS_',
         invoke: updateTagData => ({ type: userActions.updateProjectTags.action, updateTagData})
+    },
+    getProjectIssues: {
+        action: '_GET_PROJECT_ISSUES_',
+        invoke: getIssuesData => ({ type: userActions.getProjectIssues.action, getIssuesData})
+    },
+    changeIssuesFilter: {
+        action: '_CHANGE_ISSUES_FILTER_',
+        invoke: issuesfilter => ({ type: userActions.changeIssuesFilter.action, issuesfilter })
+    },
+    loadMoreIssues: {
+        action: '_LOAD_MORE_ISSUES_',
+        invoke: curentProjectID => ({type: userActions.loadMoreIssues.action, curentProjectID})
     }
 };

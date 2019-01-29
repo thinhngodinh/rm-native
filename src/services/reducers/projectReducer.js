@@ -14,7 +14,14 @@ const getInitialState = () => ({
     done: null,
     loadingData: false,
     refreshing: false,
-    projectTag: []
+    projectTag: [],
+    projectFilterIssues: {
+        page: 1,
+        limit: 20
+    },
+    projectIssues: {
+        issues: []
+    }
 });
 
 const ACTION_HANDLERS =  {
@@ -59,7 +66,28 @@ const ACTION_HANDLERS =  {
             projectTag: payload.tagInfor.tagData,
             loadingData: false
         }
-    }
+    },
+    [projectActions.setListIssues.action]: (state, payload) => ({
+        ...state,
+        projectIssues: payload.setIssuesData
+    }),
+    [userActions.changeIssuesFilter.action]: (state, payload) => ({
+        ...state,
+        projectFilterIssues: {
+            ...state.projectFilterIssues,
+            ...payload.issuesfilter
+        }
+    }),
+    [projectActions.appendListIssues.action]: (state, payload) => ({
+        ...state,
+        projectIssues: {
+            ...payload.listIssuesData,
+            issues: [
+                ...state.projectIssues.issues,
+                ...payload.listIssuesData.issues
+            ]
+        }
+    })
 }
 
 const projectReducer = (state = getInitialState(), action) => {

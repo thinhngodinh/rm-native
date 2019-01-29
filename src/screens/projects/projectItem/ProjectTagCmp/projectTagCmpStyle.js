@@ -8,7 +8,8 @@ const projectTagCmpStyle = StyleSheet.create(
         cardTagItem: {
             display: 'flex',
             justifyContent: 'flex-start',
-            flexDirection: 'row'
+            flexDirection: 'row',
+            paddingRight: 60
         },
         cardTagTextLabel: {
             fontSize: 13,

@@ -65,9 +65,56 @@ function * updateProjectTagsList (apiService, payload) {
     yield put(projectActions.loadingData.invoke(false));
 }
 
+function * setListIssuesProject(apiService, payload) {
+    const projectId = payload.getIssuesData.projectId;
+    const filterIssues = yield select(state => state.project.projectFilterIssues);
+
+    try{
+        const listIssuesData = yield * getProjectIssues(apiService, projectId, filterIssues)
+        if (!listIssuesData) {
+            return null;
+        }
+        yield put(projectActions.setListIssues.invoke(listIssuesData.data));
+
+    } catch(e) {
+        showToast.error(e.message);
+    }
+}
+
+function * loadMoreIssue(apiService, payload) {
+    const {
+        paged, 
+        total_pages: totalPages
+    } = yield select(state => state.project.projectIssues);
+
+    if ( paged < totalPages ) {
+        yield put(userActions.changeIssuesFilter.invoke({page: paged + 1}));
+        const projectFilterIssues = yield select(state => state.project.projectFilterIssues);
+        const listIssuesData = yield * getProjectIssues(apiService, payload.curentProjectID.projectId, projectFilterIssues);
+        if (!listIssuesData) {
+            return null;
+        }
+        yield put(projectActions.appendListIssues.invoke(listIssuesData.data));
+    }
+}
+
+function * getProjectIssues (apiService, projectID, filterIssues) {
+    // yield put(projectActions.loadingData.invoke(true));
+    try{
+        const projectListIssuesData = yield call([apiService, apiService.getProjectListIssues], projectID, filterIssues);
+        // yield put(projectActions.loadingData.invoke(false))
+        return projectListIssuesData || null;
+    } catch (e) {
+        showToast.error(e.message);
+        // yield put(projectActions.loadingData.invoke(false))
+    } 
+}
+
 export function * projectSaga(apiService) {
     yield takeLatest(userActions.getProjectList.action, getListProject, apiService);
     yield takeLatest(userActions.loadMoreProjects.action, loadMoreProject, apiService);
     yield takeLatest(userActions.refreshProjectsList.action, refreshList, apiService);
     yield takeLatest(userActions.updateProjectTags.action, updateProjectTagsList, apiService);
+    yield takeLatest(userActions.getProjectIssues.action, setListIssuesProject, apiService);
+    yield takeLatest(userActions.loadMoreIssues.action, loadMoreIssue, apiService);
 }
