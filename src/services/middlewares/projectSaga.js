@@ -99,14 +99,14 @@ function * loadMoreIssue(apiService, payload) {
 }
 
 function * getProjectIssues (apiService, projectID, filterIssues) {
-    // yield put(projectActions.loadingData.invoke(true));
+    yield put(projectActions.loadingData.invoke(true));
     try{
         const projectListIssuesData = yield call([apiService, apiService.getProjectListIssues], projectID, filterIssues);
-        // yield put(projectActions.loadingData.invoke(false))
+        yield put(projectActions.loadingData.invoke(false))
         return projectListIssuesData || null;
     } catch (e) {
         showToast.error(e.message);
-        // yield put(projectActions.loadingData.invoke(false))
+        yield put(projectActions.loadingData.invoke(false))
     } 
 }
 
