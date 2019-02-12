@@ -3,18 +3,22 @@ import {compose} from 'redux';
 import {connect} from 'react-redux';
 // third-party import
 import {
-   Button, Icon,Text,
-    SwipeRow, View
+    Button, Icon,Text,
+    SwipeRow, View, Form
 } from 'native-base';
-import { StyleSheet, ListView } from 'react-native';
+import { StyleSheet, Modal } from 'react-native';
 import { Row, Grid } from 'react-native-easy-grid';
-import { reduxForm } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
 import { userActions } from './../../static/actions/userActions';
 // Header Config
 // Footer Config
 import MasterLayout from '../_layout/layout';
 
 import LoadingModal from '../_commonCmp/loadingModal';
+
+import { RenderInput } from './../_commonCmp/renderFormField';
+
+import validateService from './../_commonCmp/validateFormField/validateField';
 
 const addTaskStyle = StyleSheet.create(
     {
@@ -61,6 +65,14 @@ const addTaskStyle = StyleSheet.create(
             paddingLeft: 0,
             paddingRight: 0,
             textAlign: 'center'
+        },
+        formItem: {
+            display: 'flex',
+            width: '100%'
+        },
+        btnTask: {
+            minWidth: 75,
+            justifyContent: 'center'
         }
     }
 );
@@ -91,6 +103,9 @@ const STATUS = {
 class ProjectsAddTasksScreen extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            addTaskForm: false
+        };
     }
 
     componentWillMount() {
@@ -105,6 +120,7 @@ class ProjectsAddTasksScreen extends React.Component {
     _handleViewMoreIssues = (e) => {
         const { contentOffset, contentSize, layoutMeasurement } = e.nativeEvent;
         if (
+            !this.props.loadingData &&
             Math.round(contentOffset.y) === Math.round(contentSize.height - layoutMeasurement.height)
             && contentSize.height > layoutMeasurement.height) {
             const { dispatch } = this.props;
@@ -113,12 +129,31 @@ class ProjectsAddTasksScreen extends React.Component {
         }
     };
 
+    _onRefresh = () => {
+        const projectId = this.state.project.id;
+        this.props.dispatch(userActions.refreshProjectsIssues.invoke({projectId, isRefresh: true}));
+    }
+
+    showAddTaskForm(isShow) {
+        this.setState({
+            addTaskForm: isShow
+        })
+    }
+
+    submitForm = values => {
+        alert('Submit form add task');
+        if(!values.taskTitle) {
+            return;
+        }
+        console.log('value submit', values);
+        this.showAddTaskForm(false)
+    }
 
     render() {
-        console.log('this data', this);
         const { project } = this.state;
         const issuesArr = this.props.issuesList;
         const loadingData= this.props.loadingData;
+        const handleSubmit = this.props.handleSubmit;
         return (
             <MasterLayout
                 headerProps={{
@@ -126,18 +161,60 @@ class ProjectsAddTasksScreen extends React.Component {
                     isBack: true,
                     title: project.name,
                     RightCmp: () => (
-                        <Button transparent>
+                        <Button 
+                            onPress={() => this.showAddTaskForm(true)}
+                            transparent>
                             <Icon name='md-add' style={{ color: '#fff' }} />
                         </Button>
                     )
                 }}
                 contentProps={{
                     onScrollHandler: this._handleViewMoreIssues,
+                    refreshControlHandler: this._onRefresh,
                     ContentCmp: () =>
                     <React.Fragment>
                         <Grid>
+                            {this.state.addTaskForm &&
+                                <Modal
+                                    transparent={false}
+                                    visible={this.state.addTaskForm}
+                                    onRequestClose={() => this.showAddTaskForm(false)}
+                                >
+                                    <View style={{paddingLeft: 5, paddingRight: 10}}>
+                                        <View style={addTaskStyle.formItem}>
+                                            <Text style={{ marginTop: 10 }}>Add Task For {project.name}</Text>
+                                        </View>
+                                        <View style={[addTaskStyle.formItem, {marginTop: 20, flexDirection: 'row'}]}>
+                                            <Form>
+                                                <View style={addTaskStyle.formItem}>
+                                                    <Field
+                                                        label='Task Title'
+                                                        name='taskTitle'
+                                                        placeholder='Input task title'
+                                                        component={RenderInput}
+                                                        />
+                                                </View>
+                                                <View style={[addTaskStyle.formItem, {marginTop: 10, flexDirection: 'row', justifyContent: 'flex-end'}]}>
+                                                    <Button
+                                                        onPress={() => this.showAddTaskForm(false)}
+                                                        style={[addTaskStyle.btnTask]}
+                                                        primary small>
+                                                        <Text>Cancel</Text>
+                                                    </Button>
+                                                    <Button
+                                                        onPress={handleSubmit(this.submitForm)}
+                                                        style={[addTaskStyle.btnTask, {marginLeft: 10}]}
+                                                        primary small>
+                                                        <Text>Save</Text>
+                                                    </Button>
+                                                </View>
+                                            </Form>
+                                        </View>
+                                    </View>
+                                </Modal>
+                            }
                             <Row>
-                                <Text style={{ marginTop: 10, paddingLeft: 10 }}>Project Add Task Form</Text>
+                                <Text style={{ marginTop: 10, paddingLeft: 5 }}>List Issues On Project</Text>
                             </Row>
                             <Row style={addTaskStyle.rowTaskContainer}>
                                 <LoadingModal
@@ -203,7 +280,14 @@ const mapStateToProps = (state) => ({
 
 export default compose(
     reduxForm({
-        form: 'projectAddTask'
+        form: 'projectAddTask',
+        fields: ['taskTitle'],
+        validate: (values, props) => validateService(
+            values, props, 
+            {
+                required: ['taskTitle']
+            }
+        )
     }),
     connect(mapStateToProps)
 )(ProjectsAddTasksScreen);

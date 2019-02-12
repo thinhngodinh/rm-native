@@ -48,5 +48,9 @@ export const userActions = {
     loadMoreIssues: {
         action: '_LOAD_MORE_ISSUES_',
         invoke: curentProjectID => ({type: userActions.loadMoreIssues.action, curentProjectID})
-    }
+    },
+    refreshProjectsIssues: {
+        action: '_REFRESH_PROJECTS_ISSUES_',
+        invoke: getIssuesData => ({ type: userActions.refreshProjectsIssues.action, getIssuesData })
+    },
 };

@@ -69,6 +69,10 @@ function * setListIssuesProject(apiService, payload) {
     const projectId = payload.getIssuesData.projectId;
     const filterIssues = yield select(state => state.project.projectFilterIssues);
 
+    if(payload.getIssuesData.isRefresh) {
+        filterIssues.page = 1;
+    }
+
     try{
         const listIssuesData = yield * getProjectIssues(apiService, projectId, filterIssues)
         if (!listIssuesData) {
@@ -79,6 +83,10 @@ function * setListIssuesProject(apiService, payload) {
     } catch(e) {
         showToast.error(e.message);
     }
+}
+
+function * refreshListIssues(apiService, payload) {
+    yield * setListIssuesProject(apiService, payload);
 }
 
 function * loadMoreIssue(apiService, payload) {
@@ -117,4 +125,5 @@ export function * projectSaga(apiService) {
     yield takeLatest(userActions.updateProjectTags.action, updateProjectTagsList, apiService);
     yield takeLatest(userActions.getProjectIssues.action, setListIssuesProject, apiService);
     yield takeLatest(userActions.loadMoreIssues.action, loadMoreIssue, apiService);
+    yield takeLatest(userActions.refreshProjectsIssues.action, refreshListIssues, apiService);
 }

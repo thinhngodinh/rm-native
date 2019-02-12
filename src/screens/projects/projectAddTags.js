@@ -144,7 +144,6 @@ class ProjectsAddTagsScreen extends React.Component {
                                         name='tagName'
                                         placeholder='Input tag name'
                                         component={RenderInput}
-                                        style={addTagStyle.wrapperIpt}
                                         />
                                 </View>
                                 <View style={addTagStyle.wrapperBtn}>
