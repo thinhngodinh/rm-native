@@ -182,7 +182,7 @@ class ProjectsAddTasksScreen extends React.Component {
                                 >
                                     <View style={{paddingLeft: 5, paddingRight: 10}}>
                                         <View style={addTaskStyle.formItem}>
-                                            <Text style={{ marginTop: 10 }}>Add Task For {project.name}</Text>
+                                            <Text style={{ marginTop: 10 }}>Add issues for project</Text>
                                         </View>
                                         <View style={[addTaskStyle.formItem, {marginTop: 20, flexDirection: 'row'}]}>
                                             <Form>
@@ -214,7 +214,7 @@ class ProjectsAddTasksScreen extends React.Component {
                                 </Modal>
                             }
                             <Row>
-                                <Text style={{ marginTop: 10, paddingLeft: 5 }}>List Issues On Project</Text>
+                                <Text style={{ marginTop: 10, paddingLeft: 5 }}>Project issues list</Text>
                             </Row>
                             <Row style={addTaskStyle.rowTaskContainer}>
                                 <LoadingModal

@@ -25,6 +25,7 @@ class ProjectsAddMembersScreen extends React.Component {
 
     render() {
         const { project } = this.state;
+        console.log('project', project);
         return (
             <Container>
                 <Header
@@ -54,7 +55,12 @@ class ProjectsAddMembersScreen extends React.Component {
                 <Content padder>
                     <Grid>
                         <Row>
-                            <Text style={{ marginTop: 10, paddingLeft: 10 }}>Project Add Members Form</Text>
+                            {project.members && project.members.length > 1 &&
+                                <Text style={{ marginTop: 10, paddingLeft: 10 }}>Project members list</Text>
+                            }
+                            {project.members && project.members.length < 2 &&
+                                <Text style={{ marginTop: 10, paddingLeft: 10 }}>Project member list</Text>
+                            }
                         </Row>
                     </Grid>
                     <MemberList members={project.members} />

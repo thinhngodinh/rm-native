@@ -105,7 +105,6 @@ class ProjectsAddTagsScreen extends React.Component {
 
     render() {
         const { handleSubmit, loadingData, projectTag } = this.props;
-        console.log('render', projectTag)
         return (
             <Container>
                 <LoadingModal
@@ -134,7 +133,7 @@ class ProjectsAddTagsScreen extends React.Component {
                 <Content padder>
                     <Grid>
                         <Row>
-                            <Text style={{ marginTop: 10 }}>Add Tags To {this._project.name}</Text>
+                            <Text style={{ marginTop: 10 }}>Add tags to project</Text>
                         </Row>
                         <Row>
                             <Form style={addTagStyle.formWrapper}>
