@@ -84,8 +84,16 @@ class ProjectsAddTagsScreen extends React.Component {
         const tagSubmit = Array.from(this.props.projectTag);
         // tagSubmit.concat(this.props.projectTag)
         tagValue = values.tagName.trim().split(',');
-        tagSubmit.push(...tagValue);
-        this._updateTag(tagSubmit);
+
+        const newTagToString = tagValue.toString();
+        const validateAddTask =  tagSubmit.includes(newTagToString);
+
+        if (validateAddTask) {
+            this._updateTag(tagSubmit);
+        } else {
+            tagSubmit.push(...tagValue);
+            this._updateTag(tagSubmit);
+        }
     }
 
     removeTagItem(index) {
@@ -190,4 +198,3 @@ export default compose(
         projectTag: state.project.projectTag
     }))
 )(ProjectsAddTagsScreen);
-
