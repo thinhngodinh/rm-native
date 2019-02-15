@@ -8,7 +8,7 @@ import {
 } from 'native-base';
 import { StyleSheet, Modal } from 'react-native';
 import { Row, Grid } from 'react-native-easy-grid';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, reset } from 'redux-form';
 import { userActions } from './../../static/actions/userActions';
 // Header Config
 // Footer Config
@@ -146,6 +146,11 @@ class ProjectsAddTasksScreen extends React.Component {
             return;
         }
         console.log('value submit', values);
+        this._clearFormAddTask();
+    }
+
+    _clearFormAddTask = () => {
+        this.props.dispatch(reset('projectAddTask'));
         this.showAddTaskForm(false)
     }
 
@@ -175,43 +180,45 @@ class ProjectsAddTasksScreen extends React.Component {
                     <React.Fragment>
                         <Grid>
                             {this.state.addTaskForm &&
-                                <Modal
-                                    transparent={false}
-                                    visible={this.state.addTaskForm}
-                                    onRequestClose={() => this.showAddTaskForm(false)}
-                                >
-                                    <View style={{paddingLeft: 5, paddingRight: 10}}>
-                                        <View style={addTaskStyle.formItem}>
-                                            <Text style={{ marginTop: 10 }}>Add issues for project</Text>
+                                <View>
+                                    <Modal
+                                        transparent={false}
+                                        visible={this.state.addTaskForm}
+                                        onRequestClose={() => this._clearFormAddTask()}
+                                    >
+                                        <View style={{paddingLeft: 5, paddingRight: 10}}>
+                                            <View style={addTaskStyle.formItem}>
+                                                <Text style={{ marginTop: 10 }}>Add issues for project</Text>
+                                            </View>
+                                            <View style={[addTaskStyle.formItem, {marginTop: 20, flexDirection: 'row'}]}>
+                                                <Form>
+                                                    <View style={addTaskStyle.formItem}>
+                                                        <Field
+                                                            label='Task Title'
+                                                            name='taskTitle'
+                                                            placeholder='Input task title'
+                                                            component={RenderInput}
+                                                            />
+                                                    </View>
+                                                    <View style={[addTaskStyle.formItem, {marginTop: 10, flexDirection: 'row', justifyContent: 'flex-end'}]}>
+                                                        <Button
+                                                            onPress={() => this._clearFormAddTask()}
+                                                            style={[addTaskStyle.btnTask]}
+                                                            primary small>
+                                                            <Text>Cancel</Text>
+                                                        </Button>
+                                                        <Button
+                                                            onPress={handleSubmit(this.submitForm)}
+                                                            style={[addTaskStyle.btnTask, {marginLeft: 10}]}
+                                                            primary small>
+                                                            <Text>Save</Text>
+                                                        </Button>
+                                                    </View>
+                                                </Form>
+                                            </View>
                                         </View>
-                                        <View style={[addTaskStyle.formItem, {marginTop: 20, flexDirection: 'row'}]}>
-                                            <Form>
-                                                <View style={addTaskStyle.formItem}>
-                                                    <Field
-                                                        label='Task Title'
-                                                        name='taskTitle'
-                                                        placeholder='Input task title'
-                                                        component={RenderInput}
-                                                        />
-                                                </View>
-                                                <View style={[addTaskStyle.formItem, {marginTop: 10, flexDirection: 'row', justifyContent: 'flex-end'}]}>
-                                                    <Button
-                                                        onPress={() => this.showAddTaskForm(false)}
-                                                        style={[addTaskStyle.btnTask]}
-                                                        primary small>
-                                                        <Text>Cancel</Text>
-                                                    </Button>
-                                                    <Button
-                                                        onPress={handleSubmit(this.submitForm)}
-                                                        style={[addTaskStyle.btnTask, {marginLeft: 10}]}
-                                                        primary small>
-                                                        <Text>Save</Text>
-                                                    </Button>
-                                                </View>
-                                            </Form>
-                                        </View>
-                                    </View>
-                                </Modal>
+                                    </Modal>
+                                </View>
                             }
                             <Row>
                                 <Text style={{ marginTop: 10, paddingLeft: 5 }}>Project issues list</Text>
